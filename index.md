@@ -1,5 +1,21 @@
 ## Welcome to GitHub Pages
 
+
+[a relative link](another-page.md)
+[waboom game](game-waboom.md)
+
+
+<video controls>
+  <source type="video/mp4" src="WABOOM action cut.mp4">
+</video>
+
+
+
+<video width="320" height="240" controls>
+  <source type="video/mp4" src="https://robocop79.github.io/Websiteland//Twitter/FLT.mp4">
+</video>
+
+
 You can use the [editor on GitHub](https://github.com/Kaminate/kaminate.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
