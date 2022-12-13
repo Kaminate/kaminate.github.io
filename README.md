@@ -1,5 +1,7 @@
 # kaminate.github.io
 
+https://kaminate.github.io
+
 Do not delete the .gitattributes file ( or this readme file )
 Without the .gitattributes file, you get these kind of errors.
 It has something to do with git line endings messing with checksums.
