@@ -80,6 +80,12 @@ Remove the `draft: true` from `website/content/posts/test-post.md`
 draft: false
 ```
 
+During your `Build with Hugo` github action, if you get the error
+```
+Error: Unable to locate config file or config directory. Perhaps you need to create a new site.
+```
+it might be because the hugo version listed in the action's hugo.yml may be different than your local hugo version and you will have wasted 4 hours debugging this shit.
+
 wtf
 
 
