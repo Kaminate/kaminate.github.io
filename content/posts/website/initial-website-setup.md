@@ -13,13 +13,13 @@ I'm going to assume you're familiar with [github](https://github.com). To host a
 
 ### Hugo
 If you're like me, you have no idea what [Hugo](https://gohugo.io) is, but you're following the docs to create a new hugo skeleton website in the repository directory.
-```bat
+```sh
 hugo new site . --force
 
 ```
 
 For the website theme, I chose one called `PaperMod`.
-```bat
+```sh
 git submodule add --depth=1 https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
 git submodule update --init --recursive 
 ```
@@ -32,7 +32,7 @@ theme = 'PaperMod'
 ```
 
 ### Preview the website
-```bat
+```sh
 hugo server
 ```
 
@@ -58,7 +58,7 @@ on github, went to settings → pages → build and deployment → source → gi
 this created a `.github\workflows\hugo.yml` so that when a commit goes to main branch, the website is published to https://kaminate.github.io
 
 Test to see if the github action deployment works at all by creating a post and pushing it (we are already in the main branch)
-```bat
+```sh
 hugo new posts/test-post.md
 ```
 
@@ -68,7 +68,7 @@ draft: false
 ```
 
 and push main to trigger the github action
-```bat
+```sh
 git add .
 git commit -m asdf
 git push
@@ -80,6 +80,34 @@ Spend a couple hours debugging the `Build with Hugo` github action due to the th
 Error: Unable to locate config file or config directory. Perhaps you need to create a new site.
 ```
 Turns out the hugo version listed in the github action's `hugo.yml` is different than your my hugo version, and you should have copied `.github/workflows/hugo.yaml` from https://gohugo.io/hosting-and-deployment/hosting-on-github/ instead.
+
+### LaTeX
+Based off of https://adityatelange.github.io/hugo-PaperMod/posts/math-typesetting/ and https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/
+
+
+Created [layouts/partials/katex.html](https://github.com/Kaminate/kaminate.github.io/tree/main/layouts/partials/katex.html), which contains code copied from ["Auto-render Extension"](https://katex.org/docs/autorender.html).
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+```
+
+Created [layouts/partials/extend_head.html](https://github.com/Kaminate/kaminate.github.io/tree/main/layouts/partials/extend_head.html) to include it in every post.
+```html
+{{ partial "katex.html" . }}
+```
+
+And just like that, inline and block math work.
+
+`Inline math: \\( \varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887… \\)`
+
+Inline math: \\( \varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887… \\)
+
+`Block math: $$ \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } $$`
+
+
+Block math: $$ \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } $$
 
 ### Misc tweaks
 
