@@ -7,13 +7,13 @@ theme = 'PaperMod'
 # list of subfolders in ./content/ to show on the main page
 # Let the papermod theme show content from multiple folders
 # instead of defaulting to the folder with the most entries
-#mainSections = ['foo', 'qux', 'posts']
+mainSections = ['foo', 'posts', 'website']
 #mainSections = []
 
 [params.homeInfoParams]
 # what to show on the home page
-Title = "Hi there wave"
-Content = "Can be Info, links, about..."
+Title = "Hello"
+Content = "There"
 
 # note: if you typo socialIcons as socalIcons,
 # there is no error message telling you what was wrong
