@@ -8,7 +8,12 @@ theme = 'PaperMod'
 # Let the papermod theme show content from multiple folders
 # instead of defaulting to the folder with the most entries
 mainSections = ['foo', 'posts', 'website']
-#mainSections = []
+
+# Hide the "Powered by Hugo and PaperMod" footer
+# ( see themes/PaperMod/layouts.partials/footer.html )
+hideFooter = "true"
+
+comments = "true"
 
 [params.homeInfoParams]
 # what to show on the home page

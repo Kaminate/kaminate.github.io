@@ -33,7 +33,13 @@ theme = 'PaperMod'
 
 ### Preview the website
 ```sh
-hugo server
+hugo serve
+```
+
+Note that by default, Hugo seems to create .md pages with `draft = true`, so you won't be able to see them unless you use `-D` arg. (and when you publish your website and can't find a post, it's because you didn't set `draft = false`)
+
+```sh
+hugo serve -D
 ```
 
 
@@ -121,26 +127,33 @@ Block math: $$ \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } $$
     public/
     ```
 
--   Remove the `Powered by Hugo and PaperMod` footer (_controversial_)  
-    I found an example at https://github.com/wowchemy/wowchemy-hugo-themes/issues/1389. In this issue, they used `site_footer.html`, but with PaperMod it seems `footer.html` works
+-   Remove the `Powered by Hugo and PaperMod` footer  
+    I found an example at https://github.com/wowchemy/wowchemy-hugo-themes/issues/1389. In this issue, they used `site_footer.html`, but with PaperMod it seems `footer.html` sort of works, except that it breaks the light/dark toggle. Looking inside `themes/PaperMod/layouts.partials/footer.html`, there's a line for `{{- if not (.Param "hideFooter") }} `, so adding that to `hugo.toml` is better.
 
 -   Icon  
     Drop an image named `favicon.ico` into `static/`
 
 -   Add social media icons  
-    One more thing - when adding the social media icons to `hugo.toml`, because it's basically a config file, typos go undetected.
+    When adding the social media icons to `hugo.toml`, because it's basically a config file, typos go undetected.
     ```toml
     [[params.socalIcons]]
     name = "twitter"
     url = "https://twitter.com/n8tak"
     ```
     (socialIcons is misspelled as socalIcons)
+-   Comments  
+    I used https://utteranc.es, relevant files are [layouts/partials/utterances.html](https://github.com/Kaminate/kaminate.github.io/tree/main/layouts/partials/utterances.html), [layouts/partials/comments.html](https://github.com/Kaminate/kaminate.github.io/tree/main/layouts/partials/comments.html), and allowing comments in `hugo.toml`
+    ```toml
+    [params]
+    comments = "true"
+    ```
+
 
 ### For future reference
 
 - https://github.com/adityatelange/hugo-PaperMod/
 - https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite
+- https://github.com/adityatelange/hugo-PaperMod/wiki/Features
 - https://adityatelange.github.io/hugo-PaperMod/
 - https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-features/
-
 
