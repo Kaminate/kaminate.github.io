@@ -95,8 +95,7 @@ Created [layouts/partials/katex.html](https://github.com/Kaminate/kaminate.githu
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
-    onload="renderMathInElement(document.body);"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 ```
 
 Created [layouts/partials/extend_head.html](https://github.com/Kaminate/kaminate.github.io/tree/main/layouts/partials/extend_head.html) to include it in every post.
@@ -112,8 +111,40 @@ Inline math: \\( \varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887… \\)
 
 `Block math: $$ \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } $$`
 
-
 Block math: $$ \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } $$
+
+I wanted to have inline math with `$ <latex here> $`, so I appeneded another delimiter to the `renderMathInElement` function in
+[layouts/partials/katex.html](https://github.com/Kaminate/kaminate.github.io/blob/main/layouts/partials/katex.html)
+```html
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {delimiters: [
+        {left: "$", right: "$", display: false} ] }); });
+</script>
+```
+Apparently this is mentioned in the second katex documentation https://katex.org/docs/autorender.html, `display: false` means inline (non-block) latex rendering.
+
+When I tried to have column vectors, the backslashes `\\` would escape into `\`,
+making me write with four of them.
+```
+a = \begin{bmatrix} x  \\\\ y \end{bmatrix} /* <-- gross */
+a = \begin{bmatrix} x  \\ y \end{bmatrix} /* <-- ideal */
+```
+$$
+a_{row} = \begin{bmatrix} x  \\ y \end{bmatrix}
+$$
+$$
+{{<katex>}}
+a_{col} = \begin{bmatrix} x  \\ y \end{bmatrix}
+{{</katex>}}
+$$
+
+I looked at a couple links and found a solution
+-   https://danmackinlay.name/notebook/hugo.html
+-   https://discourse.gohugo.io/t/how-to-render-math-equations-properly-with-katex/40998/4
+-   https://misha.brukman.net/blog/2022/04/writing-math-with-hugo/
+
+I added [layouts/shortcodes/katex.html](https://github.com/Kaminate/kaminate.github.io/blob/main/layouts/shortcodes/katex.html) and now wrap katex code in a [shortcode](https://gohugo.io/content-management/shortcodes/). I don't claim to understand how it works, apparently it has something to do with forwarding the `\\` from markdown to rendering.
 
 ### Misc tweaks
 
