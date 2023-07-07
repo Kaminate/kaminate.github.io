@@ -113,8 +113,7 @@ A small change in $x$ by $dx$ in produces a change in $z$ by $\frac{\partial z}{
 In this diagram, the tangent vector on the x-z plane is $a=(dx,0,\frac{\partial z}{\partial x}dx)$  
 The tangent vector on the y-z plane is $b=(0,dy,\frac{\partial z}{\partial y}dy)$
 
-These vectors are proportional to $\propto (1,0,z_x)$ and $(0,1,z_y)$.  
-Crossing these two tangent vectors gives the normal
+These vectors are proportional to $\propto (1,0,z_x)$ and $(0,1,z_y)$. Crossing these two tangent vectors gives the normal
 $$
 n = (1,0,z_x) \times (0,1,z_y)
 $$
@@ -131,7 +130,7 @@ Which gives the same normal as before, but flipped the other direction
 Find the equation of the tangent plane to the surface $z = f(x,y) = 4-x^2 - y^2$ at the point $(1,2)$
 
 <!--![alt text](ex.png)-->
-![alt text](ex_drawing.png)
+![alt text](ex_drawing_q.png)
 
 The point $p_0$ in 3d is given by
 {{<katex>}}
@@ -143,7 +142,7 @@ $$
 $$
 {{</katex>}}
 
-
+The implicit surface $g$ is given by
 {{<katex>}}
 $$
 \begin{align*} 
@@ -153,6 +152,7 @@ $$
 $$
 {{</katex>}}
 
+The normal $n$ as a function of position is given by
 {{<katex>}}
 $$
 \begin{align*} 
@@ -162,6 +162,7 @@ $$
 $$
 {{</katex>}}
 
+The normal $n_0$ at point $p_0$ is given by
 {{<katex>}}
 $$
 \begin{align*} 
@@ -173,6 +174,7 @@ $$
 $$
 {{</katex>}}
 
+Finally, the equation of the tangnet plane is given by
 {{<katex>}}
 $$
 \begin{align*} 
@@ -182,6 +184,8 @@ $$
 \\ \end{align*}
 $$
 {{</katex>}}
+
+![alt text](ex_drawing.png)
 
 ### References
 
