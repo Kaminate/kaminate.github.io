@@ -1,7 +1,7 @@
 ---
 title: "Tangent Plane"
 date: 2021-11-01
-draft: true
+draft: false
 ---
 
 
