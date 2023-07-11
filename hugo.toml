@@ -13,12 +13,18 @@ mainSections = ['foo', 'posts', 'website']
 # ( see themes/PaperMod/layouts.partials/footer.html )
 hideFooter = "true"
 
+# Allow comments on posts
 comments = "true"
+
+# Show Next and Prev buttons at the bottom of each post
+# https://github.com/adityatelange/hugo-PaperMod/wiki/Features#other-posts-suggestion-below-a-post
+# https://push.blue/posts/20220718-reverse-papermodnavlinks/
+ShowPostNavLinks = "true"
 
 [params.homeInfoParams]
 # what to show on the home page
 Title = "Hello"
-Content = "There"
+Content = ""
 
 # note: if you typo socialIcons as socalIcons,
 # there is no error message telling you what was wrong
