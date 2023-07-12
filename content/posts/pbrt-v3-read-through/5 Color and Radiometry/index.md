@@ -5,6 +5,7 @@ draft: true
 ---
 
 - [ ] deleteme https://drive.google.com/drive/my-drive `pbrt notes spiral.pdf`
+- [ ] deleteme https://drive.google.com/drive/my-drive `pbrt spiral 2.pdf`
 
 https://www.pbr-book.org/3ed-2018/Color_and_Radiometry
 
@@ -86,7 +87,7 @@ const Float CIE_lambda[nCIESamples] = { ... };
 Different LED displays have different emission curves.
 |     |     |
 | --- | --- |
-| ![](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/lcd-display-spd.svg) | ![](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/led-display-spd.svg)   |
+| ![](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/lcd-display-spd.svg) | ![](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/led-display-spd.svg) |
 
 I believe(?) these are the same as the display's spectral response curves $R(\lambda)$, $G(\lambda)$, $B(\lambda)$.
 
@@ -96,16 +97,18 @@ Recall that ($x_\lambda$, $y_\lambda$, $z_\lambda$) is the representation of an 
 
 A SPD in XYZ color space
 $$
-S(\lambda) = x_\lambda X(\lambda) + 
-             y_\lambda Y(\lambda) + 
-             z_\lambda Z(\lambda) \\
+S(\lambda) =
+x_\lambda X(\lambda) + 
+y_\lambda Y(\lambda) + 
+z_\lambda Z(\lambda) \\
 $$
 
 A SPD in RGB color space
 $$
-S(\lambda) = r R(\lambda) + 
-             g G(\lambda) + 
-             b B(\lambda)
+S(\lambda) =
+r R(\lambda) + 
+g G(\lambda) + 
+b B(\lambda)
 $$
 
 Converting from XYZ to RGB color space
@@ -203,11 +206,11 @@ $$
 
 ---
 
-### [Irradiance and Radiant Exitance](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-IrradianceandRadiantExitance)
+### [Irradiance and Radiant Exitance](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-IrradianceandRadiantExitance) {#irradiance}
 
 Given area $A$, the average density of power over area is $E=\Phi/A$, measured in $W/m^2$
 
-__Irradiance__ (E), area density of flux arriving at a surface  
+__Irradiance__ (E), area density of flux arriving at a surface\
 __Radiant exitance__ (M), area density of flux leaving at a surface
 
 Defined as the differential power per differential area at a point $p$
@@ -224,11 +227,12 @@ $$
 __Lambert’s cosine law__ originates from the irradiance equation.
 
 ![](fig5.7.png)
+Figure 5.7
 
-Two surfaces, A1 and A2 recieving light from a light source with area $A$ and flux $\Phi$. 
+Two surfaces, $A_1$ and $A_2$ recieving light from a light source with area $A$ and flux $\Phi$. {#bar}
 
-The first surface has area $A_1 = A$  
-The second surface has area $A_2 = \frac{A}{\cos \theta}$, ( $A_2 \cos \theta = A$ )
+The first surface has area $A_1 = A$.\
+Then, because $A_2 \cos \theta = A$, the second surface has area $A_2 = \frac{A}{\cos \theta}$
 
 Because the same amount of light is spread over a larger surface area, the irradiance at a given point in $A_2$ will be smaller than the irradiance at a given point in $A_1$.
 
@@ -248,7 +252,7 @@ $$
 
 ### [Solid Angle and Intensity](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-SolidAngleandIntensity)
 
-In 2D, an angle $\theta$ measured in __radians__ is equal to the arc length of an object subtended onto the unit circle.  
+In 2D, an angle $\theta$ measured in __radians__ is equal to the arc length of an object subtended onto the unit circle.\
 In 3D, a solid angle $sr$ measured in __steradians__ is equal to projected area of an object subtended onto a sphere.
 
 ![](radians_and_steradians.png)
@@ -285,11 +289,66 @@ $$
 In terms of flux, it is flux per unit solid angle $d\omega$ per unit projected area $dA^\perp$
 
 $$
-L(p,\omega)=\frac{d\Phi}{d\omega dA^\perp}
+L(p,\omega)=\frac{d\Phi}{d\omega dA^\perp} \tag{5.2}
 $$
 
-- [ ] Q: todo, relate dA and dA^\perp and cos theta?
+![alt text](pbrt_fig_5.10.png)
+Figure 5.10
 
+--- 
+
+`There's this thing that is confusing`, which is, what is the difference between $dA$, $dA^\perp$, $d\omega$, $d\omega^\perp$, and how are they related to $\cos \theta$ and $E_\omega$ and $E$ and $L$?
+
+---
+
+> Recall the two surfaces $A_1$ and $A_2$ from figure 5.7 [earlier](#irradiance). Although both surfaces were receiving the same power ($\Phi$), the irradiance at a point in $A_2$ was smaller by a factor of $\cos \theta$ because the angle $\theta$ made the surface longer. $A_2 \cos \theta = A_1$
+$$
+E_1=\frac{\Phi}{A_1}
+$$
+$$
+E_2=\frac{\Phi}{A_2}
+$$
+>
+> ![](fig5.7.png)
+
+---
+
+> There is a document [02radiometry.pdf](http://www.cs.cornell.edu/courses/cs6630/2009fa/notes/02radiometry.pdf) by Steve Marschner that has two surfaces receiving the same power ($\Phi$). $dA^\prime$ has a larger area than $dA$, and thus should have a smaller irradiance $E$. However radiance $L$ is not measured relative to $dA^\prime$, but to $dA$.
+>
+>
+> ![alt text](daprime.png)
+> In `02radiometry.pdf`, $\mathrm{d}A^\prime$ is tilted by the angle $\theta$, which makes it is longer than $\mathrm{d}A$, they are related by $\mathrm{d}A = \mathrm{d}A^\prime \cos \theta$. The radiance is written as
+{{<katex>}}
+$$
+L(\bold{x},\omega)= \frac{d^2\Phi}{dA \, d\omega} = 
+                    \frac{d^2\Phi}{dA^\prime \, \cos \theta \, d\omega}
+$$
+{{</katex>}}
+>It then lists 2 ways to hide the $\cos \theta$.
+> 1. The $dA^\prime \cos \theta$ can be called the _"projected area"_ of $dA^\prime$ in the direction $\omega$.
+> 2. The $d\omega \cos \theta$ can be called the _"projected solid angle"_
+>
+>$dA$ in `02radiometry.pdf` is not the same $dA$ in `pbrt`.
+>- In `02radiometry.pdf`, $dA$ is perpendicular to $d\omega$, and $dA^\prime$ is __drawn__ more oblique because it's tilted by an angle $\theta$. They are related by $\mathrm{d}A = \mathrm{d}A^\prime \cos \theta$.
+>- In `pbrt` figure 5.10, $dA$ is perpendicular to the normal and $dA^\perp$ is __drawn__ more oblique because it's tilted away by an angle $\theta$. They are related by $dA^\perp=dA \cos \theta$
+>
+>![alt text](pbrt_fig_5.10.png)
+>
+>These two surfaces are receiving the same power $\Phi$ but on different areas, $dA$ and $dA^\perp$. The irradiance $E$ received at a point on $dA$ is given by
+>
+>$E=\frac{\Phi}{dA}$
+>
+>Whereas the irradiance $E_\omega$ received on the $dA^\perp$ is given by
+>
+>$E_\omega=\frac{\Phi}{dA^\perp}$
+>
+> The area $dA$ of $E$ is bigger than the area $dA^\perp$ of $E_\omega$, by a factor of $dA \cos \theta= dA^\perp$.
+>
+> $E_\omega=\frac{\Phi}{dA \cos \theta}$
+>
+> So I think the irradiance $E$ on the surface $dA$ is smaller than the irradiance $E_\omega$ on the surface $dA^\perp$, by a factor of $E_\omega \cos \theta= E$.
+>
+> However, there's no such thing as _radiance_ at $dA$. Radiance is measured only relative to $dA^\perp$.
 
 ---
 
@@ -302,14 +361,14 @@ $$
 
 ### [5.4.3 Luminance and Photometry](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#LuminanceandPhotometry)
 
-__Photometry__ is the study of EMR in terms of human perception.  
+__Photometry__ is the study of EMR in terms of human perception.\
 __Luminance__ ($Y$) measures how bright a SPD appears to a human. A green SPD will appear brighter than a blue SPD with the same energy.
 
 $$
 Y=\int_\lambda L(\lambda) V(\lambda) d\lambda
 $$
 
-$L(\lambda)$ is spectral radiance  
+$L(\lambda)$ is spectral radiance\
 $V(\lambda)$ is the spectral response curve of human eye sensitivity to different wavelengths. Also known as the luminosity function, or CIE 1924 photopic luminous efficiency function.
 
 $Y(\lambda)$ from the XYZ color is proportional to $V(\lambda)$
@@ -319,8 +378,42 @@ $$
 
 ---
 
-### [5.5 Radiometric Integrals]()
-...
+### [5.5 Working with Radiometric Integrals](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#)
+
+Irradiance $E$ at point $p$ with normal $n$.
+{{<katex>}}
+$$
+E(p,n)=\int_\Omega \! L_i(p,\omega) \, \lvert \cos \theta \rvert \, \mathrm{d}\omega \tag{5.4}
+$$
+{{</katex>}}
+
+$\theta$ is the angle between $\omega$ and $n$.\
+The $\cos\theta$ is due to the $\mathrm{d}A^\perp$ radiance term.
+
+> How does this relate to the irradiance $E$ equation, with projected _stuff_ and $\cos \theta$?
+{{<katex>}}
+$$
+\begin{align*}
+E(p,n)&=\int_\Omega \! L_i(p,\omega) \, \lvert \cos \theta \rvert \, \mathrm{d}\omega \\
+dE(p,n)&=L_i(p,\omega) \, \lvert \cos \theta \rvert \, \mathrm{d}\omega \\
+\frac{dE(p,n)}{\lvert \cos \theta \rvert \, \mathrm{d}\omega}&=L_i(p,\omega) \\
+\frac{d\Phi}{dA \lvert \cos \theta \rvert \, \mathrm{d}\omega}&=L_i(p,\omega) 
+\end{align*}
+$$
+{{</katex>}}
+> which can then be shorthanded in one of two ways, using projected area $dA^\perp$ or projected solid angle $d\omega^\perp$
+{{<katex>}}
+$$
+\frac{d\Phi}{dA^\perp  \, \mathrm{d}\omega}=L_i(p,\omega)
+$$
+$$
+\frac{d\Phi}{dA \, \mathrm{d}\omega^\perp }=L_i(p,\omega)
+$$
+{{</katex>}}
+
+---
+
+### [5.5.1 Integrals over Projected Solid Angle](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverProjectedSolidAngle)
 
 ---
 
