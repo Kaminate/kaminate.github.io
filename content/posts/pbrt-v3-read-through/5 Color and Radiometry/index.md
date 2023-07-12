@@ -229,10 +229,14 @@ __Lambert’s cosine law__ originates from the irradiance equation.
 ![](fig5.7.png)
 Figure 5.7
 
-Two surfaces, $A_1$ and $A_2$ recieving light from a light source with area $A$ and flux $\Phi$. {#bar}
+Two surfaces, $A_1$ and $A_2$ recieving light from a light source with area $A$ and flux $\Phi$.
 
 The first surface has area $A_1 = A$.\
 Then, because $A_2 \cos \theta = A$, the second surface has area $A_2 = \frac{A}{\cos \theta}$
+
+<!--![](fig5.7_alt.png)-->
+![](fig5.7_alt_halfsize.png)
+
 
 Because the same amount of light is spread over a larger surface area, the irradiance at a given point in $A_2$ will be smaller than the irradiance at a given point in $A_1$.
 
@@ -381,9 +385,32 @@ $$
 ### [5.5 Working with Radiometric Integrals](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#)
 
 Irradiance $E$ at point $p$ with normal $n$.
+
 {{<katex>}}
 $$
-E(p,n)=\int_\Omega \! L_i(p,\omega) \, \lvert \cos \theta \rvert \, \mathrm{d}\omega \tag{5.4}
+% define a bunch of things to use later in this document
+%
+% cos/sin of angles
+\gdef\costheta{\cos \theta}
+\gdef\cosphi{\cos \phi}
+\gdef\sintheta{\sin \theta}
+\gdef\sinphi{\sin \phi}
+\gdef\abscostheta{\lvert \cos \theta \rvert}
+% differential areas
+\gdef\dAperp{\mathrm{d}A^\perp}
+\gdef\dA{\mathrm{d}A}
+% differential angles
+\gdef\dtheta{\mathrm{d}\theta}
+\gdef\dphi{\mathrm{d}\phi}
+% differential solid angles
+\gdef\domega{\mathrm{d} \omega}
+\gdef\domegaperp{\mathrm{d}\omega^\perp}
+$$
+{{</katex>}}
+
+{{<katex>}}
+$$
+E(p,n)=\int_\Omega \! L_i(p,\omega) \, \abscostheta \, \domega \tag{5.4}
 $$
 {{</katex>}}
 
@@ -415,8 +442,139 @@ $$
 
 ### [5.5.1 Integrals over Projected Solid Angle](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverProjectedSolidAngle)
 
+
+Just like in `02radiometry.pdf`, the projected solid angle measure can be used to hide the $\cos \theta$ from the integral.
+
+
+{{<katex>}}
+$$
+\domegaperp = \abscostheta \, \domega
+$$
+
+
+$$
+E(p,n)=\int_{H^2(n)} \! L_i(p,\omega) \, \domegaperp
+$$
+{{</katex>}}
+
+> note: $d\omega^\perp$ is always $\le d\omega$
+
+The total flux can be computed via integral
+
+
+{{<katex>}}
+$$
+\Phi = \int_A \int_{H^2(n)} \! L_o(p, \omega) \, \costheta \, \domega \, \dA
+$$
+$$
+\Phi = \int_A \int_{H^2(n)} \! L_o(p, \omega) \, \domegaperp \, \dA
+$$
+{{</katex>}}
+
+> and I reckon it is also equal to
+{{<katex>}}
+$$
+\Phi = \int_A \int_{H^2(n)} \! L_o(p, \omega) \, \domega \, \dAperp
+$$
+{{</katex>}}
+
 ---
 
-### [5.6 Surface Reflection]()
+### [5.5.2 Integrals over Spherical Coordinates](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverSphericalCoordinates)
+
+
+![](spherical_coords.png)
+Angles ($\theta$, $d\theta$, $d\phi$) measured in radians are in purple\
+Distances/arc lengths ($\sin \theta$, $d\theta$, $\sin\theta d\phi$) measured in (...units?) are in orange.\
+Radius = 1.
+
+- [ ] todo: draw in an orange radius $r$, and make it rsintheta rdtheta, rsinthetadphi
+
+A vector $(x,y,z)$ can be written in terms of $(\theta, \phi)$ spherical coordinates
+
+
+{{<katex>}}
+$$
+\begin{align*}
+x&=\sintheta \, \cosphi \\
+y&=\sintheta \, \sinphi \\
+z&=\costheta
+\end{align*}
+$$
+{{</katex>}}
+
+So too can a solid angle integral
+
+{{<katex>}}
+$$
+\domega = \sintheta \, \dtheta \, \dphi \tag{5.5}
+$$
+{{</katex>}}
+
+The hemisphere integral (5.4) can be rewritten.
+
+{{<katex>}}
+$$
+E(p,n) = \int_0^{2\pi}
+         \int_0^{\frac{\pi}{2}}
+         \! L_i(p, \theta, \phi) \, \costheta \, \sintheta \, \dtheta \, \dphi
+$$
+{{</katex>}}
+
+If radiance is the same from all directions, simplifies to $E=\pi L_i$
+
+The reverse coordinate system transform is
+$$
+\theta = acos( z)
+$$
+$$
+\phi = atan2( y,x)
+$$
 
 ---
+
+### [5.5.3 Integrals over Area](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea)
+
+> Computing this value as an integral over directions is not straightforward, since given a particular direction it is nontrivial to determine if the quadrilateral is visible in that direction. It’s much easier to compute the irradiance as an integral over the area of the quadrilateral.
+ 
+- [ ] Q: How is that any easier? Wouldn't it be non-trivial to determine if the quadrilateral is visible from $p$ to $p^\prime$
+
+
+Sometimes integrals are more easily computed over the area of a light source ($\int_A$) instead of an integral over direction ($\int_\Omega$).
+
+As viewed from point $p$,
+
+{{<katex>}}
+$$
+\domega = \frac{\dA \costheta }{r^2} \tag{5.6}
+$$
+{{</katex>}}
+
+Where $\theta$ is the angle between the $dA$ normal and vector to $p$. (I believe $\theta$ in (5.6) is $\theta_o$ below)
+
+<!--![](fig5.16.svg)-->
+![](fig5.16_alt.png)
+
+
+{{<katex>}}
+$$
+E(p,n) = \int_A \! L \cos \theta_i \, \frac{\cos \theta_o \, \dA}{r^2}
+$$
+{{</katex>}}
+
+---
+
+### [5.6 Surface Reflection](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#)
+
+see page 5 of `pbrt notes spiral.pdf` for 5.6.1 and 5.6.1
+
+### [5.6.1 The BRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF)
+
+---
+
+### [5.6.2 The BSSRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF)
+
+
+
+---
+
