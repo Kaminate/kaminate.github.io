@@ -4,9 +4,6 @@ date: 2023-03-19
 draft: true
 ---
 
-- [ ] deleteme https://drive.google.com/drive/my-drive `pbrt notes spiral.pdf`
-- [ ] deleteme https://drive.google.com/drive/my-drive `pbrt spiral 2.pdf`
-
 https://www.pbr-book.org/3ed-2018/Color_and_Radiometry
 
 __Radiometry__ - Study of electromagnetic radiation (EMR) propagation
@@ -236,6 +233,7 @@ Then, because $A_2 \cos \theta = A$, the second surface has area $A_2 = \frac{A}
 
 <!--![](fig5.7_alt.png)-->
 ![](fig5.7_alt_halfsize.png)
+(Alternate presentation of figure 5.7)
 
 
 Because the same amount of light is spread over a larger surface area, the irradiance at a given point in $A_2$ will be smaller than the irradiance at a given point in $A_1$.
@@ -305,54 +303,54 @@ Figure 5.10
 
 ---
 
-> Recall the two surfaces $A_1$ and $A_2$ from figure 5.7 [earlier](#irradiance). Although both surfaces were receiving the same power ($\Phi$), the irradiance at a point in $A_2$ was smaller by a factor of $\cos \theta$ because the angle $\theta$ made the surface longer. $A_2 \cos \theta = A_1$
+Recall the two surfaces $A_1$ and $A_2$ from figure 5.7 [earlier](#irradiance). Although both surfaces were receiving the same power ($\Phi$), the irradiance at a point in $A_2$ was smaller by a factor of $\cos \theta$ because the angle $\theta$ made the surface longer. $A_2 \cos \theta = A_1$
 $$
 E_1=\frac{\Phi}{A_1}
 $$
 $$
 E_2=\frac{\Phi}{A_2}
 $$
->
-> ![](fig5.7.png)
+
+![](fig5.7.png)
 
 ---
 
-> There is a document [02radiometry.pdf](http://www.cs.cornell.edu/courses/cs6630/2009fa/notes/02radiometry.pdf) by Steve Marschner that has two surfaces receiving the same power ($\Phi$). $dA^\prime$ has a larger area than $dA$, and thus should have a smaller irradiance $E$. However radiance $L$ is not measured relative to $dA^\prime$, but to $dA$.
->
->
-> ![alt text](daprime.png)
-> In `02radiometry.pdf`, $\mathrm{d}A^\prime$ is tilted by the angle $\theta$, which makes it is longer than $\mathrm{d}A$, they are related by $\mathrm{d}A = \mathrm{d}A^\prime \cos \theta$. The radiance is written as
+There is a document [02radiometry.pdf](http://www.cs.cornell.edu/courses/cs6630/2009fa/notes/02radiometry.pdf) by Steve Marschner that has two surfaces receiving the same power ($\Phi$). $dA^\prime$ has a larger area than $dA$, and thus should have a smaller irradiance $E$. However radiance $L$ is not measured relative to $dA^\prime$, but to $dA$.
+
+
+![alt text](daprime.png)
+In `02radiometry.pdf`, $\mathrm{d}A^\prime$ is tilted by the angle $\theta$, which makes it is longer than $\mathrm{d}A$, they are related by $\mathrm{d}A = \mathrm{d}A^\prime \cos \theta$. The radiance is written as
 {{<katex>}}
 $$
 L(\bold{x},\omega)= \frac{d^2\Phi}{dA \, d\omega} = 
                     \frac{d^2\Phi}{dA^\prime \, \cos \theta \, d\omega}
 $$
 {{</katex>}}
->It then lists 2 ways to hide the $\cos \theta$.
-> 1. The $dA^\prime \cos \theta$ can be called the _"projected area"_ of $dA^\prime$ in the direction $\omega$.
-> 2. The $d\omega \cos \theta$ can be called the _"projected solid angle"_
->
->$dA$ in `02radiometry.pdf` is not the same $dA$ in `pbrt`.
->- In `02radiometry.pdf`, $dA$ is perpendicular to $d\omega$, and $dA^\prime$ is __drawn__ more oblique because it's tilted by an angle $\theta$. They are related by $\mathrm{d}A = \mathrm{d}A^\prime \cos \theta$.
->- In `pbrt` figure 5.10, $dA$ is perpendicular to the normal and $dA^\perp$ is __drawn__ more oblique because it's tilted away by an angle $\theta$. They are related by $dA^\perp=dA \cos \theta$
->
->![alt text](pbrt_fig_5.10.png)
->
->These two surfaces are receiving the same power $\Phi$ but on different areas, $dA$ and $dA^\perp$. The irradiance $E$ received at a point on $dA$ is given by
->
->$E=\frac{\Phi}{dA}$
->
->Whereas the irradiance $E_\omega$ received on the $dA^\perp$ is given by
->
->$E_\omega=\frac{\Phi}{dA^\perp}$
->
-> The area $dA$ of $E$ is bigger than the area $dA^\perp$ of $E_\omega$, by a factor of $dA \cos \theta= dA^\perp$.
->
-> $E_\omega=\frac{\Phi}{dA \cos \theta}$
->
-> So I think the irradiance $E$ on the surface $dA$ is smaller than the irradiance $E_\omega$ on the surface $dA^\perp$, by a factor of $E_\omega \cos \theta= E$.
->
-> However, there's no such thing as _radiance_ at $dA$. Radiance is measured only relative to $dA^\perp$.
+It then lists 2 ways to hide the $\cos \theta$.
+1. The $dA^\prime \cos \theta$ can be called the _"projected area"_ of $dA^\prime$ in the direction $\omega$.
+2. The $d\omega \cos \theta$ can be called the _"projected solid angle"_
+
+$dA$ in `02radiometry.pdf` is not the same $dA$ in `pbrt`.
+- In `02radiometry.pdf`, $dA$ is perpendicular to $d\omega$, and $dA^\prime$ is __drawn__ more oblique because it's tilted by an angle $\theta$. They are related by $\mathrm{d}A = \mathrm{d}A^\prime \cos \theta$.
+- In `pbrt` figure 5.10, $dA$ is perpendicular to the normal and $dA^\perp$ is __drawn__ more oblique because it's tilted away by an angle $\theta$. They are related by $dA^\perp=dA \cos \theta$
+
+![alt text](pbrt_fig_5.10.png)
+
+These two surfaces are receiving the same power $\Phi$ but on different areas, $dA$ and $dA^\perp$. The irradiance $E$ received at a point on $dA$ is given by
+
+$E=\frac{\Phi}{dA}$
+
+Whereas the irradiance $E_\omega$ received on the $dA^\perp$ is given by
+
+$E_\omega=\frac{\Phi}{dA^\perp}$
+
+The area $dA$ of $E$ is bigger than the area $dA^\perp$ of $E_\omega$, by a factor of $dA \cos \theta= dA^\perp$.
+
+$E_\omega=\frac{\Phi}{dA \cos \theta}$
+
+So I think the irradiance $E$ on the surface $dA$ is smaller than the irradiance $E_\omega$ on the surface $dA^\perp$, by a factor of $E_\omega \cos \theta= E$.
+
+However, there's no such thing as _radiance_ at $dA$ being different to _radiance_ at $dA^\perp$. Radiance is measured at a point $p$ and is measured relative to $dA^\perp$.
 
 ---
 
@@ -389,22 +387,52 @@ Irradiance $E$ at point $p$ with normal $n$.
 {{<katex>}}
 $$
 % define a bunch of things to use later in this document
-%
-% cos/sin of angles
+% ---
+% roman variables
+\gdef\d{\mathrm{d}} % differential, dx
+\gdef\o{\mathrm{o}} % outgoing, ie w_o
+\gdef\i{\mathrm{i}} % incoming, ie w_i
+\gdef\p{\mathrm{p}} % point p
+% ---
+% trigonometry
 \gdef\costheta{\cos \theta}
+\gdef\costhetai{\cos \theta_\i}
+\gdef\costhetao{\cos \theta_\o}
 \gdef\cosphi{\cos \phi}
 \gdef\sintheta{\sin \theta}
 \gdef\sinphi{\sin \phi}
-\gdef\abscostheta{\lvert \cos \theta \rvert}
+\gdef\abscostheta{\lvert \costheta \rvert}
+\gdef\abscosthetai{\lvert \costhetai \rvert}
+\gdef\abscosthetao{\lvert \costhetao \rvert}
+% ---
 % differential areas
-\gdef\dAperp{\mathrm{d}A^\perp}
-\gdef\dA{\mathrm{d}A}
+\gdef\dAperp{\d A^\perp}
+\gdef\dA{\d A}
+% ---
+% radiometric quantities
+\gdef\Li{L_\i}
+\gdef\Lo{L_\o}
+% ---
+% differential radiometric quantities
+\gdef\dE{\d E}
+\gdef\dLo{\d \Lo}
+% ---
 % differential angles
-\gdef\dtheta{\mathrm{d}\theta}
-\gdef\dphi{\mathrm{d}\phi}
+\gdef\dtheta{\d\theta}
+\gdef\dphi{\d\phi}
+% ---
+% solid angles
+\gdef\w{\omega}
+\gdef\W{\Omega}
+\gdef\wi{\w_\i}
+\gdef\wo{\w_\o}
+% ---
 % differential solid angles
-\gdef\domega{\mathrm{d} \omega}
-\gdef\domegaperp{\mathrm{d}\omega^\perp}
+\gdef\dw{\d\w}
+\gdef\dwi{\d\wi}
+\gdef\dwo{\d\wo}
+\gdef\domega{\d \w}
+\gdef\domegaperp{\d\w^\perp}
 $$
 {{</katex>}}
 
@@ -417,18 +445,20 @@ $$
 $\theta$ is the angle between $\omega$ and $n$.\
 The $\cos\theta$ is due to the $\mathrm{d}A^\perp$ radiance term.
 
-> How does this relate to the irradiance $E$ equation, with projected _stuff_ and $\cos \theta$?
+---
+
+How does this relate to the irradiance ($E$) equation, with projected _"stuff"_ and $\cos \theta$?
 {{<katex>}}
 $$
 \begin{align*}
-E(p,n)&=\int_\Omega \! L_i(p,\omega) \, \lvert \cos \theta \rvert \, \mathrm{d}\omega \\
-dE(p,n)&=L_i(p,\omega) \, \lvert \cos \theta \rvert \, \mathrm{d}\omega \\
-\frac{dE(p,n)}{\lvert \cos \theta \rvert \, \mathrm{d}\omega}&=L_i(p,\omega) \\
-\frac{d\Phi}{dA \lvert \cos \theta \rvert \, \mathrm{d}\omega}&=L_i(p,\omega) 
+E(\p,n)&=\int_\W \! L_i(\p,\w) \, \abscostheta \, \dw \\
+\dE(\p,n)&=L_i(p,\w) \, \abscostheta \, \dw \\
+\frac{\dE(\p,n)}{\abscostheta \, \dw}&=L_i(\p,\w) \\
+\frac{d\Phi}{\dA \abscostheta \, \dw}&=L_i(\p,\w) 
 \end{align*}
 $$
 {{</katex>}}
-> which can then be shorthanded in one of two ways, using projected area $dA^\perp$ or projected solid angle $d\omega^\perp$
+Which can then be shorthanded in one of two ways, using projected area $dA^\perp$ or projected solid angle $d\omega^\perp$
 {{<katex>}}
 $$
 \frac{d\Phi}{dA^\perp  \, \mathrm{d}\omega}=L_i(p,\omega)
@@ -437,6 +467,8 @@ $$
 \frac{d\Phi}{dA \, \mathrm{d}\omega^\perp }=L_i(p,\omega)
 $$
 {{</katex>}}
+
+Expanding out irradiance ($E$) into the flux ($\Phi$) and area ($dA$) terms lets you use the projected area ($dA^\perp$) shorthand. However, if you keep irradiance as irradiance, because the $dA$ term is hidden into $E$, you can only use projected solid angle ($d\omega^\perp$).
 
 ---
 
@@ -471,7 +503,7 @@ $$
 $$
 {{</katex>}}
 
-> and I reckon it is also equal to
+and I reckon it is also equal to
 {{<katex>}}
 $$
 \Phi = \int_A \int_{H^2(n)} \! L_o(p, \omega) \, \domega \, \dAperp
@@ -484,8 +516,8 @@ $$
 
 
 ![](spherical_coords.png)
-Angles ($\theta$, $d\theta$, $d\phi$) measured in radians are in purple\
-Distances/arc lengths ($\sin \theta$, $d\theta$, $\sin\theta d\phi$) measured in (...units?) are in orange.\
+**Angles** ($\theta$, $d\theta$, $d\phi$) measured in **radians** are in **purple**\
+**Distances/arc lengths** ($\sin \theta$, $d\theta$, $\sin\theta d\phi$) measured in **(...units?)** are in **orange**.\
 Radius = 1.
 
 - [ ] todo: draw in an orange radius $r$, and make it rsintheta rdtheta, rsinthetadphi
@@ -550,7 +582,8 @@ $$
 $$
 {{</katex>}}
 
-Where $\theta$ is the angle between the $dA$ normal and vector to $p$. (I believe $\theta$ in (5.6) is $\theta_o$ below)
+Where $\theta$ is the angle between the $dA$ normal and vector to $p$.\
+(I believe $\theta$ in (5.6) is $\theta_o$ below)
 
 <!--![](fig5.16.svg)-->
 ![](fig5.16_alt.png)
@@ -566,13 +599,105 @@ $$
 
 ### [5.6 Surface Reflection](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#)
 
-see page 5 of `pbrt notes spiral.pdf` for 5.6.1 and 5.6.1
+Reflection is modeled with __spectral__ and __directional__ distributions.
+
+ie: A lemon is yellow (__spectral distribution__) no matter what direction you look at it from, but what you see in a bathroom mirror depends entirely on the viewing direction (__directional distribution__).
+
+Light may enter and exit a material from different points, displaying __subsurface light transport__.
+
+- BRDF (5.6.1) describes reflection ignoring subsurface light transport.
+- BSSRDF (5.6.2) includes translucent materials
 
 ### [5.6.1 The BRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF)
+
+The bidirectional reflectance distribution function (BRDF) formalizes surface reflectoin.
+
+![](fig_5.18_brdf.png)
+Figure 5.18: 4D brdf function
+
+{{<katex>}}
+$$
+\dE(\p,\wi) = L_i(\p, \wi) \, \costhetai \, \dwi \tag{5.7}
+$$
+{{</katex>}}
+
+> Pop quiz: What does the $\cos \theta$ term have to do with the normal?\
+> (left as an exercise to the reader)
+
+Due to linearity,
+{{<katex>}}
+$$
+\dLo(\p, \wo) \propto \dE( \p, \wi )
+$$
+{{</katex>}}
+
+The [constant of proportionality](https://www.khanacademy.org/math/cc-seventh-grade-math/cc-7th-ratio-proportion/7th-constant-of-proportionality/) defines the BRDF\
+(this just a fancy way of saying $f_r=\frac{dL_o}{dE}$).
+
+{{<katex>}}
+$$
+f_r(\p, \wo, \wi) = \frac{\dLo(\p, \wo)}{\dE(\p, \wi)} = \frac{\dLo(\p, \wo)}{\Li(\p, \wi) \, \costhetai \, \dwi} \tag{5.8}
+$$
+{{</katex>}}
+
+Physically based BRDFs are
+1. **Reciprocal**. $f_r(p, w_o, w_i) = f_r(p, w_i, w_o)$
+2. **Energy conserving**. For all $w_o$,
+{{<katex>}}
+$$
+\int_{H^2(n)} \! f_r(\p, \wo, \w^\prime) \, \cos \theta^\prime \dw^\prime \le 1
+$$
+{{</katex>}}
+
+- [ ] todo: elaborate on the above equation
+
+The R in BRDF is for reflection ($f_r$).\
+The T in BTDF is for transmittance ($f_t$).\
+The S in BSDF is for scattering ($f$ without any subscripts)
+
+The __bidirectional transmittance distribution function__ (BTDF) is denoted $f_t(p, w_o, w_i)$, where $w_i$ and $w_o$ are on opposite hemispheres of $p$.
+
+The BRDF and the BTDF together make up $f(p,w_o,w_i)$, the __bidirectional scattering distribution function__ (BSDF). The BSDF is defined by
+
+{{<katex>}}
+$$
+\dLo(\p, \wo) = f(\p,\wo, \wi) \, \Li(\p, \wi) \, \abscosthetai \, \dwi
+$$
+{{</katex>}}
+
+![](bsdf_abscostheta.png)
+Two examples where $n$ may or may not lie on the same side as $w_i$, hence the absolute value around $\lvert \cos \theta \rvert$. This allows the use of the convention where the normal is assumed to point outside the surface.
+
+
+{{<katex>}}
+$$
+\Lo(\p, \wo) = \int_{S^2} f(\p,\wo, \wi) \, \Li(\p, \wi) \, \abscosthetai \, \dwi \tag{5.9}
+$$
+{{</katex>}}
+
+The fundamental __scattering equation__. When the domain is $H^2(n)$ instead of $S^2$, it is known as the __reflection equation__.
 
 ---
 
 ### [5.6.2 The BSSRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF)
+
+The __bidirectional scattering surface reflectance distribution function__ (BSSRDF) includes subsurface light transport.
+
+{{<katex>}}
+$$
+S(\p_\o, \wo, \p_\i, \wi) = \frac{ \dLo( \p_\o, \wo)}{ \mathrm{d}\Phi (\p_\i, \wi) }
+$$
+{{</katex>}}
+
+- [ ] Q: Why flux ($d\Phi$) and not irradiance ($dE$)? Is it baked into $p_i$ and $p_o$?
+
+{{<katex>}}
+$$
+\Lo( \p_\o, \wo)= \int_A \int_{H^2(n)} \! S(\p_\o, \wo, \p_\i, \wi) \, \Li(\p_\i, \wi) \, \abscosthetai \, \dwi \, \dA \tag{5.11}
+$$
+{{</katex>}}
+
+As the distance between points increases, the value of $S$ greatly diminishes.
 
 
 

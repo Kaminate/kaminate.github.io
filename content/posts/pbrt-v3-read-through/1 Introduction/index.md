@@ -55,7 +55,11 @@ This equation shows popular computer graphics laws
 Light transport equation (aka rendering equation)
 
 $$
-L_o(p,\omega_o) = L_e(p,\omega_o) + \int_{S^2} f(p, \omega_o, \omega_i ) L_i( p, \omega_i) \lvert \cos \theta_i \rvert \mathrm{d} \omega_i $$
+L_o(p,\omega_o) = L_e(p,\omega_o) + \int_{S^2} f(p, \omega_o, \omega_i ) L_i( p, \omega_i) \lvert \cos \theta_i \rvert \mathrm{d} \omega_i
+$$
+
+- $f$ is the BSDF. (To see the difference between the BSDF, BRDF, BTDF, and BSSRDF, see 5.6.1).
+- To see why $\lvert \cos \theta \rvert$ has an absolute value, see 5.6.1)
 
 ---
 
