@@ -388,51 +388,7 @@ Irradiance $E$ at point $p$ with normal $n$.
 $$
 % define a bunch of things to use later in this document
 % ---
-% roman variables
-\gdef\d{\mathrm{d}} % differential, dx
-\gdef\o{\mathrm{o}} % outgoing, ie w_o
-\gdef\i{\mathrm{i}} % incoming, ie w_i
-\gdef\p{\mathrm{p}} % point p
-% ---
-% trigonometry
-\gdef\costheta{\cos \theta}
-\gdef\costhetai{\cos \theta_\i}
-\gdef\costhetao{\cos \theta_\o}
-\gdef\cosphi{\cos \phi}
-\gdef\sintheta{\sin \theta}
-\gdef\sinphi{\sin \phi}
-\gdef\abscostheta{\lvert \costheta \rvert}
-\gdef\abscosthetai{\lvert \costhetai \rvert}
-\gdef\abscosthetao{\lvert \costhetao \rvert}
-% ---
-% differential areas
-\gdef\dAperp{\d A^\perp}
-\gdef\dA{\d A}
-% ---
-% radiometric quantities
-\gdef\Li{L_\i}
-\gdef\Lo{L_\o}
-% ---
-% differential radiometric quantities
-\gdef\dE{\d E}
-\gdef\dLo{\d \Lo}
-% ---
-% differential angles
-\gdef\dtheta{\d\theta}
-\gdef\dphi{\d\phi}
-% ---
-% solid angles
-\gdef\w{\omega}
-\gdef\W{\Omega}
-\gdef\wi{\w_\i}
-\gdef\wo{\w_\o}
-% ---
-% differential solid angles
-\gdef\dw{\d\w}
-\gdef\dwi{\d\wi}
-\gdef\dwo{\d\wo}
-\gdef\domega{\d \w}
-\gdef\domegaperp{\d\w^\perp}
+
 $$
 {{</katex>}}
 
