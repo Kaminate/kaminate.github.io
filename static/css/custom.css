@@ -1,0 +1,59 @@
+
+
+.custom-toc {
+
+    position: fixed;
+    left: 50%;
+    top: 110px;
+    width: 320px;
+
+    margin-left: calc(var(--main-width) / 2 + var(--gap));
+    margin-right:0;
+    
+    padding-left: var(--gap);
+    padding-bottom: 100px;
+    padding-top: 80px;
+    padding-right: 0;
+
+    border-left: 3px solid rgba(128, 128, 128, 0.4);;
+    border-right:0;
+
+    background-color: transparent;
+
+    font-size: 0.8em;
+    overflow-y: auto;
+    line-height: 1.7em;
+    scroll-padding-top: 100px;
+}
+
+.custom-toc label {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 6.4rem 0 3.2rem 0;
+}
+
+.custom-toc ul {
+    margin-left:1px;
+    padding-left: 20px;
+    list-style-type: circle;
+}
+
+.custom-toc a {
+    font-weight:normal;
+    filter: grayscale(90%);
+}
+
+.custom-toc a:hover {
+    font-weight:bold;
+    filter: grayscale(0%);
+}
+
+.custom-toc a.active {
+    font-weight:bold;
+    filter: grayscale(0%);
+}
+
+.custom-toc a.semi_active {
+    font-weight:bold;
+    filter: grayscale(60%);
+}

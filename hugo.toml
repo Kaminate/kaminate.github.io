@@ -3,11 +3,18 @@ languageCode = 'en-us'
 title = 'n4735 n0735'
 theme = 'PaperMod'
 
+[markup.tableOfContents]
+    endLevel = 6
+    startLevel = 1
+
 [params]
 # list of subfolders in ./content/ to show on the main page
 # Let the papermod theme show content from multiple folders
 # instead of defaulting to the folder with the most entries
 mainSections = ['foo', 'posts', 'website']
+
+custom_css = ["css/custom.css"]
+custom_js = [ "js/custom.js"]
 
 # Hide the "Powered by Hugo and PaperMod" footer
 # ( see themes/PaperMod/layouts.partials/footer.html )

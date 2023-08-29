@@ -1,2 +1,14 @@
 {{ partial "katex.html" . }}
 {{ partial "katex_gdef.html" . }}
+
+<!-- css -->
+{{ range .Site.Params.custom_css -}}
+    <link rel="stylesheet" href="{{ . | absURL }}">
+{{- end }}
+
+<!-- javascript --> 
+<script type = "text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
+
+{{ range .Site.Params.custom_js -}}
+    <script type="text/javascript" src="{{ . | absURL }}" defer></script>
+{{- end }}
