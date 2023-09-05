@@ -1,17 +1,19 @@
 ---
-title: "Initial Website Setup"
-date: 2023-06-30T20:41:20-07:00
+title: "Website Setup"
+date: 2020-01-01
 ---
 
-### Summary
+
 The website source is stored (for free!) using github pages at https://github.com/Kaminate/kaminate.github.io.
 Posts are written in `.md` format, and converted to static html using `hugo`.
 
-### Create github repository
+# Initial Website Setup
+
+## Create github repository
 
 I'm going to assume you're familiar with [github](https://github.com). To host a website on GitHub Pages, create a repository `https://github.com/<username>/<username>.github.io`. For me, this is https://github.com/kaminate/kaminate.github.io
 
-### Hugo
+## Install Hugo
 If you're like me, you have no idea what [Hugo](https://gohugo.io) is, but you're following the docs to create a new hugo skeleton website in the repository directory.
 ```sh
 hugo new site . --force
@@ -42,10 +44,7 @@ Note that by default, Hugo seems to create .md pages with `draft = true`, so you
 hugo serve -D
 ```
 
-
-
-### Hosting and Deployment
-
+## Hosting and Deployment
 
 Change site name. In `hugo.toml`, I changed some lines
 ```toml
@@ -87,7 +86,7 @@ Error: Unable to locate config file or config directory. Perhaps you need to cre
 ```
 Turns out the hugo version listed in the github action's `hugo.yml` is different than your my hugo version, and you should have copied `.github/workflows/hugo.yaml` from https://gohugo.io/hosting-and-deployment/hosting-on-github/ instead.
 
-### LaTeX
+# LaTeX
 Based off of https://adityatelange.github.io/hugo-PaperMod/posts/math-typesetting/ and https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/
 
 
@@ -146,41 +145,53 @@ I looked at a couple links and found a solution
 
 I added [layouts/shortcodes/katex.html](https://github.com/Kaminate/kaminate.github.io/blob/main/layouts/shortcodes/katex.html) and now wrap katex code in a [shortcode](https://gohugo.io/content-management/shortcodes/). I don't claim to understand how it works, apparently it has something to do with forwarding the `\\` from markdown to rendering.
 
-### Misc tweaks
+# Tweaks
 
--   .gitignore  
-    Create `.gitignore` file, and add some hugo build file to it
-    ```text
-    .hugo_build.lock
-    ```
-    Also remove static html from being push in case it was ever generated
-    ```text
-    public/
-    ```
+## GitIgnore
 
--   Remove the `Powered by Hugo and PaperMod` footer  
-    I found an example at https://github.com/wowchemy/wowchemy-hugo-themes/issues/1389. In this issue, they used `site_footer.html`, but with PaperMod it seems `footer.html` sort of works, except that it breaks the light/dark toggle. Looking inside `themes/PaperMod/layouts.partials/footer.html`, there's a line for `{{- if not (.Param "hideFooter") }} `, so adding that to `hugo.toml` is better.
+Create `.gitignore` file, and add some hugo build file to it
+```text
+.hugo_build.lock
+```
+Also remove static html from being pushed in case it was ever generated
+```text
+public/
+```
 
--   Icon  
-    Drop an image named `favicon.ico` into `static/`
+## Remove the Footer
 
--   Add social media icons  
-    When adding the social media icons to `hugo.toml`, because it's basically a config file, typos go undetected.
-    ```toml
-    [[params.socalIcons]]
-    name = "twitter"
-    url = "https://twitter.com/n8tak"
-    ```
-    (socialIcons is misspelled as socalIcons)
--   Comments  
-    I used https://utteranc.es, relevant files are [layouts/partials/utterances.html](https://github.com/Kaminate/kaminate.github.io/tree/main/layouts/partials/utterances.html), [layouts/partials/comments.html](https://github.com/Kaminate/kaminate.github.io/tree/main/layouts/partials/comments.html), and allowing comments in `hugo.toml`
-    ```toml
-    [params]
-    comments = "true"
-    ```
+Remove the `Powered by Hugo and PaperMod` footer  
+I found an example at https://github.com/wowchemy/wowchemy-hugo-themes/issues/1389. In this issue, they used `site_footer.html`, but with PaperMod it seems `footer.html` sort of works, except that it breaks the light/dark toggle. Looking inside `themes/PaperMod/layouts.partials/footer.html`, there's a line for `{{- if not (.Param "hideFooter") }} `, so adding that to `hugo.toml` is better.
+
+## Icon
+
+Drop an image named `favicon.ico` into `static/`
+
+## Social Media Icons
+
+Add social media icons  
+When adding the social media icons to `hugo.toml`, because it's basically a config file, typos go undetected.
+```toml
+[[params.socalIcons]]
+name = "twitter"
+url = "https://twitter.com/n8tak"
+```
+(socialIcons is misspelled as socalIcons)
+
+# Comments
+
+I used https://utteranc.es, relevant files are [layouts/partials/utterances.html](https://github.com/Kaminate/kaminate.github.io/tree/main/layouts/partials/utterances.html), [layouts/partials/comments.html](https://github.com/Kaminate/kaminate.github.io/tree/main/layouts/partials/comments.html), and allowing comments in `hugo.toml`
+```toml
+[params]
+comments = "true"
+```
+
+# Table of Contents
+
+asdf asdf asdf 
 
 
-### For future reference
+# References
 
 - https://github.com/adityatelange/hugo-PaperMod/
 - https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite

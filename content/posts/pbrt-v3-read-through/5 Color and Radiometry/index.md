@@ -22,20 +22,25 @@ I think of light as a whole bunch of photons, and each photon has a wavelength a
 
 --- 
 
+# 5.1 Spectral Representation
 
-### [5.1 Spectral Representation]( https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Spectral_Representation )
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Spectral_Representation)
 
 In pbrt this defaults to the `RGBSpectrum` class in [core/spectrum.cpp](https://github.com/mmp/pbrt-v3/tree/master/src/core/spectrum.h)
 
 --- 
 
-### [5.2 The SampledSpectrum Class](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/The_SampledSpectrum_Class)
+# 5.2 The SampledSpectrum Class
+
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/The_SampledSpectrum_Class)
 
 (skipped)
 
 --- 
 
-### [5.2.1 XYZ Color](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/The_SampledSpectrum_Class#XYZColor)
+## 5.2.1 XYZ Color
+
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/The_SampledSpectrum_Class#XYZColor)
 
 __tri stimulus theory__ - all SPDs can be represented for humans with 3 values, $x_\lambda$, $y_\lambda$, $z_\lambda$
 
@@ -79,7 +84,8 @@ const Float CIE_lambda[nCIESamples] = { ... };
 
 --- 
 
-### [5.2.2 RGB Color]( https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/The_SampledSpectrum_Class#RGBColor)
+## 5.2.2 RGB Color
+[pbrt]( https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/The_SampledSpectrum_Class#RGBColor)
 
 Different LED displays have different emission curves.
 |     |     |
@@ -149,19 +155,22 @@ This conversion matrix has been precomputed in pbrt using standard RGB for high-
 
 ---
 
-### [5.3 RGBSpectrum Implementation](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/RGBSpectrum_Implementation#)
+# 5.3 RGBSpectrum Implementation
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/RGBSpectrum_Implementation#)
 
 (skipped)
 
 ---
 
-### [5.4 Radiometry](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry)
+# 5.4 Radiometry
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry)
 
 Make a couple assumptions based on __geometric optics__, such as __linearity__ and __no polarization__.
 
 ---
 
-### [5.4.1 Basic Quantities](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#BasicQuantities)
+## 5.4.1 Basic Quantities
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#BasicQuantities)
 
 1. Flux
 2. Irradiance / radiant exitance
@@ -170,7 +179,8 @@ Make a couple assumptions based on __geometric optics__, such as __linearity__ a
 
 ---
 
-### [Energy](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-Energy)
+### Energy
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-Energy)
 
 Energy ($Q$) is measured in joules ($J$). A photon at wavelength $\lambda$ has energy
 
@@ -182,7 +192,9 @@ where $c$ is the speed of light and $h$ is Planck's constant.
 
 ---
 
-### [Flux](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-Flux)
+### Flux
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-Flux)
+
 
 __Radiant flux__ (aka __power__) is measured in joules/sec ($\frac{J}{s}$) or watts ($W$)
 
@@ -191,7 +203,7 @@ $$
             {\mathrm{d}t}
 $$
 
-Given a light source that emitted $Q=200000J$ over half an hour, the flux is $$\Phi=200000J/3600s\approx55W$$
+Given a light source that emitted $Q=200000J$ of energy over half an hour, the flux is $$\Phi=200000J/3600s\approx55W$$
 
 If flux is a function of time, it can be integrated to find the total energy.
 
@@ -203,7 +215,8 @@ $$
 
 ---
 
-### [Irradiance and Radiant Exitance](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-IrradianceandRadiantExitance) {#irradiance}
+### Irradiance and Radiant Exitance
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-IrradianceandRadiantExitance)
 
 Given area $A$, the average density of power over area is $E=\Phi/A$, measured in $W/m^2$
 
@@ -252,7 +265,9 @@ $$
 
 ---
 
-### [Solid Angle and Intensity](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-SolidAngleandIntensity)
+### Solid Angle and Intensity
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-SolidAngleandIntensity)
+
 
 In 2D, an angle $\theta$ measured in __radians__ is equal to the arc length of an object subtended onto the unit circle.\
 In 3D, a solid angle $sr$ measured in __steradians__ is equal to projected area of an object subtended onto a sphere.
@@ -278,7 +293,8 @@ Intensity is not really useful unless you use point lights.
 
 ---
 
-### [Radiance](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-Radiance)
+### Radiance
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-Radiance)
 
 The most important radiometric quantity!
 
@@ -354,14 +370,16 @@ However, there's no such thing as _radiance_ at $dA$ being different to _radianc
 
 ---
 
-### [5.4.2 Incident and Exitant Radiance Functions](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#IncidentandExitantRadianceFunctions)
+## 5.4.2 Incident and Exitant Radiance Functions
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#IncidentandExitantRadianceFunctions)
 
 (skipped)
 
 ---
 
 
-### [5.4.3 Luminance and Photometry](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#LuminanceandPhotometry)
+## 5.4.3 Luminance and Photometry
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#LuminanceandPhotometry)
 
 __Photometry__ is the study of EMR in terms of human perception.\
 __Luminance__ ($Y$) measures how bright a SPD appears to a human. A green SPD will appear brighter than a blue SPD with the same energy.
@@ -380,7 +398,8 @@ $$
 
 ---
 
-### [5.5 Working with Radiometric Integrals](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#)
+# 5.5 Working with Radiometric Integrals
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#)
 
 Irradiance $E$ at point $p$ with normal $n$.
 
@@ -428,7 +447,8 @@ Expanding out irradiance ($E$) into the flux ($\Phi$) and area ($dA$) terms lets
 
 ---
 
-### [5.5.1 Integrals over Projected Solid Angle](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverProjectedSolidAngle)
+## 5.5.1 Integrals over Projected Solid Angle
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverProjectedSolidAngle)
 
 
 Just like in `02radiometry.pdf`, the projected solid angle measure can be used to hide the $\cos \theta$ from the integral.
@@ -468,7 +488,8 @@ $$
 
 ---
 
-### [5.5.2 Integrals over Spherical Coordinates](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverSphericalCoordinates)
+## 5.5.2 Integrals over Spherical Coordinates
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverSphericalCoordinates)
 
 
 ![](spherical_coords.png)
@@ -521,7 +542,8 @@ $$
 
 ---
 
-### [5.5.3 Integrals over Area](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea)
+## 5.5.3 Integrals over Area
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea)
 
 > Computing this value as an integral over directions is not straightforward, since given a particular direction it is nontrivial to determine if the quadrilateral is visible in that direction. It’s much easier to compute the irradiance as an integral over the area of the quadrilateral.
  
@@ -553,7 +575,8 @@ $$
 
 ---
 
-### [5.6 Surface Reflection](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#)
+# 5.6 Surface Reflection
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#)
 
 Reflection is modeled with __spectral__ and __directional__ distributions.
 
@@ -564,7 +587,8 @@ Light may enter and exit a material from different points, displaying __subsurfa
 - BRDF (5.6.1) describes reflection ignoring subsurface light transport.
 - BSSRDF (5.6.2) includes translucent materials
 
-### [5.6.1 The BRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF)
+## 5.6.1 The BRDF
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF)
 
 The bidirectional reflectance distribution function (BRDF) formalizes surface reflectoin.
 
@@ -635,7 +659,8 @@ The fundamental __scattering equation__. When the domain is $H^2(n)$ instead of 
 
 ---
 
-### [5.6.2 The BSSRDF](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF)
+## 5.6.2 The BSSRDF
+[pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF)
 
 The __bidirectional scattering surface reflectance distribution function__ (BSSRDF) includes subsurface light transport.
 
@@ -645,7 +670,62 @@ S(\p_\o, \wo, \p_\i, \wi) = \frac{ \dLo( \p_\o, \wo)}{ \mathrm{d}\Phi (\p_\i, \w
 $$
 {{</katex>}}
 
-- [ ] Q: Why flux ($d\Phi$) and not irradiance ($dE$)? Is it baked into $p_i$ and $p_o$?
+---
+
+### Question
+The BSSRDF $S$ is a ratio of outgoing differential radiance to incoming differential flux. (Well it's the limit of the ratio?..) Why does the BSSRDF use differential flux ($\mathrm{d}\Phi$) and not differential irradiance ($\mathrm{d}E$)? The BRDF uses $\mathrm{d}E$.  
+
+<!--
+Answer(guess): Well first off, the question is improperly worded. The BSSRDF doesn't use $\mathrm{d}\Phi$, it uses $\mathrm{d}\Phi(\mathrm{p}_i,\omega_i)$. There's a difference.
+-->
+
+[Recall](#irradiance-and-radiant-exitance) the definition of irradiance. Here, $\Phi$ is a function of $\mathrm{p}$.
+- $E(\mathrm{p})=\frac{\mathrm{d}\Phi(\mathrm{p})}{\mathrm{d}A}$
+
+[Recall](#radiance) the definition of radiance, and equation (5.2). Here, $\Phi$ is a function of $\mathrm{p}$ and $\omega$.
+- $L(\mathrm{p}, \omega)=\frac{\mathrm{d}E_\omega(\mathrm{p})}{\mathrm{d}\omega}$.  
+
+- {{<katex>}}$L(\mathrm{p}, \omega)=\frac{\mathrm{d}\Phi(\mathrm{p}, \omega)}{\mathrm{d}\omega \, \mathrm{d}A^\perp}${{</katex>}}   
+
+Which we can alternatively write as
+
+- {{<katex>}}$L(\mathrm{p}, \omega)=\frac{\mathrm{d}\Phi(\mathrm{p}, \omega)}{\mathrm{d}\omega^\perp \, \mathrm{d}A}${{</katex>}}   
+
+We can then include irradiance as part of radiance. Here, $\mathrm{d}E$ is a funciton of $\mathrm{p}$ and $\omega$.
+
+- {{<katex>}}$L(\mathrm{p}, \omega)=\frac{\mathrm{d}E(\mathrm{p}, \omega)}{\mathrm{d}\omega^\perp}${{</katex>}}   
+
+
+Are we allowed to differentiate irradiance with respect to solid angle? The definition of irradiance is $E(\mathrm{p})$, there is no $\omega$ term.  
+We are allowed. Although $E$ is not in terms of $\omega$, $\mathrm{d}E$ is. Recall equation (5.7) and think about what is a differential and what is calculus.
+
+- {{<katex>}}$\mathrm{d}E(\mathrm{p}, \omega_i) = L_i(\mathrm{p}, \omega_i) \cos \theta_i \, \mathrm{d}\omega_i${{</katex>}}
+
+Whereas differential flux is defined in terms of radiance as
+- {{<katex>}} $ \mathrm{d}\Phi(\mathrm{p}_i, \omega_i) = L_i(\mathrm{p}_i, \omega_i) \, \cos \theta_i \, \mathrm{d}\omega_i \, \mathrm{d}A $ {{</katex>}}
+
+---
+
+deleteme
+
+Well like {{<katex>}}$d\Phi=L \, \mathrm{d}\omega \, \mathrm{d}A^\perp${{</katex>}}, right? and
+
+Well, differential flux is part of Radiance, which is part of Irradiance.
+
+The differential flux is equal to the Radiance $L_i$ times the 
+{{<katex>}}
+$$
+\dPhi(\p_\i, \wi) = \Li(\p_\i, \wi) \, \abscosthetai \, \dwi \, \dA 
+$$
+{{</katex>}}
+
+{{<katex>}}
+$$
+\frac{ \dPhi(\p_\i, \wi) }{\abscosthetai \, \dwi \, \dA} = \Li(\p_\i, \wi)  
+$$
+{{</katex>}}
+
+------
 
 {{<katex>}}
 $$
