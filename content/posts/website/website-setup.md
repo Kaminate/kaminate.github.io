@@ -186,10 +186,214 @@ I used https://utteranc.es, relevant files are [layouts/partials/utterances.html
 comments = "true"
 ```
 
+---
+
 # Table of Contents
 
-asdf asdf asdf 
+The default PaperMod table of contents sucks.
 
+- It stays at the top of an article, it doesn't float, it's not sticky, or tabbed or anything. 
+
+- There is a fork of PaperMod called PaperModX (https://reorx.github.io/hugo-PaperModX/docs/papermodx-new-features), but you could hardly call PaperModX's table of contents an improvement.
+
+- There's this post (https://jessewei.dev/blog/2023/papermod/#table-of-contents) where someone ran into all of the exact same issues I was encountering, and he eventually switches from Hugo/PaperMod to Jekyll/al-folio.
+
+- I wanted to try at follow this post (https://www.nodinrogers.com/post/2023-04-06-add-floating-toc-in-hugo-clarity-theme), but I got stuck when trying to edit `_components.sass`, because PaperMod doesn't have such a file.
+
+- I found this post https://ma.ttias.be/adding-a-sticky-table-of-contents-in-hugo-to-posts/ which I didn't understand at all, but that led me to this other post https://www.bram.us/2020/01/10/smooth-scrolling-sticky-scrollspy-navigation. When I looked at the codepen example, it didn't seem overwhelming.
+
+- See how easy it is to make a table of contents: https://codepen.io/Nate-the-bold/pen/RwEojeO?editors=1100
+
+In order to have my table of contents without switching off my theme, I would have to learn more about frontend and Hugo then I wanted.
+
+## 1. Add a div in the html
+
+Apparently single.html is the template that a post is generated from, and to modify it, you basically copy `themes/PaperMod/layouts/_default/single.html` to `layouts/_default/single.html`.
+
+Open `layouts/_default/single.html` and replace this
+
+```h{lineNos=true,lineNoStart=26}
+{{- if (.Param "ShowToc") }}
+{{- partial "toc.html" . }}
+{{- end }}
+```
+
+with this
+```html{lineNos=true,lineNoStart=26}
+<div class="custom-toc">
+    <h2>Contents</h3>
+    {{ .TableOfContents }}
+</div>
+```
+
+I'm using the classname `custom-toc` because PaperMod is already using `toc`.
+
+## 2) Add css and js
+
+Create css file at `static/css/custom.css` with the following code
+
+{{< collapse summary="`static/css/custom.css`" openByDefault=false >}}
+
+```css{linenos=true}
+.custom-toc {
+
+    position: fixed;
+    left: 50%;
+    top: 110px;
+    width: 320px;
+
+    margin-left: calc(var(--main-width) / 2 + var(--gap));
+    margin-right:0;
+
+    padding-left: var(--gap);
+    padding-bottom: 100px;
+    padding-top: 80px;
+    padding-right: 0;
+
+    border-left: 3px solid rgba(128, 128, 128, 0.4);;
+    border-right:0;
+
+    background-color: transparent;
+
+    font-size: 0.8em;
+    overflow-y: auto;
+    line-height: 1.7em;
+    scroll-padding-top: 100px;
+}
+
+.custom-toc label {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 6.4rem 0 3.2rem 0;
+}
+
+.custom-toc ul {
+    margin-left:1px;
+    padding-left: 20px;
+    list-style-type: circle;
+}
+
+.custom-toc a {
+    font-weight:normal;
+    filter: grayscale(90%);
+}
+
+.custom-toc a:hover {
+    font-weight:bold;
+    filter: grayscale(0%);
+}
+
+.custom-toc a.active {
+    font-weight:bold;
+    filter: grayscale(0%);
+}
+
+.custom-toc a.semi_active {
+    font-weight:bold;
+    filter: grayscale(60%);
+}
+```
+{{< /collapse >}}
+
+Create a js file at `static/js/custom.js` with the following code
+
+{{< collapse summary="`static/css/custom.css`" openByDefault=false >}}
+```js{linenos=true}
+// sources
+// - https://twitter.com/Jiayin_Cao/status/13299045627029790720www0u
+// - https://agraphicsguynotes.com/posts/fiber_in_cpp_understanding_the_basics/
+// - https://zero-radiance.github.io/
+// note that you may have to change the class name on line 50 if you changed your ToC class name
+function doToc() {
+
+    var $toc = $('#TableOfContents');
+
+    if ($toc.length <= 0)
+        return;
+
+    var $window = $(window);
+
+    function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('h1, h2, h3, h4, h5, h6');
+        var id = "";
+        h.each(function (i, e) {
+            e = $(e);
+            if (e.offset().top - 80 <= currentScroll) {
+                id = e.attr('id');
+            }
+        });
+        var active = $toc.find('a.active');
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+            $(e).removeClass('active').siblings('ul').hide();
+        });
+
+        var semi_active = $toc.find('a.semi_active');
+        semi_active.each(function (i, e) {
+            $(e).removeClass('semi_active').siblings('ul').hide();
+        });
+
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+            if (i == 0)
+                $(e).children('a').addClass('active').siblings('ul').show();
+            else
+                $(e).children('a').addClass('semi_active').siblings('ul').show();
+        });
+    }
+
+    $window.on('scroll', onScroll);
+    $(document).ready(function () {
+        $toc.find('a').parent('li').find('ul').hide();
+        onScroll();
+        // the class name you may have to change
+        document.getElementsByClassName('custom-toc')[0].style.display = '';
+    });
+}
+
+doToc();
+```
+{{< /collapse >}}
+
+## 3) Include the .css and .js 
+
+First we create a parameter to refer to the css and js with in `hugo.toml`, by adding thie following
+
+```toml
+[params]
+custom_css = ["css/custom.css"]
+custom_js = [ "js/custom.js"]
+```
+
+Then, in `layouts/partials/extend_head.html`, add the following
+
+```html
+{{ range .Site.Params.custom_css -}}
+    <link rel="stylesheet" href="{{ . | absURL }}">
+{{- end }}
+
+<script type = "text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
+
+{{ range .Site.Params.custom_js -}}
+    <script type="text/javascript" src="{{ . | absURL }}" defer></script>
+{{- end }}
+```
+
+
+## 4) Final Tweak
+
+Change the bullet point headings used in the table of contents by adding to `hugo.toml`
+
+```toml
+[markup.tableOfContents]
+    endLevel = 6
+    startLevel = 1
+```
+
+And that's it! Feel free to steal my [commit](https://github.com/Kaminate/kaminate.github.io/commit/49a75797eb4e4364aafb333ac668e952ccfdde02) (ignore the change to `index.md`).
+
+---
 
 # References
 
