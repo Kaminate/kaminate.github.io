@@ -4,7 +4,7 @@ date: 2020-01-01
 ---
 
 
-The website source is stored (for free!) using github pages at https://github.com/Kaminate/kaminate.github.io.
+The website source is stored (for free) using github pages at https://github.com/Kaminate/kaminate.github.io.
 Posts are written in `.md` format, and converted to static html using `hugo`.
 
 # Initial Website Setup
