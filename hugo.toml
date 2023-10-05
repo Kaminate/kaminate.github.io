@@ -5,7 +5,7 @@ theme = 'PaperMod'
 
 [markup.tableOfContents]
     endLevel = 6
-    startLevel = 1
+    startLevel = 2
 
 [params]
 # list of subfolders in ./content/ to show on the main page

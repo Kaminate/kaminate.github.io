@@ -38,7 +38,7 @@ Figure 7.1 Example function reconstructed from sampled piecewise linear signal.
 
 --- 
 
-## 7.1.1 The Frequency Domain and the Fourier Transform
+### 7.1.1 The Frequency Domain and the Fourier Transform
 [pbrt](https://www.pbr-book.org/3ed-2018/Sampling_and_Reconstruction/Sampling_Theory#TheFrequencyDomainandtheFourierTransform)
 
 ![](fig_7.2_low_high_freq_fn.png)
@@ -71,7 +71,7 @@ Dirac delta distribution is used for many frequequency space representations.
 
 --- 
 
-## 7.1.2 Ideal Sampling and Reconstruction
+### 7.1.2 Ideal Sampling and Reconstruction
 [pbrt](https://www.pbr-book.org/3ed-2018/Sampling_and_Reconstruction/Sampling_Theory#IdealSamplingandReconstruction)
 
 Computing sample locations from a function is the same as multipling with a "shah/impulse train/dirac comb" function.
@@ -117,7 +117,7 @@ $$
 
 ---
 
-### Hold up, what? How did this happen?
+#### Hold up, what? How did this happen?
 
 [ ] Q: proof?
 {{<katex>}}
@@ -139,28 +139,28 @@ Figure 7.5 reconstructed with the filter $r(x)=\max(0, 1-|x|)$
 
 --- 
 
-## 7.1.3 Aliasing
+### 7.1.3 Aliasing
 [pbrt](https://www.pbr-book.org/3ed-2018/Sampling_and_Reconstruction/Sampling_Theory#Aliasing)
 
 
 ---
 
-## 7.1.4 Antialiasing Techniques
+### 7.1.4 Antialiasing Techniques
 [pbrt](https://www.pbr-book.org/3ed-2018/Sampling_and_Reconstruction/Sampling_Theory#AntialiasingTechniques)
 
 ---
 
-## 7.1.5 Application to Image Synthesis
+### 7.1.5 Application to Image Synthesis
 [pbrt](https://www.pbr-book.org/3ed-2018/Sampling_and_Reconstruction/Sampling_Theory#ApplicationtoImageSynthesis)
 
 ---
 
-## 7.1.6 Sources of Aliasing in Rendering
+### 7.1.6 Sources of Aliasing in Rendering
 [pbrt](https://www.pbr-book.org/3ed-2018/Sampling_and_Reconstruction/Sampling_Theory#SourcesofAliasinginRendering)
 
 ---
 
-## 7.1.7 Understanding Pixels
+### 7.1.7 Understanding Pixels
 [pbrt](https://www.pbr-book.org/3ed-2018/Sampling_and_Reconstruction/Sampling_Theory#UnderstandingPixels)
 
 ---

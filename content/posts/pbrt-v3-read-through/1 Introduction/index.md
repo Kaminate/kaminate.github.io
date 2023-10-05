@@ -7,19 +7,22 @@ draft: true
 
 https://www.pbr-book.org/3ed-2018/Introduction#
 
-### [1.1 Literate Programming](https://www.pbr-book.org/3ed-2018/Introduction/Literate_Programming#)
+## 1.1 Literate Programming
+[pbrt](https://www.pbr-book.org/3ed-2018/Introduction/Literate_Programming#)
 
 (weird, so skipped)
 
 ---
 
-### [1.2 Photorealistic Rendering and the Ray-Tracing Algorithm](https://www.pbr-book.org/3ed-2018/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm)
+## 1.2 Photorealistic Rendering and the Ray-Tracing Algorithm
+[pbrt](https://www.pbr-book.org/3ed-2018/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm)
 
 (skipped)
 
 ---
 
-### [1.2.3 Light Distribution](https://www.pbr-book.org/3ed-2018/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm#LightDistribution)
+## 1.2.3 Light Distribution
+[pbrt](https://www.pbr-book.org/3ed-2018/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm#LightDistribution)
 
 A light source has some power $\Phi$. If it's surrounded by a unit sphere, the power per area is $\frac{\Phi}{4 \pi}$.
 The surface area of a sphere is $4 \pi r^2$, so a larger sphere results in less power per area by a factor of $\frac{1}{r^2}$.
@@ -38,19 +41,22 @@ This equation shows popular computer graphics laws
 
 ---
 
-### [1.2.4 Visibility](https://www.pbr-book.org/3ed-2018/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm#Visibility)
+## 1.2.4 Visibility
+[pbrt](https://www.pbr-book.org/3ed-2018/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm#Visibility)
 
 (skipped)
 
 ---
 
-### [1.2.5 Surface Scattering](https://www.pbr-book.org/3ed-2018/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm#SurfaceScattering)
+## 1.2.5 Surface Scattering
+[pbrt](https://www.pbr-book.org/3ed-2018/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm#SurfaceScattering)
 
 (skipped)
 
 ---
 
-### [1.2.6 Indirect Light Transport](https://www.pbr-book.org/3ed-2018/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm#IndirectLightTransport)
+## 1.2.6 Indirect Light Transport
+[pbrt](https://www.pbr-book.org/3ed-2018/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm#IndirectLightTransport)
 
 Light transport equation (aka rendering equation)
 
@@ -63,19 +69,22 @@ $$
 
 ---
 
-### [1.2.7 Ray Propagation](https://www.pbr-book.org/3ed-2018/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm#RayPropagation)
+## 1.2.7 Ray Propagation
+[pbrt](https://www.pbr-book.org/3ed-2018/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm#RayPropagation)
 
 (skipped)
 
 ---
 
-### [1.3 pbrt: System Overview](https://www.pbr-book.org/3ed-2018/Introduction/pbrt_System_Overview#)
+## 1.3 pbrt: System Overview
+[pbrt](https://www.pbr-book.org/3ed-2018/Introduction/pbrt_System_Overview#)
 
 10 abstract base classes, `Shape`, `Aggregate`, `Camera`, `Sampler`, `Filter`, `Material`, `Texture`, `Medium`, `Light`, `Integrator`.
 
 ---
 
-### [1.3.1 Phases of Execution](https://www.pbr-book.org/3ed-2018/Introduction/pbrt_System_Overview#PhasesofExecution)
+## 1.3.1 Phases of Execution
+[pbrt](https://www.pbr-book.org/3ed-2018/Introduction/pbrt_System_Overview#PhasesofExecution)
 
 1. parse scene into `Scene` and `Integrator`  
 
@@ -83,22 +92,26 @@ $$
 
 ---
 
-### [1.3.2 Scene Representation](https://www.pbr-book.org/3ed-2018/Introduction/pbrt_System_Overview#SceneRepresentation)
+## 1.3.2 Scene Representation
+[pbrt](https://www.pbr-book.org/3ed-2018/Introduction/pbrt_System_Overview#SceneRepresentation)
 (skipped)
 
 ---
 
-### [1.3.3 Integrator Interface and SamplerIntegrator](https://www.pbr-book.org/3ed-2018/Introduction/pbrt_System_Overview#IntegratorInterfaceandSamplerIntegrator)
+## 1.3.3 Integrator Interface and SamplerIntegrator
+[pbrt](https://www.pbr-book.org/3ed-2018/Introduction/pbrt_System_Overview#IntegratorInterfaceandSamplerIntegrator)
 (skipped)
 
 ---
 
-### [1.3.4 The Main Rendering Loop](https://www.pbr-book.org/3ed-2018/Introduction/pbrt_System_Overview#TheMainRenderingLoop)
+## 1.3.4 The Main Rendering Loop
+[pbrt](https://www.pbr-book.org/3ed-2018/Introduction/pbrt_System_Overview#TheMainRenderingLoop)
 (skipped)
 
 ---
 
-### [1.3.5 An Integrator for Whitted Ray Tracing](https://www.pbr-book.org/3ed-2018/Introduction/pbrt_System_Overview#AnIntegratorforWhittedRayTracing)
+## 1.3.5 An Integrator for Whitted Ray Tracing
+[pbrt](https://www.pbr-book.org/3ed-2018/Introduction/pbrt_System_Overview#AnIntegratorforWhittedRayTracing)
 
 (skipped)
 

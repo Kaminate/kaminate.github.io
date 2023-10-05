@@ -8,7 +8,7 @@ draft: false
 <!--![alt text](graph.png)-->
 ![alt text](tangent_plane.png)
 
-# Explicit vs Implicit Surface
+## Explicit vs Implicit Surface
 
 Let's say that you have a surface given by $z=f(x,y)$.
 
@@ -28,7 +28,7 @@ $$
 $$
 where $p = (x, y, z)$
 
-## What's the difference?
+### What's the difference?
 
 
 If you have a scalar function $g(x,y,z)$, you can define a couple things from its scalar field
@@ -42,11 +42,11 @@ An isosurface is always a level set, but a level set is not necessarily an isosu
 
 ---
 
-# Gradient as normal
+## Gradient as normal
 
 The __gradient__ of a function $g(x,y,z)=C$ at a point is equal to its normal.
 
-## Quick proof
+### Quick proof
 
 
 <!--Parameterize a curve on the surface $r(t)=( x(t), y(t) , z(t) )$ -->
@@ -89,7 +89,7 @@ This tells us that the gradient at a point $\nabla g(x_0, y_0,z_0)$ is orthogona
 
 ---
 
-# Using the gradient
+## Using the gradient
 
 The implicit surface $g(x,y,z) = 0$ represents the same surface as $z=f(x,y)$ by setting
 
@@ -124,7 +124,7 @@ $$
 {{</katex>}}
 Which is the explicit tangent plane equation from the beginning.
 
-# Normal from Cross Product
+## Normal from Cross Product
 
 An alternate method of computing the normal is to use the cross product of the partial derivative tangent vectors.
 
@@ -148,7 +148,7 @@ $$
 {{</katex>}}
 Which gives the same normal as before, but flipped the other direction
 
-# Example
+## Example
 
 Find the equation of the tangent plane to the surface $z = f(x,y) = 4-x^2 - y^2$ at the point $(1,2)$
 
@@ -211,7 +211,7 @@ $$
 
 ![alt text](ex_drawing.png)
 
-# References
+## References
 
 - https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives
 - https://piazza.com/class_profile/get_resource/ielue3w9x1trv/igpjc2b9y2k1f9

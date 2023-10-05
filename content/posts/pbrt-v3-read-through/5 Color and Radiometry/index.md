@@ -22,7 +22,7 @@ I think of light as a whole bunch of photons, and each photon has a wavelength a
 
 --- 
 
-# 5.1 Spectral Representation
+## 5.1 Spectral Representation
 
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Spectral_Representation)
 
@@ -30,7 +30,7 @@ In pbrt this defaults to the `RGBSpectrum` class in [core/spectrum.cpp](https://
 
 --- 
 
-# 5.2 The SampledSpectrum Class
+## 5.2 The SampledSpectrum Class
 
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/The_SampledSpectrum_Class)
 
@@ -38,7 +38,7 @@ In pbrt this defaults to the `RGBSpectrum` class in [core/spectrum.cpp](https://
 
 --- 
 
-## 5.2.1 XYZ Color
+### 5.2.1 XYZ Color
 
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/The_SampledSpectrum_Class#XYZColor)
 
@@ -84,7 +84,7 @@ const Float CIE_lambda[nCIESamples] = { ... };
 
 --- 
 
-## 5.2.2 RGB Color
+### 5.2.2 RGB Color
 [pbrt]( https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/The_SampledSpectrum_Class#RGBColor)
 
 Different LED displays have different emission curves.
@@ -155,21 +155,21 @@ This conversion matrix has been precomputed in pbrt using standard RGB for high-
 
 ---
 
-# 5.3 RGBSpectrum Implementation
+## 5.3 RGBSpectrum Implementation
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/RGBSpectrum_Implementation#)
 
 (skipped)
 
 ---
 
-# 5.4 Radiometry
+## 5.4 Radiometry
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry)
 
 Make a couple assumptions based on __geometric optics__, such as __linearity__ and __no polarization__.
 
 ---
 
-## 5.4.1 Basic Quantities
+### 5.4.1 Basic Quantities
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#BasicQuantities)
 
 1. Flux
@@ -179,7 +179,7 @@ Make a couple assumptions based on __geometric optics__, such as __linearity__ a
 
 ---
 
-### Energy
+#### Energy
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-Energy)
 
 Energy ($Q$) is measured in joules ($J$). A photon at wavelength $\lambda$ has energy
@@ -192,7 +192,7 @@ where $c$ is the speed of light and $h$ is Planck's constant.
 
 ---
 
-### Flux
+#### Flux
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-Flux)
 
 
@@ -215,7 +215,7 @@ $$
 
 ---
 
-### Irradiance and Radiant Exitance
+#### Irradiance and Radiant Exitance
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-IrradianceandRadiantExitance)
 
 Given area $A$, the average density of power over area is $E=\Phi/A$, measured in $W/m^2$
@@ -265,7 +265,7 @@ $$
 
 ---
 
-### Solid Angle and Intensity
+#### Solid Angle and Intensity
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-SolidAngleandIntensity)
 
 
@@ -293,7 +293,7 @@ Intensity is not really useful unless you use point lights.
 
 ---
 
-### Radiance
+#### Radiance
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#x1-Radiance)
 
 The most important radiometric quantity!
@@ -370,7 +370,7 @@ However, there's no such thing as _radiance_ at $dA$ being different to _radianc
 
 ---
 
-## 5.4.2 Incident and Exitant Radiance Functions
+### 5.4.2 Incident and Exitant Radiance Functions
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#IncidentandExitantRadianceFunctions)
 
 (skipped)
@@ -378,7 +378,7 @@ However, there's no such thing as _radiance_ at $dA$ being different to _radianc
 ---
 
 
-## 5.4.3 Luminance and Photometry
+### 5.4.3 Luminance and Photometry
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiometry#LuminanceandPhotometry)
 
 __Photometry__ is the study of EMR in terms of human perception.\
@@ -398,7 +398,7 @@ $$
 
 ---
 
-# 5.5 Working with Radiometric Integrals
+## 5.5 Working with Radiometric Integrals
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#)
 
 Irradiance $E$ at point $p$ with normal $n$.
@@ -447,7 +447,7 @@ Expanding out irradiance ($E$) into the flux ($\Phi$) and area ($dA$) terms lets
 
 ---
 
-## 5.5.1 Integrals over Projected Solid Angle
+### 5.5.1 Integrals over Projected Solid Angle
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverProjectedSolidAngle)
 
 
@@ -488,7 +488,7 @@ $$
 
 ---
 
-## 5.5.2 Integrals over Spherical Coordinates
+### 5.5.2 Integrals over Spherical Coordinates
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverSphericalCoordinates)
 
 
@@ -542,7 +542,7 @@ $$
 
 ---
 
-## 5.5.3 Integrals over Area
+### 5.5.3 Integrals over Area
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Working_with_Radiometric_Integrals#IntegralsoverArea)
 
 > Computing this value as an integral over directions is not straightforward, since given a particular direction it is nontrivial to determine if the quadrilateral is visible in that direction. It’s much easier to compute the irradiance as an integral over the area of the quadrilateral.
@@ -575,7 +575,7 @@ $$
 
 ---
 
-# 5.6 Surface Reflection
+## 5.6 Surface Reflection
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#)
 
 Reflection is modeled with __spectral__ and __directional__ distributions.
@@ -587,7 +587,7 @@ Light may enter and exit a material from different points, displaying __subsurfa
 - BRDF (5.6.1) describes reflection ignoring subsurface light transport.
 - BSSRDF (5.6.2) includes translucent materials
 
-## 5.6.1 The BRDF
+### 5.6.1 The BRDF
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBRDF)
 
 The bidirectional reflectance distribution function (BRDF) formalizes surface reflectoin.
@@ -659,7 +659,7 @@ The fundamental __scattering equation__. When the domain is $H^2(n)$ instead of 
 
 ---
 
-## 5.6.2 The BSSRDF
+### 5.6.2 The BSSRDF
 [pbrt](https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Surface_Reflection#TheBSSRDF)
 
 The __bidirectional scattering surface reflectance distribution function__ (BSSRDF) includes subsurface light transport.
@@ -672,7 +672,7 @@ $$
 
 ---
 
-### Question
+#### Question
 The BSSRDF $S$ is a ratio of outgoing differential radiance to incoming differential flux. (Well it's the limit of the ratio?..) Why does the BSSRDF use differential flux ($\mathrm{d}\Phi$) and not differential irradiance ($\mathrm{d}E$)? The BRDF uses $\mathrm{d}E$.  
 
 <!--
@@ -706,7 +706,7 @@ Whereas differential flux is defined in terms of radiance as
 
 ---
 
-# deleteme
+## deleteme
 
 Well like {{<katex>}}$d\Phi=L \, \mathrm{d}\omega \, \mathrm{d}A^\perp${{</katex>}}, right? and
 
@@ -738,11 +738,11 @@ As the distance between points increases, the value of $S$ greatly diminishes.
 
 ---
 
-# asdf
+## asdf
 
 ![](what_even_is_calculus.png)
 
-# thinking about what $\frac{\mathrm{d}a}{\mathrm{d}b}$ means...
+## thinking about what $\frac{\mathrm{d}a}{\mathrm{d}b}$ means...
 
 We already know that a small change $\mathrm{d}b$ in $b$ causes a small change in $\mathrm{d}a$ in $a$.
 
@@ -763,9 +763,9 @@ Lets go back to the derivative. Is $\frac{\mathrm{d}a}{\mathrm{d}b}$ a variable,
 - The __function__ $a^\prime(b)$ maps an input variable $b$ to an output variable $a^\prime$
 - A specific __value__ of $a^\prime$ is the result of evaluating the function $a^\prime(b)$ at a specific value $b_0$, for example $a^\prime_0 = a^\prime(b_0)$
 
-## Example: irradiance (see what_even_is_calculus.png)
+### Example: irradiance (see what_even_is_calculus.png)
 
-## Example: intensity
+### Example: intensity
 
 $$
 I=\frac{\mathrm{d}\Phi}{\mathrm{d}\omega}

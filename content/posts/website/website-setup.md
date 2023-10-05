@@ -7,13 +7,13 @@ date: 2020-01-01
 The website source is stored (for free) using github pages at https://github.com/Kaminate/kaminate.github.io.
 Posts are written in `.md` format, and converted to static html using `hugo`.
 
-# Initial Website Setup
+## Initial Website Setup
 
-## Create github repository
+### Create github repository
 
 I'm going to assume you're familiar with [github](https://github.com). To host a website on GitHub Pages, create a repository `https://github.com/<username>/<username>.github.io`. For me, this is https://github.com/kaminate/kaminate.github.io
 
-## Install Hugo
+### Install Hugo
 If you're like me, you have no idea what [Hugo](https://gohugo.io) is, but you're following the docs to create a new hugo skeleton website in the repository directory.
 ```sh
 hugo new site . --force
@@ -33,7 +33,7 @@ Add a line to the hugo config file to choose the PaperMod theme
 theme = 'PaperMod'
 ```
 
-### Preview the website
+#### Preview the website
 ```sh
 hugo serve
 ```
@@ -44,7 +44,7 @@ Note that by default, Hugo seems to create .md pages with `draft = true`, so you
 hugo serve -D
 ```
 
-## Hosting and Deployment
+### Hosting and Deployment
 
 Change site name. In `hugo.toml`, I changed some lines
 ```toml
@@ -86,7 +86,7 @@ Error: Unable to locate config file or config directory. Perhaps you need to cre
 ```
 Turns out the hugo version listed in the github action's `hugo.yml` is different than your my hugo version, and you should have copied `.github/workflows/hugo.yaml` from https://gohugo.io/hosting-and-deployment/hosting-on-github/ instead.
 
-# LaTeX
+## LaTeX
 Based off of https://adityatelange.github.io/hugo-PaperMod/posts/math-typesetting/ and https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/
 
 
@@ -145,9 +145,9 @@ I looked at a couple links and found a solution
 
 I added [layouts/shortcodes/katex.html](https://github.com/Kaminate/kaminate.github.io/blob/main/layouts/shortcodes/katex.html) and now wrap katex code in a [shortcode](https://gohugo.io/content-management/shortcodes/). I don't claim to understand how it works, apparently it has something to do with forwarding the `\\` from markdown to rendering.
 
-# Tweaks
+## Tweaks
 
-## GitIgnore
+### GitIgnore
 
 Create `.gitignore` file, and add some hugo build file to it
 ```text
@@ -158,16 +158,16 @@ Also remove static html from being pushed in case it was ever generated
 public/
 ```
 
-## Remove the Footer
+### Remove the Footer
 
 Remove the `Powered by Hugo and PaperMod` footer  
 I found an example at https://github.com/wowchemy/wowchemy-hugo-themes/issues/1389. In this issue, they used `site_footer.html`, but with PaperMod it seems `footer.html` sort of works, except that it breaks the light/dark toggle. Looking inside `themes/PaperMod/layouts.partials/footer.html`, there's a line for `{{- if not (.Param "hideFooter") }} `, so adding that to `hugo.toml` is better.
 
-## Icon
+### Icon
 
 Drop an image named `favicon.ico` into `static/`
 
-## Social Media Icons
+### Social Media Icons
 
 Add social media icons  
 When adding the social media icons to `hugo.toml`, because it's basically a config file, typos go undetected.
@@ -178,7 +178,7 @@ url = "https://twitter.com/n8tak"
 ```
 (socialIcons is misspelled as socalIcons)
 
-# Comments
+## Comments
 
 I used https://utteranc.es, relevant files are [layouts/partials/utterances.html](https://github.com/Kaminate/kaminate.github.io/tree/main/layouts/partials/utterances.html), [layouts/partials/comments.html](https://github.com/Kaminate/kaminate.github.io/tree/main/layouts/partials/comments.html), and allowing comments in `hugo.toml`
 ```toml
@@ -188,7 +188,7 @@ comments = "true"
 
 ---
 
-# Table of Contents
+## Table of Contents
 
 The default PaperMod table of contents sucks.
 
@@ -206,7 +206,7 @@ The default PaperMod table of contents sucks.
 
 In order to have my table of contents without switching off my theme, I would have to learn more about frontend and Hugo then I wanted.
 
-## 1. Add a div in the html
+### Add a div in the html
 
 Apparently single.html is the template that a post is generated from, and to modify it, you basically copy `themes/PaperMod/layouts/_default/single.html` to `layouts/_default/single.html`.
 
@@ -228,7 +228,7 @@ with this
 
 I'm using the classname `custom-toc` because PaperMod is already using `toc`.
 
-## 2) Add css and js
+### Add css and js
 
 Create css file at `static/css/custom.css` with the following code
 
@@ -356,7 +356,7 @@ doToc();
 ```
 {{< /collapse >}}
 
-## 3) Include the .css and .js 
+### Include the .css and .js 
 
 First we create a parameter to refer to the css and js with in `hugo.toml`, by adding thie following
 
@@ -381,21 +381,23 @@ Then, in `layouts/partials/extend_head.html`, add the following
 ```
 
 
-## 4) Final Tweak
+### Final Tweak
 
 Change the bullet point headings used in the table of contents by adding to `hugo.toml`
+Since the post heading automatically uses h1, we can keep `startLevel = 2` as is, and just never use h1 when writing posts.
+(top level sections will start with `## section` instead of `#section`).
 
 ```toml
 [markup.tableOfContents]
     endLevel = 6
-    startLevel = 1
+    startLevel = 2
 ```
 
 And that's it! Feel free to steal my [commit](https://github.com/Kaminate/kaminate.github.io/commit/49a75797eb4e4364aafb333ac668e952ccfdde02) (ignore the change to `index.md`).
 
 ---
 
-# References
+## References
 
 - https://github.com/adityatelange/hugo-PaperMod/
 - https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite
