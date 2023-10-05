@@ -706,7 +706,7 @@ Whereas differential flux is defined in terms of radiance as
 
 ---
 
-deleteme
+# deleteme
 
 Well like {{<katex>}}$d\Phi=L \, \mathrm{d}\omega \, \mathrm{d}A^\perp${{</katex>}}, right? and
 
@@ -736,6 +736,43 @@ $$
 As the distance between points increases, the value of $S$ greatly diminishes.
 
 
-
 ---
+
+# asdf
+
+![](what_even_is_calculus.png)
+
+# thinking about what $\frac{\mathrm{d}a}{\mathrm{d}b}$ means...
+
+We already know that a small change $\mathrm{d}b$ in $b$ causes a small change in $\mathrm{d}a$ in $a$.
+
+Therefore $\frac{\mathrm{d}a}{\mathrm{d}b}$, implies the existance of a function $a$ that depends on $b$. In other words, $\frac{\mathrm{d}a}{\mathrm{d}b} \implies \exists a=f(b)$. 
+
+For example, if you had $a(b) = 2b+3$, you could write it as the equation $a=2b+3$, but that's an abuse of notation. You could also write $b=\frac{a-3}{2}$, which describes the function $b(a) =\frac{a-3}{2}$, but that assumes the function $f(b)$ has an inverse.
+
+
+As shorthand, you can just say $a$ or $a(b)$
+
+- The function $a$ takes on a __variable__ $a$ can take on specific __values__ $a_0$, $a_1$, $a_2$, ...
+- The __function__ $a(b)$ maps an input variable $b$ to an output variable $a$
+- A specific __value__ of $a$ is the result of evaluating the function $a(b)$ at a specific value $b_0$, for example $a_0 = a(b_0)$
+
+Lets go back to the derivative. Is $\frac{\mathrm{d}a}{\mathrm{d}b}$ a variable, a function, or a value? It's sort of everything, depending on context.
+
+- The __variable__ $a^\prime$ can take on specific __values__ $a^\prime_0$, $a^\prime_1$, $a^\prime_2$, ...
+- The __function__ $a^\prime(b)$ maps an input variable $b$ to an output variable $a^\prime$
+- A specific __value__ of $a^\prime$ is the result of evaluating the function $a^\prime(b)$ at a specific value $b_0$, for example $a^\prime_0 = a^\prime(b_0)$
+
+## Example: irradiance (see what_even_is_calculus.png)
+
+## Example: intensity
+
+$$
+I=\frac{\mathrm{d}\Phi}{\mathrm{d}\omega}
+$$
+
+Just looking at this equation, you can think of a function $\Phi(\omega)$. The input variable $\omega$ determines the output flux $\Phi$.
+
+
+
 

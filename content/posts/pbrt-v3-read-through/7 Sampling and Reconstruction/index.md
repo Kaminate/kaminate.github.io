@@ -165,3 +165,7 @@ Figure 7.5 reconstructed with the filter $r(x)=\max(0, 1-|x|)$
 
 ---
 
+![](calculus.png)
+
+
+
