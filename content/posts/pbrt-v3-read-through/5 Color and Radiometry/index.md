@@ -301,17 +301,28 @@ The most important radiometric quantity!
 __Radiance__ ($L$). Although irradiance gives power per differential area at point $p$, it doesn't distinguish direction.
 Radiance measures irradiance per solid angle, where $E_\omega$ is irradiance at a surface perpendicular to $\omega$.
 $$
-L(p,\omega)=\frac{dE_\omega(p)}{d\omega}
+L(p,\omega)=\frac{\mathrm{d}E_\omega(p)}{\mathrm{d}\omega}
 $$
 
-In terms of flux, it is flux per unit solid angle $d\omega$ per unit projected area $dA^\perp$
+Sometimes you see $\mathrm{d}E=L \cos \theta ~ \mathrm{d}\omega$. Although pbrt doesn't mention it, it comes from:
+$$
+L(p,\omega)=\frac{\dE(p)}{\dw \cos \theta}
+$$
+
+In other words, $\mathrm{d}E$ and $\mathrm{d}E_\omega$ relate by
+$$
+\mathrm{d}E_\omega = \frac{\mathrm{d}E}{\cos \theta}
+$$
+
+In terms of flux, it is flux per unit solid angle $d\omega$ per unit projected area $dA^\perp$ (where $\mathrm{d}A^\perp=\mathrm{d}A\cos \theta$).
+
 
 $$
-L(p,\omega)=\frac{d\Phi}{d\omega dA^\perp} \tag{5.2}
+L(p,\omega)=\frac{d^2\Phi}{d\omega dA^\perp} \tag{5.2}
 $$
 
-![alt text](pbrt_fig_5.10.png)
-Figure 5.10
+
+{{<figure src="pbrt_fig_5.10.png" caption="Figure 5.10" >}}
 
 --- 
 
@@ -774,5 +785,12 @@ $$
 Just looking at this equation, you can think of a function $\Phi(\omega)$. The input variable $\omega$ determines the output flux $\Phi$.
 
 
+---
 
+## Question 1
+
+![](irradiance_question.png)
+
+## Question 2
+![](differential_irradiance_question.png)
 

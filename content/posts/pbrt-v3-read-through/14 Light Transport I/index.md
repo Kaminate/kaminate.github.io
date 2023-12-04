@@ -4,72 +4,65 @@ date: 2023-10-05
 draft: true
 ---
 
-## asdf
+## 14.1 Sampling Reflection Functions
+[pbrt](https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Reflection_Functions#)
 
-{{<katex>}}
+[Recall]({{<ref "/posts/pbrt-v3-read-through/13 Monte Carlo Integration/index.md#1363-cosine-weighted-hemisphere-sampling">}}) the cosine-weighted sampling PDF: $$p(w)=\frac{ 1}{\pi}\cos(\theta)$$ 
+
+```cpp
+Spectrum BxDF::Sample_f(Vector3f &wo,
+                        Vector3f &wi,
+                        Point2f u,
+                        float& pdf,
+                        BxDFType *sampledType)
+{
+  Abs(wo.z);
+  wi = CosineSampleHemisphere(u);
+  pdf = Pdf(wo, wi);
+  return f(wo, wi);
+}
+```
+
+```cpp
+float BxDF::Pdf(Vector3f wo, Vector3f wi)
+{
+  return SameHemisphere(wo, wi) ? AbsCosTheta(wi)/pi : 0;
+}
+```
+
+--- 
+
+### Question about BxDF::Pdf()
+
+#### Questions
+
+1. Why does `BxDF::Pdf` take two parameters (`wo` & `wi`) instead of one parameter ($\omega$ or $\theta$) when calculating the PDF?
+1. In `BxDF::Pdf`, is the $\theta$ from `AbsCosTheta` calculated via $\theta = \omega_o \cdot \omega_i$?
+1. Since $p(\omega)=\frac{1}{\pi}\cos\theta$, where is the $\omega$ and $\theta$ in `BxDF::Pdf`?
+1. What is the difference between `Bxdf::Pdf` and `CosineHemispherePdf` from Ch 13?
+
+#### Answers
+
+1. `wo` is only used for `SameHemisphere`, the PDF calculation only takes `wi`.
+1. $\theta$ is calculated from `wi`. 
+1. ;
+1. ;
+
+In summary, during `BxDF::Sample_f`, the vector `wi` is created from random numbers/stratified samples/low-discrepancy samples 
+
+https://www.pbr-book.org/3ed-2018/Reflection_Models#x0-GeometricSetting
+
+```cpp
+float AbsCosTheta(Vector3f w) { return abs(w.z); }
+```
+
+---
+
+
 $$
-f(x) = \int \, 2x + 3
-$$
-{{</katex>}}
-
-$$
-f(x) = \int \, 2x + 3
-$$
-$$
-f(x) = 2x + 3
+\cos\theta = n \cdot \omega = (0,0,1) \cdot \omega = \omega _z
 $$
 
 
-
-https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Reflection_Functions
-
-
-
-
-  "To actually evaluate the PDF for the cosine-weighted sampling method
-  (which we showed earlier was p(w)=cos(theta)/pi)"
-  Float BxDF::Pdf(const Vector3f &wo, const Vector3f &wi)
-  { const return ωₒ⋅ωᵢ / π; }
-
-  $ x=3 $
-  \begin
-
-  \end
-  \[
-    x=3
-
-  \]
-
-  $$
-  x=3
-  $$
-
-  [ ] Q: why is the PDF for cosine-weighted sampling cosθ/π?
-          https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/2D_Sampling_with_Multidimensional_Transformations#Cosine-WeightedHemisphereSampling
-            //  trying to find a distrubution such that
-            p(ω) ∝ cosθ
-
-            // <proof>
-            p(ω) = cosθ/π
-            p(θ,ϕ) = cosθsinθ/π
-
-            // <proof, malleys method, jacobian>
-            inline Vector3f CosineSampleHemisphere(const Point2f &u) {
-                Point2f d = ConcentricSampleDisk(u);
-                Float z = std::sqrt(std::max((Float)0, 1 - d.x * d.x - d.y * d.y));
-                return Vector3f(d.x, d.y, z);
-            }
-
-            float CosineHemispherePdf(float cosTheta) { return cosTheta * InvPi; }
-
-  [ ] Q: why does BxDF::Pdf take two vectors?
-    [ ] Q: if "p(ω)=cosθ/π)", isnt there one parameter "θ?"
-    [ ] Q: is wi the normal or something?
-
-
-
-
-
-
-
+[ ] Q: is `Vector3f wi` the normal or something?
 
