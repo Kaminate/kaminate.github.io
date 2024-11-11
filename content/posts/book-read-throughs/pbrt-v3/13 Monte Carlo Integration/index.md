@@ -8,7 +8,7 @@ draft: true
 [pbrt](https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/2D_Sampling_with_Multidimensional_Transformations#)
 
 
-### 13.6.3 Cosine-Weighted Hemisphere Sampling
+### 13.6.3 Cosine-Weighted Hemisphere Sampling {#coshemi}
 
 [pbrt](https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/2D_Sampling_with_Multidimensional_Transformations#Cosine-WeightedHemisphereSampling)
 

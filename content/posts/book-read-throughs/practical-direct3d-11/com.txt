@@ -1,0 +1,2 @@
+
+so dx11 uses com ovjects under the hood, so that if we release a resource that the pupeline is still using, it is not immediately destroyed, and vise versa

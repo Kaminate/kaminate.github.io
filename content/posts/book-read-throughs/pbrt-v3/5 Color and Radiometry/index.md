@@ -504,6 +504,7 @@ $$
 
 
 ![](spherical_coords.png)
+![](spherical_coords.gif)
 **Angles** ($\theta$, $d\theta$, $d\phi$) measured in **radians** are in **purple**\
 **Distances/arc lengths** ($\sin \theta$, $d\theta$, $\sin\theta d\phi$) measured in **(...units?)** are in **orange**.\
 Radius = 1.

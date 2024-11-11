@@ -7,7 +7,7 @@ draft: true
 ## 14.1 Sampling Reflection Functions
 [pbrt](https://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Reflection_Functions#)
 
-[Recall]({{<ref "/posts/pbrt-v3-read-through/13 Monte Carlo Integration/index.md#1363-cosine-weighted-hemisphere-sampling">}}) the cosine-weighted sampling PDF: $$p(w)=\frac{ 1}{\pi}\cos(\theta)$$ 
+[Recall]({{<ref "/posts/book-read-throughs/pbrt-v3/13 Monte Carlo Integration/index.md#coshemi">}}) the cosine-weighted sampling PDF: $$p(w)=\frac{ 1}{\pi}\cos(\theta)$$ 
 
 ```cpp
 Spectrum BxDF::Sample_f(Vector3f &wo,
