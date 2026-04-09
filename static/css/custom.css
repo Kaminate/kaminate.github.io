@@ -57,3 +57,7 @@
     font-weight:bold;
     filter: grayscale(60%);
 }
+
+.center {
+    text-align:center;
+}
