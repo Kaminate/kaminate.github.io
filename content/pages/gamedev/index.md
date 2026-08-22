@@ -63,7 +63,6 @@ Visualizing the minkowski difference
 ![](debug_draw_crop.gif)
 ![](hexa.gif)
 ![](IKbetter11-21-2015.gif)
-![](index.md)
 ![](ivan_crop.gif)
 ![](rails_10_13_2015.gif)
 ![](rainbow.gif)
