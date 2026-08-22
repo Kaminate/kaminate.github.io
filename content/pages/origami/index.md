@@ -8,12 +8,12 @@ comments: false
 Each model is folded by me from a single square of paper, without cuts.
 All works are original designs unless otherwise specified.
 
+
 ## Ryu zin
 ### Ryu zin 3.5
 Ryu zin 3.5 designed by Satoshi Kamiya, folded from 140 cm double tissue.  
-Exhibited at NYC OrigamiUSA Convention 2026.  
-Started folding on June 1, 2026.   
-Finished folding on July 15, 2026.  
+Started folding on June 1, 2026 and finished on July 15, 2026.  
+Exhibited at 2026 NYC OrigamiUSA Convention. 
 
 ![](ryujin_ousa.jpg)
 ![](ryujin_crease.jpg)
