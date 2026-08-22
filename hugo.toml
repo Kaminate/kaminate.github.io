@@ -1,47 +1,57 @@
 baseURL = 'https://kaminate.github.io/'
-languageCode = 'en-us'
+locale='en-us'
 title = 'n4735 n0735'
-theme = 'PaperMod'
+theme = [ 'hugo-embed-pdf-shortcode', 'PaperMod' ]
+enableInlineShortcodes=true
 
 [markup.tableOfContents]
     endLevel = 6
     startLevel = 2
 
+[menu]
+  main = [
+      { name = "Origami", url = "/pages/origami", weight = 1 },
+      { name = "Gamedev", url = "/pages/gamedev", weight = 2 },
+      { name = "About", url = "/pages/about", weight = 3 },
+      { name = "Resume", url = "/pages/resume", weight = 4 },
+  ]
+  
+
 [params]
-# list of subfolders in ./content/ to show on the main page
-# Let the papermod theme show content from multiple folders
-# instead of defaulting to the folder with the most entries
-mainSections = ['foo', 'posts', 'website']
 
-custom_css = ["css/custom.css"]
-custom_js = [ "js/custom.js"]
+    profileMode.enabled = true
+    profileMode.title= "Nate Park"
+    profileMode.subtitle= "Origami Artist | Video Game Programmer"
 
-# Hide the "Powered by Hugo and PaperMod" footer
-# ( see themes/PaperMod/layouts.partials/footer.html )
-hideFooter = "true"
+    # (these show if profile mode is disabled)
+    homeInfoParams.Title = "Nate Park"
+    homeInfoParams.Content = "Origami Artist | Game Programmer"
 
-# Allow comments on posts
-comments = "true"
+    # list of subfolders in ./content/ to show on the main page
+    # Let the papermod theme show content from multiple folders
+    # instead of defaulting to the folder with the most entries
+    # mainSections = ['foo', 'posts', 'website', 'pages']
+    mainSections = []
 
-# Show Next and Prev buttons at the bottom of each post
-# https://github.com/adityatelange/hugo-PaperMod/wiki/Features#other-posts-suggestion-below-a-post
-# https://push.blue/posts/20220718-reverse-papermodnavlinks/
-ShowPostNavLinks = "true"
+    custom_css = ["css/custom.css"]
+    custom_js = [ "js/custom.js"]
 
-[params.homeInfoParams]
-# what to show on the home page
-Title = "Hello"
-Content = ""
+    # Hide the "Powered by Hugo and PaperMod" footer (themes/PaperMod/layouts.partials/footer.html )
+    # Note that this does not hide layouts/partials/extend_footer.html
+    hideFooter = "true"
 
-# note: if you typo socialIcons as socalIcons,
-# there is no error message telling you what was wrong
-[[params.socialIcons]]
-name = "twitter"
-url = "https://twitter.com/n8tak"
+    comments = "true" # Allow comments on posts
 
-[[params.socialIcons]]
-name = "email"
-url = "mailto:gamedevnate@gmail.com"
+    # Show Next and Prev buttons at the bottom of each post
+    # https://github.com/adityatelange/hugo-PaperMod/wiki/Features#other-posts-suggestion-below-a-post
+    # https://push.blue/posts/20220718-reverse-papermodnavlinks/
+    ShowPostNavLinks = "true"
+
+    socialIcons=[
+      { name = "github", url = "https://github.com/Kaminate" },
+      { name = "twitter", url = "https://twitter.com/n8tak" },
+      { name = "linkedin", url = "https://www.linkedin.com/in/parknathan" },
+      { name = "email", url = "mailto:gamedevnate@gmail.com" },
+    ]
 
 
-#asdf

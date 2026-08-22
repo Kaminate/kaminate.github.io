@@ -1,1 +1,1 @@
-run_firefox
+cls & run_chrome
