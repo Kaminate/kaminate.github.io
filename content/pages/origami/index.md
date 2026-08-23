@@ -78,7 +78,7 @@ Fish designed by Lui Hsi-Hua, folded blindfolded.
 ![](hsihua_fish.jpg)
 ## Meta Knight
 ![](metaknight.jpg)
-## Starcaft Zealot
+## StarCraft Zealot
 ![](sc_zealot.jpg)
 ## Toon Link
 ![](toonlink_2.jpg)
