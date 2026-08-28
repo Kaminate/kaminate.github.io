@@ -1,0 +1,15 @@
+.post-content h1,
+  .post-content h2,
+  .post-content h3,
+  .post-content h4,
+  .post-content h5
+  { margin-top: 1.25rem; margin-bottom: 1.5rem; }
+.post-content ul, .post-content ol
+  { padding-inline-start: 1.5rem; margin: 0.5em 0; }
+.post-content li { margin: 0.25em 0; }
+.post-content li > ul,
+.post-content li > ol { margin-top: 0.25em; margin-bottom: 0.25em; }
+
+
+/* Remove weird newline thing in beginning and end of code blocks*/
+.post-content code { padding: 0; }

@@ -1,3 +1,4 @@
+cls
 chrome "http://localhost:1313"
-hugo serve -D
+hugo serve -D --disableFastRender
 
