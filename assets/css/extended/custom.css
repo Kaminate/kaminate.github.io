@@ -13,3 +13,11 @@
 
 /* Remove weird newline thing in beginning and end of code blocks*/
 .post-content code { padding: 0; }
+
+/* Restore hyperlink text decoration */
+.post-content a { text-decoration: underline; }
+
+
+
+
+

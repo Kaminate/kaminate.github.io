@@ -92,7 +92,7 @@ https://fgiesen.wordpress.com/2011/07/02/a-trip-through-the-graphics-pipeline-20
 Today we went through ryg graphics pipeline parts 1 and 2 (of 13).
 - **Software Stack**: Application -> API runtime -> UMD(s) -> KMD
 - **UMD**: (user mode driver) builds cmd bufs, compiles shaders
-- **Graphics** Scheduler: Part of OS+KMD, time-slices and context-switches GPU access between apps. 1 per gpu
+- **Graphics Scheduler**: Part of OS+KMD, time-slices and context-switches GPU access between apps. 1 per gpu
 - **KMD:** (kernel mode driver) physical cmd ring buf, responds to interrupts, 1 per computer.
 - **Memory**(pt1): vram = high bandwith/throughput/latency. cpu <->gpu over pcie is slower. 
 - **Memory**(pt2): dram (ram and vram) organized as a grid, entire row activates.

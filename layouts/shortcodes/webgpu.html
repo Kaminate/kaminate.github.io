@@ -1,0 +1,18 @@
+{{- $canvasID := .Get "canvasID" -}}
+
+<style>
+  .webgpu-canvas
+  {
+    /*display: block;*/
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #111;
+  }
+</style>
+
+<canvas
+  class="webgpu-canvas"
+  id="{{$canvasID}}"
+></canvas>
+
+

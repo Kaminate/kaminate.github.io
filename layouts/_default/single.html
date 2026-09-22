@@ -24,10 +24,12 @@
   {{- $isHidden := .Params.cover.hidden | default site.Params.cover.hiddenInSingle | default site.Params.cover.hidden }}
   {{- partial "cover.html" (dict "cxt" . "IsHome" false "isHidden" $isHidden) }}
 
+  {{- if not (.Param "hideToc") }}
   <div class="custom-toc">
-    <h2>Contents</h3>
+    <h2>Contents</h2>
     {{ .TableOfContents }}
   </div>
+  {{- end }}
 
 
   {{- if .Content }}
@@ -58,4 +60,15 @@
   {{- end }}
 </article>
 
+
+{{- with .Params.script }}
+  {{- $file := printf "%s.js" . }}
+  {{- with $.Resources.Get $file }}
+    <script type="module" src="{{ .RelPermalink }}"></script>
+  {{- end }}
+{{- end }}
+
+<div id="hi"></div>
+
 {{- end }}{{/* end main */}}
+

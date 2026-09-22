@@ -9,19 +9,21 @@ enableInlineShortcodes=true
     startLevel = 2
 
 [menu]
-  main = [
-      { name = "Origami", url = "/pages/origami", weight = 1 },
-      { name = "Gamedev", url = "/pages/gamedev", weight = 2 },
-      { name = "About", url = "/pages/about", weight = 3 },
-      { name = "Resume", url = "/pages/resume", weight = 4 },
-  ]
-  
+    main = [
+        { name = "Origami", url = "/pages/origami/", weight = 1 },
+        { name = "Gamedev", url = "/pages/gamedev/", weight = 2 },
+        { name = "n0735",   url = "/n0735/",         weight = 3 },
+        { name = "About",   url = "/pages/about/",   weight = 4 },
+        { name = "Resume",  url = "/pages/resume/",  weight = 5 },
+    ]
+    
 
 [params]
 
     profileMode.enabled = true
-    profileMode.title= "Nate Park"
-    profileMode.subtitle= "Origami Artist | Video Game Programmer"
+    #profileMode.enabled = false
+    profileMode.title = "Nate Park"
+    profileMode.subtitle = "Origami Artist | Video Game Programmer"
 
     # (these show if profile mode is disabled)
     homeInfoParams.Title = "Nate Park"
@@ -31,21 +33,24 @@ enableInlineShortcodes=true
     # Let the papermod theme show content from multiple folders
     # instead of defaulting to the folder with the most entries
     # mainSections = ['foo', 'posts', 'website', 'pages']
-    mainSections = []
+    # mainSections = [ 'posts' ]
+    # mainSections = [ ]
 
     custom_css = ["css/custom.css"]
     custom_js = [ "js/custom.js"]
 
     # Hide the "Powered by Hugo and PaperMod" footer (themes/PaperMod/layouts.partials/footer.html )
     # Note that this does not hide layouts/partials/extend_footer.html
-    hideFooter = "true"
+    hideFooter = true
 
-    comments = "true" # Allow comments on posts
+    hideToc = false # overriden by specific pages, see layouts\_default\single.html
+
+    comments = true # Allow comments on posts
 
     # Show Next and Prev buttons at the bottom of each post
     # https://github.com/adityatelange/hugo-PaperMod/wiki/Features#other-posts-suggestion-below-a-post
     # https://push.blue/posts/20220718-reverse-papermodnavlinks/
-    ShowPostNavLinks = "true"
+    ShowPostNavLinks = true
 
     socialIcons=[
       { name = "github", url = "https://github.com/Kaminate" },

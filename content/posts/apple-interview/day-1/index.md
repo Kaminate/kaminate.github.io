@@ -229,29 +229,28 @@ Node* Reverse( Node* oldList )
 
 - [ ] Q: Broad overview of stages in d3d12?
 
-https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/
-https://fgiesen.wordpress.com/2011/07/01/a-trip-through-the-graphics-pipeline-2011-part-1/
-https://fgiesen.wordpress.com/2011/07/02/a-trip-through-the-graphics-pipeline-2011-part-2/
-https://fgiesen.wordpress.com/2011/07/03/a-trip-through-the-graphics-pipeline-2011-part-3/
-https://fgiesen.wordpress.com/2011/07/04/a-trip-through-the-graphics-pipeline-2011-part-4/
-https://fgiesen.wordpress.com/2011/07/05/a-trip-through-the-graphics-pipeline-2011-part-5/
-https://fgiesen.wordpress.com/2011/07/06/a-trip-through-the-graphics-pipeline-2011-part-6/
-https://fgiesen.wordpress.com/2011/07/08/a-trip-through-the-graphics-pipeline-2011-part-7/
-https://fgiesen.wordpress.com/2011/07/10/a-trip-through-the-graphics-pipeline-2011-part-8/
-https://fgiesen.wordpress.com/2011/07/12/a-trip-through-the-graphics-pipeline-2011-part-9/
-https://fgiesen.wordpress.com/2011/07/20/a-trip-through-the-graphics-pipeline-2011-part-10/
-https://fgiesen.wordpress.com/2011/08/14/a-trip-through-the-graphics-pipeline-2011-part-11/
-https://fgiesen.wordpress.com/2011/09/06/a-trip-through-the-graphics-pipeline-2011-part-12/
-https://fgiesen.wordpress.com/2011/10/09/a-trip-through-the-graphics-pipeline-2011-part-13/
-
-https://therealmjp.github.io/posts/breaking-down-barriers-part-1-whats-a-barrier/
-https://therealmjp.github.io/posts/breaking-down-barriers-part-2-synchronizing-gpu-threads/
-https://therealmjp.github.io/posts/breaking-down-barriers-part-3-multiple-command-processors/
-https://therealmjp.github.io/posts/breaking-down-barriers-part-4-gpu-preemption/
-https://therealmjp.github.io/posts/breaking-down-barriers-part-5-back-to-the-real-world/
-https://therealmjp.github.io/posts/breaking-down-barriers-part-6-experimenting-with-overlap-and-preemption/
-
-I also want to study
+https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/  
+https://fgiesen.wordpress.com/2011/07/01/a-trip-through-the-graphics-pipeline-2011-part-1/  
+https://fgiesen.wordpress.com/2011/07/02/a-trip-through-the-graphics-pipeline-2011-part-2/  
+https://fgiesen.wordpress.com/2011/07/03/a-trip-through-the-graphics-pipeline-2011-part-3/  
+https://fgiesen.wordpress.com/2011/07/04/a-trip-through-the-graphics-pipeline-2011-part-4/  
+https://fgiesen.wordpress.com/2011/07/05/a-trip-through-the-graphics-pipeline-2011-part-5/  
+https://fgiesen.wordpress.com/2011/07/06/a-trip-through-the-graphics-pipeline-2011-part-6/  
+https://fgiesen.wordpress.com/2011/07/08/a-trip-through-the-graphics-pipeline-2011-part-7/  
+https://fgiesen.wordpress.com/2011/07/10/a-trip-through-the-graphics-pipeline-2011-part-8/  
+https://fgiesen.wordpress.com/2011/07/12/a-trip-through-the-graphics-pipeline-2011-part-9/  
+https://fgiesen.wordpress.com/2011/07/20/a-trip-through-the-graphics-pipeline-2011-part-10/  
+https://fgiesen.wordpress.com/2011/08/14/a-trip-through-the-graphics-pipeline-2011-part-11/  
+https://fgiesen.wordpress.com/2011/09/06/a-trip-through-the-graphics-pipeline-2011-part-12/  
+https://fgiesen.wordpress.com/2011/10/09/a-trip-through-the-graphics-pipeline-2011-part-13/  
+https://therealmjp.github.io/posts/breaking-down-barriers-part-1-whats-a-barrier/  
+https://therealmjp.github.io/posts/breaking-down-barriers-part-2-synchronizing-gpu-threads/  
+https://therealmjp.github.io/posts/breaking-down-barriers-part-3-multiple-command-processors/  
+https://therealmjp.github.io/posts/breaking-down-barriers-part-4-gpu-preemption/  
+https://therealmjp.github.io/posts/breaking-down-barriers-part-5-back-to-the-real-world/  
+https://therealmjp.github.io/posts/breaking-down-barriers-part-6-experimenting-with-overlap-and-preemption/  
+  
+I also want to study  
 - compositing
 - alpha blening
 - ldr over hdr ui
