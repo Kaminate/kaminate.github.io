@@ -262,7 +262,7 @@ class Bounded_buffer {
 public:
   void append(Portion portion) {
     std::unique_lock lck(mtx);
-    non_full.wait(lck, [&]{ return size != N; });
+    non_full.wait(lck, [&]{ return size != N; }); // sleep and unlock until size != N, then reacquire lock
     assert(size < N);
     buffer[tail++] = std::move(portion);
     tail %= N;
