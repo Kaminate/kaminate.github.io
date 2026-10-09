@@ -20,21 +20,27 @@ enableInlineShortcodes=true
 
 [params]
 
+    # Show only posts, not pages in n0735. The pages can be found from the main menu.
+    ShowAllPagesInArchive = false
+
     profileMode.enabled = true
-    #profileMode.enabled = false
+
+    # -------------------------------------------------
+    # if ( profile mode enabed )
+    # -------------------------------------------------
     profileMode.title = "Nate Park"
     profileMode.subtitle = "Origami Artist | Video Game Programmer"
-
-    # (these show if profile mode is disabled)
+    # -------------------------------------------------
+    # else
+    # -------------------------------------------------
     homeInfoParams.Title = "Nate Park"
     homeInfoParams.Content = "Origami Artist | Game Programmer"
 
     # list of subfolders in ./content/ to show on the main page
-    # Let the papermod theme show content from multiple folders
-    # instead of defaulting to the folder with the most entries
-    # mainSections = ['foo', 'posts', 'website', 'pages']
-    # mainSections = [ 'posts' ]
-    # mainSections = [ ]
+    mainSections = ['foo', 'posts', 'website', 'pages']
+    # -------------------------------------------------
+    # endif
+    # -------------------------------------------------
 
     custom_css = ["css/custom.css"]
     custom_js = [ "js/custom.js"]
