@@ -17,7 +17,16 @@
 /* Restore hyperlink text decoration */
 .post-content a { text-decoration: underline; }
 
+/* Add table borders */
+.post-content table :is(th, td) {
+    border: 1px solid #444444;
+    padding: 0.25em 0.5em;
+}
 
+/* Remove borders from entirely empty header rows */
+.post-content table thead tr:not(:has(:is(th, td):not(:empty))) > :is(th, td) {
+    border: none;
+}
 
 
 
