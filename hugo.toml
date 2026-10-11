@@ -20,8 +20,13 @@ enableInlineShortcodes=true
 
 [params]
 
-    # Show only posts, not pages in n0735. The pages can be found from the main menu.
+    # Show only posts, not pages in n0735 archive. The pages can be found from the main menu.
+    # this also works in conjunction with paramas.mainSections (?)
     ShowAllPagesInArchive = false
+
+    # list of subfolders in ./content/ to show on the main page
+    # this also works in conjunction with paramas.ShowAllPagesInArchive (?)
+    mainSections = ["posts"]
 
     profileMode.enabled = true
 
@@ -36,8 +41,7 @@ enableInlineShortcodes=true
     homeInfoParams.Title = "Nate Park"
     homeInfoParams.Content = "Origami Artist | Game Programmer"
 
-    # list of subfolders in ./content/ to show on the main page
-    mainSections = ['foo', 'posts', 'website', 'pages']
+
     # -------------------------------------------------
     # endif
     # -------------------------------------------------
