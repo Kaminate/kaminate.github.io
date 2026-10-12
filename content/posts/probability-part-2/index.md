@@ -21,7 +21,7 @@ Last time, in [Part I]({{< ref "posts/probability-part-1" >}}), we covered the b
 
 ## Expected Value
 
-The **expected value** $\mathbb{E}_p[X]$ of a **random variable** $X$ with distribution $p$ is the probability-weighted average of its possible values. Intuitively, it represents the average value we would observe over many _independent_ repetitions of the same experiment. The **expected value** of $X$ is also called the _mean_ of the distribution of $X$.
+The **expected value** $\mathbb{E}_p[X]$ of a **random variable** $X$ with distribution $p$ is the probability-weighted average of its possible values. Intuitively, it represents the average value we would observe over many _independent_ repetitions of the same experiment. The **expected value** of $X$ is also called the _mean_ of the distribution of $X$ and is frequently denoted $\mu$.
 
 {{<br>}}
 
@@ -142,9 +142,31 @@ $$
 
 So on average, we would expect the dart to land two-thirds of the way from the center to the edge.
 
-## Law of the Unconscious Statiscitian
+## Law of Large Numbers
 
-The **law of the unconscious statistician** (LOTUS) is a theorem for finding the **expected value** of a _function_ of a **random variable**. It is so named because most people use it unconsciously. Given a function $g(X)$ of **random variable** $X$, the discrete case is:
+If we _sample from the distribution of $X$_, that is re-run the same experiment independently, we create a sequence of **random variables** $(X_1, X_2, \dots)$ each with the same distribution as $X$. The _sample mean_ $\overline{X}_n$ after $n$ runs is:
+
+$$
+\overline{X}_n = \frac{1}{n} \sum _{i=1}^n X_i
+$$
+
+$\overline{X}_n$ is itself a **random variable**, whose realized value is the average of the realized values of $X_1, \dots, X_n$.
+
+{{<br>}}
+
+The **law of large numbers** (LLN) informally states that:
+
+
+{{<katex>}}
+$$
+\text{As } n \rightarrow \infty, \, \overline{X}_n \text{ converges to } \mathbb{E}_p[X]
+$$
+{{</katex>}}
+
+
+## Law of the Unconscious Statistician
+
+The **law of the unconscious statistician** (LOTUS) is a theorem for finding the **expected value** of a _function_ of a **random variable**, using the distribution of the original **random variable**. It is so named because people often use it without consciously realizing that it requires a theorem. Given a function $g(X)$ of a **random variable** $X$, the discrete case is:
 
 {{<katex>}}
 $$
@@ -167,6 +189,7 @@ $$
 ## Sources
 
 
-- [Definitions and Basic Properties — Kyle Siegrist, LibreTexts](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/04%3A_Expected_Value/4.01%3A_Definitions_and_Basic_Properties)
+- [Definitions and Basic Properties - Kyle Siegrist, LibreTexts](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/04%3A_Expected_Value/4.01%3A_Definitions_and_Basic_Properties)
 
-- [Variance — Kyle Siegrist, LibreTexts](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/04%3A_Expected_Value/4.03%3A_Variance)
+
+- [Variance - Kyle Siegrist, LibreTexts](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/04%3A_Expected_Value/4.03%3A_Variance)

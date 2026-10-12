@@ -248,15 +248,15 @@ $$
 
 ## Random Variable
 
-A **random variable** is a measurement of interest. For example:
+A **probability space** $(S, \mathcal{S}, \mathbb{P})$ models an experiment by specifying possible **outcomes**, **events**, and their probabilities. A **random variable** is a measurement of interest in that experiment. For example:
 - the sum of two dice rolls
 - the number of heads in several coin flips
 
-Mathematically, a **random variable** $X$ is a function that transforms **outcomes** $s \in S$ to $X(s) \in T$.
+Mathematically, a **random variable** $X$ is a function that maps **outcomes** $s \in S$ to $X(s) \in T$.
 $$
 X:S \to T
 $$
-Although $X$ is a function, it's often written as a variable. When **outcome** $s \in S$ occurs, $X$ takes on the realized value $X(s) \in T$.
+Although **random variables** are functions, probability notation often leaves the argument implicit, writing simply $X$ rather than $X(s)$. The realized value of $X$ depends on the **outcome**.  When $s \in S$ occurs, $X$ takes on the realized value $X(s) \in T$.
 
 ![](random_var_outcomes.png)
 
@@ -389,7 +389,7 @@ Let's take another look at the two-coin flip example. The random variable $X$ co
 
 {{<br>}}
 
-Here, we are interested in the probability that we get _at most_ one head. In other words, we are interested in the probability that this measurement belongs to the set $B = \lbrace 0, 1 \rbrace \subseteq T$. The **probability distribution** $\mathbb{P}_X$ assigns to this set the probability $\mathbb{P}_X(B)$.
+Here, we are interested in the probability that we get _at most_ one head. In other words, we are interested in the probability that this measurement belongs to the set $B = \lbrace 0, 1 \rbrace \subseteq T$. The **probability distribution** $\mathbb{P}_X$ assigns to this set the probability $\mathbb{P}_X$.
 
 {{<br>}}
 
