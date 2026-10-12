@@ -4,26 +4,30 @@ date: 2026-09-27
 draft: false
 ---
 
+- [Probability Part I]({{< ref "posts/probability-part-1" >}}) $\leftarrow$ you are here
+- [Probability Part II]({{< ref "posts/probability-part-2" >}})
+
 ## Intro
+
 
 Computer graphics often involves estimating complicated lighting integrals using Monte Carlo integration. This requires a background in random numbers and probability. By the end of this post you should understand the basics of probability, including the following terms and notations:
 
 {{<br>}}
 
-| Term                              | Notation                        |
-| ---                               | :---:                           |
-| Outcome                           | $s$                             |
-| Set of Outcomes                   | $S$                             |
-| Event                             | $A$                             |
-| Event Space                       | $\mathcal{S}$                   |
-| Probability Measure               | $\mathbb{P}$                    |
-| Sample Space                      | $(S, \mathcal{S})$              |
-| Probability Space                 | $(S, \mathcal{S}, \mathbb{P})$  |
-| Random Variable                   | $X$                             |
-| Probability Distribution of $X$   | $\mathbb{P}_X$                  |
-| Probability Mass Function         | $p_X$                           |
-| Cumulative Distribution Function  | $F_X$                           |
-| Probability Density Function      | $f_X$                           |
+| Term                                    | Notation                        |
+| ---                                     | :---:                           |
+| Outcome                                 | $s$                             |
+| Set of Outcomes                         | $S$                             |
+| Event                                   | $A$                             |
+| Event Space                             | $\mathcal{S}$                   |
+| Probability Measure                     | $\mathbb{P}$                    |
+| Sample Space                            | $(S, \mathcal{S})$              |
+| Probability Space                       | $(S, \mathcal{S}, \mathbb{P})$  |
+| Random Variable                         | $X$                             |
+| Probability Distribution of $X$         | $\mathbb{P}_X$                  |
+| Probability Mass Function (PMF)         | $p_X$                           |
+| Cumulative Distribution Function (CDF)  | $F_X$                           |
+| Probability Density Function (PDF)      | $f_X$                           |
 
 ## Example: Rolling a die
 
@@ -257,12 +261,17 @@ Although $X$ is a function, it's often written as a variable. When **outcome** $
 ![](random_var_outcomes.png)
 
 
+{{<br>}}
 
 For a measurable set of values $B \subseteq T$, the corresponding _preimage_ **event** $X^{-1}(B)$ in $S$ is written:
 
 $$
 \lbrace X \in B \rbrace = X^{-1}(B) = \lbrace s \in S: X(s) \in B \rbrace
 $$
+
+![](random_var_events.png)
+
+{{<br>}}
 
 A **random variable** $X$ must be _measurable_, that is the _preimage_ of each measurable set of values $B \subseteq T$ must be an **event** in $\mathcal{S}$.
 
@@ -345,7 +354,7 @@ Note that $X(1,1) = 2$ is shorthand for $X\big((1,1)\big)=2$.
     - $X(s) = s$ 
     - $\lbrace X \in A \rbrace = A$
 
-### $\mathbb{P}_X$, the Probability Distribution of $X$
+### Probability Distribution
 
 Recall that a **random variable** $X:S \to T$ maps outcomes to measurements. \
 The **probability distribution** $\mathbb{P}_X$ of $X$ assigns each measurable set of values $B \subseteq T$ a probability $\mathbb{P}_X(B)$ describing how likely $X$ is to fall within $B$.
@@ -374,34 +383,38 @@ $$
 
 The _preimage_ of $B$ under $X$, written as $X  ^ {-1} ( B )$, is an **event** to which $\mathbb{P}$ can assign a probability.
 
-#### $\mathbb{P}_X$ Example
+#### Probability Distribution Example
 
-Let's look at the two-coin flip example from earlier. The random variable $X$ counts the number of heads, so the _measurement_ $X(s)$ is the number of heads in the observed **outcome** $s$. In this example, we are interested in the probability that this measurement belongs to the set $B = \lbrace 0, 1 \rbrace \subseteq T$, that is the probability of flipping two coins and getting at most one head.
+Let's take another look at the two-coin flip example. The random variable $X$ counts the number of heads, so the _measurement_ $X(s)$ is the number of heads in the observed **outcome** $s$.
 
 {{<br>}}
 
-What's the probability of this?
-{{<br>}}
+Here, we are interested in the probability that we get _at most_ one head. In other words, we are interested in the probability that this measurement belongs to the set $B = \lbrace 0, 1 \rbrace \subseteq T$. The **probability distribution** $\mathbb{P}_X$ assigns to this set the probability $\mathbb{P}_X(B)$.
+
 {{<br>}}
 
-Let the **event** $A \subseteq S$ be the preimage of $B$ under $X$.
+To calculate this probability, first let's look at which outcomes produce a measurement in $B$. The **set of outcomes** $S$ is:
+
+$$
+S = \big \lbrace (0,0), (0,1), (1,0), (1,1) \big \rbrace
+$$
+
+The **outcomes** with at most one head form the the **event** $A \subseteq S$, which is the preimage of $B$ under $X$.
 
 $$
 A =   X  ^ {-1} ( B )  =  X  ^ {-1} \big( \lbrace 0, 1 \rbrace \big)  = \big\lbrace (0,0), (1,0), (0,1) \big\rbrace 
 $$
 
-$$
-\mathbb{P}_X( B ) = \mathbb{P} (A) =  \mathbb{P} \bigg(  \big\lbrace (0,0), (1,0), (0,1) \big\rbrace \bigg)
-$$
+Since the four outcomes are equally likely, and three of them belong to $A$, we get:
 
-The **set of outcomes** $S$ has 4 possible outcomes, each of equal probability
+{{<katex>}}
 $$
-S = \big \lbrace (0,0), (0,1), (1,0), (1,1) \big \rbrace
+\mathbb{P}_X( B ) = \mathbb{P} (A) =  75\%
 $$
-and we're looking for 3 of them, so getting an **outcome** $s \in A $ has a 75% chance.
+{{</katex>}}
 
 
-### Discrete random variable
+### Discrete Random Variable
 
 The random variable $X$ representing the number of heads in two coin flips is an example of a **discrete random variable**.  A **discrete random variable** $X$ has a countable image (range). In this case, there are 4 **outcomes** $s$ in the **set of outcomes** $S$, and 3 possible measurements in the range $X(S)$:
 
@@ -520,6 +533,7 @@ $$
 {{</katex>}}
 
 Thus the PDF $f_X$ of $X$ is:
+
 {{<katex>}}
 $$
 f_X(r) = \begin{cases}

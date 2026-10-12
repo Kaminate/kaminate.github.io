@@ -8,7 +8,7 @@ comments: false
 
 ![](me.png)
 
-Hi, my name is Nate Park. I'm an origami artist, video game programmer, and perpetually injured rock climber.
+Hi, my name is Nate Park. I'm an origami artist, video game programmer, and rock climber.
 
 #### [Origami]({{< ref "pages/origami" >}})
 
