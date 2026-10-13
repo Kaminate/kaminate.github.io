@@ -21,7 +21,7 @@ Last time, in [Part I]({{< ref "posts/probability-part-1" >}}), we covered the b
 
 ## Expected Value
 
-The **expected value** $\mathbb{E}_p[X]$ of a **random variable** $X$ with distribution $p$ is the probability-weighted average of its possible values. Intuitively, it represents the average value we would observe over many _independent_ repetitions of the same experiment. The **expected value** of $X$ is also called the _mean_ of the distribution of $X$ and is frequently denoted $\mu$.
+The **expected value** $\mathbb{E}_p[X]$ of a **random variable** $X$ with distribution $p$ is the probability-weighted average of its possible values. Intuitively, it represents the average value we would observe over many _independent_ repetitions of the same experiment.
 
 {{<br>}}
 
@@ -47,6 +47,53 @@ $$
 {{</katex>}}
 
 The integral is taken over all possible values $x$ of $X$. Here, $p(x)$ is the **probability density function** (PDF) $f_X(x)$, the probability density at $x$.
+
+{{<br>}}
+
+---
+
+Note: The **expected value** of a contant $c\in\mathbb{R}$ is the constant itself. \
+The constant $c$ can be thought of as a discrete **random variable** that takes the value $c$ with probability $1$.
+$$
+\mathbb{E}[c]=c
+$$
+
+---
+
+{{<br>}}
+
+The **expected value** of $X$ is also called the _mean_ of the distribution of $X$ and is frequently denoted $\mu$. In physics, the mean is the center of mass, the balance point.
+
+![](mean_discrete.png)
+![](mean_continuous.png)
+
+#### Moment
+
+The **moment** of $X$ about $a \in \mathbb{R}$ of order $n \in \mathbb{N}$ is defined as
+$$
+\mathbb{E}\big[ (X-a)^n \big]
+$$
+
+|                                                                        |                                   |
+| ---                                                                    | ---                               |
+| **Moments** about $0$ are referred to as _moments_, or _raw moments_.  | $ \mathbb{E}[ X^n ]$              |
+| **Moments** about $\mu = \mathbb{E}[X]$ are referred to as _central moments_.          | $\mathbb{E}\big[ (X-\mu)^n \big]$ |
+
+{{<br>}}
+
+Note that the _first central moment_ is always $0$, as
+
+{{<katex>}}
+$$
+\begin{aligned}
+\mathbb{E}\big[(X-\mu)^1\big] &= \mathbb{E}[X] - \mathbb{E}[\mu] \\
+                              &= \mathbb{E}[X] - \mu             \\
+                              &= 0
+\end{aligned}
+$$
+{{</katex>}}
+
+We will revisit **moments** when we discuss **variance**.
 
 ### Example: Fair Die
 
@@ -184,6 +231,123 @@ $$
 
 
 ## Variance
+
+The **variance** of $X$ is defined as the _second central moment_ of $X$, where $\mu = \mathbb{E} [  X ]$:
+
+
+{{<katex>}}
+$$
+\begin{aligned}
+\operatorname{Var}(X)
+&= \mathbb{E}\left[(X-\mu)^2\right] \\
+&= \mathbb{E}\left[X^2-2\mu X+\mu^2\right] \\
+&= \mathbb{E}[X^2]- \mathbb{E}[2\mu X]+ \mathbb{E}[ \mu^2 ] \\
+&= \mathbb{E}[X^2]-2\mu^2 + \mu^2 \\
+&= \mathbb{E}[X^2]-\mu^2
+\end{aligned}
+$$
+{{</katex>}}
+
+If $X$ is discrete with PMF $p_X$, then:
+
+{{<katex>}}
+$$
+\operatorname{Var}_{p_X}(X) = \sum _{x \in S} (x-\mu)^2 \, p_X(x)
+$$
+{{</katex>}}
+
+If $X$ is continuous with PDF $f_X$, then:
+
+{{<katex>}}
+$$
+\operatorname{Var}_{f_X}(X) = \int _S (x - \mu)^2 \, f_X(x) \, dx
+$$
+{{</katex>}}
+
+
+**Variance** is often denoted as $\sigma^2$, and its positive square root, **standard deviation**, as $\sigma$.
+
+
+### Aside: Moment of Inertia
+
+
+$$
+\gdef\dx{\mathrm{d}x}
+\gdef\dm{\mathrm{d}m}
+$$
+
+$\gdef\dx{\mathrm{d}x}$
+$\gdef\dm{\mathrm{d}m}$
+
+
+{{< figure src="moment_of_inertia_about_mu.jpg"  >}}
+
+In physics, the _moment of inertia_ $I_\mu$ of a mass distribution along a line measures its resistance to rotation about its center of mass $\mu$.
+
+{{<katex>}}
+$$
+\begin{aligned}
+I_\mu &= \int (x-\mu)^2 \, \dm               \\
+      &= \int (x-\mu)^2 \, \rho(x) \, \dx ,
+\end{aligned}
+$$
+{{</katex>}}
+
+where:
+
+{{<br>}}
+
+| Quantity           | Expression                          |
+| ---                | ---                                 |
+| Position           | $x$                                 |
+| Differential mass  | $\dm=\rho(x) \thinspace \dx$        |
+| Mass density       | $\rho(x)$                           |
+| Differential width | $\dx$                               |
+
+{{<br>}}
+
+For the probability analogue, normalize the mass density by its total mass to obtain a **PDF**:
+
+{{<br>}}
+
+| Quantity           | Expression                          |
+| ---                | ---                                 |
+| Total mass         | $M = \int \rho(x) \thinspace \dx$   |
+| PDF                | $f_X(x) = \dfrac{\rho(x)}{M}$       |
+
+{{<br>}}
+
+Then, the **variance** is equal to the _moment of inertia_ divided by total mass:
+
+{{<katex>}}
+$$
+\begin{aligned}
+\operatorname{Var}_{f_X}(X) &= \mathbb{E}_{f_X} \left[ (X-\mu)^2 \right]  \\
+                            &= \int (x-\mu)^2 \, f_X(x) \, dx             \\
+                            &= \int (x-\mu)^2 \, \frac{\rho(x)}{M} \, dx  \\
+                            &= \frac{I_\mu}{M}.
+\end{aligned}
+$$
+{{</katex>}}
+
+
+Sneak peek for the 3D _inertia tensor_, after normalizing the mass density into a **PDF**:
+
+{{<katex>}}
+$$
+\begin{aligned}
+\operatorname{Cov}(\mathbf X)
+&= \mathbb E\left[(\mathbf X-\boldsymbol\mu)^{\otimes 2}\right] \\[1em]
+&=
+\begin{bmatrix}
+\operatorname{Var}(X_1) & \operatorname{Cov}(X_1,X_2) & \operatorname{Cov}(X_1,X_3) \\
+\operatorname{Cov}(X_2,X_1) & \operatorname{Var}(X_2) & \operatorname{Cov}(X_2,X_3) \\
+\operatorname{Cov}(X_3,X_1) & \operatorname{Cov}(X_3,X_2) & \operatorname{Var}(X_3)
+\end{bmatrix}\\[2em]
+&= \frac{\operatorname{tr}(\mathbf I_\mu)\mathbf 1-\mathbf I_\mu}{2M}.
+\end{aligned}
+$$
+{{</katex>}}
 
 
 ## Sources
