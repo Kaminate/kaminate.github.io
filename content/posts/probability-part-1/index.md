@@ -256,7 +256,7 @@ A **probability space** $(S, \mathcal{S}, \mathbb{P})$ models an experiment by s
 - the sum of two dice rolls
 - the number of heads in several coin flips
 
-Mathematically, a **random variable** $X$ is a function that maps **outcomes** $s \in S$ to $X(s) \in T$.
+Mathematically, a **random variable** $X$ is a function that maps each **outcome** $s \in S$ to a measurement $X(s) \in T$.
 $$
 X:S \to T
 $$
@@ -360,7 +360,7 @@ Note that $X(1,1) = 2$ is shorthand for $X\big((1,1)\big)=2$.
 
 ### Probability Distribution
 
-Recall that a **random variable** $X:S \to T$ maps outcomes to measurements. \
+Recall that a **random variable** $X:S \to T$ maps **outcomes** $s \in S$ to measurements $X(s) \in T$. \
 The **probability distribution** $\mathbb{P}_X$ of $X$ assigns each measurable set of values $B \subseteq T$ a probability $\mathbb{P}_X(B)$ describing how likely $X$ is to fall within $B$.
 
 {{<br>}}
