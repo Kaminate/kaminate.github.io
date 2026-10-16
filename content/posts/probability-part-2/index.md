@@ -1,11 +1,14 @@
 ---
 title: "Probability Part II"
 date: 2026-10-11
-draft: true
+draft: false
 ---
 
+<!-- TODO: remove this comment when all the probability parts are draft: false
 - [Probability Part I]({{< ref "posts/probability-part-1" >}})
 - [Probability Part II]({{< ref "posts/probability-part-2" >}}) $\leftarrow$ you are here
+- [Probability Part III]({{< ref "posts/probability-part-3" >}})
+-->
 
 $$
 \gdef\dx{\mathrm{d}x}
@@ -20,7 +23,7 @@ $\gdef\dr{\mathrm{d}r}$
 
 ## Intro
 
-Last time, in [Part I]({{< ref "posts/probability-part-1" >}}), we covered the basic concepts leading up to **random variables** and their distributions. In this post, things will start to get cracking as we build up to the **law of the unconscious statistician**, the **law of large numbers**, **Monte Carlo integration**, and **importance sampling**. Along the way, we'll introduce the following terms:
+Last time, in [Part I]({{< ref "posts/probability-part-1" >}}), we covered the basic concepts leading up to **random variables** and their distributions. In this post, things will start to get cracking as we build up to the **law of the unconscious statistician**, the **law of large numbers**, and **Monte Carlo integration**. Along the way, we'll introduce the following terms:
 
 {{<br>}}
 
@@ -28,7 +31,6 @@ Last time, in [Part I]({{< ref "posts/probability-part-1" >}}), we covered the b
 | ---                                          | :---:                           |
 | Expected Value of $X$ under distribution $p$ | $\mathbb{E}_p[X]$               |
 | Variance of $X$ under distribution $p$       | $\mathbb{V}_p[X]$               |
-| $X$ follows distribution $p$                 | $X \sim p$                      |
 
 ## Expected Value
 
@@ -362,14 +364,13 @@ $$
 $$
 {{</katex>}}
 
-
 ## Monte Carlo Integration
 
 It's time for the big boy, **Monte Carlo integration**!
 
 {{<br>}}
 
-The Casino de Monte-Carlo is a famous casino in Monaco, and Monte Carlo techniques are a class of algorithms that obtain numerical approximations to problems using repeated random sampling. **Monte Carlo integration** estimates an integral by rewriting it as an expected value, then approximating that expected value with a sample average.
+Monte Carlo techniques use repeated random sampling, and are so named after the famous Casino de Monte-Carlo in Monaco. **Monte Carlo integration** is a clever technique that rewrites an integral as an **expected value**, and approximates it with a _sample mean_.
 
 {{<katex>}}
 $$
@@ -383,143 +384,172 @@ $$
 
 ### Derivation
 
-Let $X$ be a continuous **random variable** with **PDF** $p$, and define
+We want to estimate the __integral__ $I$ of a __function__ $f$:
 
 $$
-g(x) = \frac{f(x)}{p(x)}.
+I = \int f(x) \thinspace \dx.
 $$
 
-By the **law of the unconscious statistician** (LOTUS),
+Do we have anything in our toolbox that contains an __integral__ of a __function__?\
+We do! By **LOTUS**, the **expected value** of a function $g(X)$ is:
+$$
+\mathbb{E}_p\left[g(X)\right] = \int g(x) \thinspace p(x) \thinspace \dx
+$$
+
+Let's set that **expected value** equal to $I$.
+
+$$
+\mathbb{E}_p\left[g(X)\right] = \int g(x) \thinspace p(x) \thinspace \dx = \int f(x) \thinspace \dx = I
+$$
+
+Now we have a relationship between $g$, $f$, and $p$:
+$$
+g(x) \thinspace p(x)=f(x).
+$$
+
+Solving for $g$, we can rewrite our **expected value** in terms of the function $f$ we're trying to integrate, and any **PDF** $p$ that can sample where $f$ is nonzero. We no longer need $g$.
+
+$$
+\mathbb{E}_p\left[\frac{f(X)}{p(X)}\right] = \int f(x) \thinspace \dx = I.
+$$
+
+Now the **LLN** informally tells us that the _sample mean_ converges to the **expected value**.
+
+Define the single-sample **random variable**
+
+$$
+\widehat{I}^{(1)} = \frac{f(X)}{p(X)} , \qquad
+\mathbb{E}_p\left[\widehat{I}^{(1)}\right]
+= I.
+$$
+
+Then draw independent samples $(X_1, \dots, X_n)$ from $p$. Each sample gives an independent single-sample estimate:
+
+$$
+\widehat{I}_i^{(1)} = \frac{f(X_i)}{p(X_i)}.
+$$
+
+Their _sample mean_ converges to $I$:
 
 {{<katex>}}
 $$
 \begin{aligned}
-\mathbb{E}_p \left[ g(X) \right]
-&= \int g(x) \, p(x) \, \dx                                         \\[1em]
-&= \int \left( \frac{f(x)}{p(x)} \right) \, p(x) \, \dx             \\[1em]
-&= \int \frac{f(x)}{ \cancel{ p(x)}} \, \cancel{ p(x) } \, \dx      \\[1em]
-&= \int f(x) \,  \dx.
+\widehat{I}^{(n)}
+&= \frac{1}{n} \sum_{i=1}^n \widehat{I}_i^{(1)}
+&&\xrightarrow[n \to \infty]{}
+\mathbb{E}_p\left[ \widehat{I}^{(1)}\right] \\[1em]
+
+&= \frac{1}{n} \sum_{i=1}^n \frac{f(X_i)}{p(X_i)}
+&&\xrightarrow[n \to \infty]{}
+I
 \end{aligned}
 $$
 {{</katex>}}
 
-So we can define the **random variable** $\widehat{I}^{(1)}$ to have **expected value** equal to the integral:
+
+This gives us the full definition of **Monte Carlo integration**
 
 {{<katex>}}
 $$
-\widehat{I}^{(1)} = \frac{f(X)}{p(X)}
-$$
-
-$$
-\mathbb{E}_p \left[ \widehat{I}^{(1)} \right]
+\widehat{I}^{(n)}
 =
-\int f(x) \thinspace  \dx.
+\frac{1}{n}\sum_{i=1}^n\frac{f(X_i)}{p(X_i)}
+\approx
+\int f(x) \thinspace \dx
 $$
 {{</katex>}}
 
-Now draw independent samples $X_1, \dots, X_n$ from $p$.\
-Each sample $X_i$ gives the $i$-th sample **random variable** $\widehat{I}_i^{(1)}$
+### Example: Sum of a vector
+
+Say we want to compute the sum $S$ of the numbers in a vector
+$$
+v=( 10, 13, 43, 74, 25 )
+$$
 
 $$
-\widehat{I}_i^{(1)} = \frac{f(X_i)}{p(X_i)},
+S = \sum_{k=1}^{5} v_k
 $$
 
+We could use a simple loop,
+
+```cpp
+#include <array>
+#include <iostream>
+#include <numeric>
+int main()
+{
+    const std::array v { 10, 13, 43, 74, 25 };
+    const int S { std::accumulate( v.begin(), v.end(), 0 ) };
+    std::cout << "S = " << S << '\n';
+}
+```
+
+```txt
+S = 165
+```
+
+but that's _stupid_. We want to do this with **Monte Carlo integration**, with a million samples.
 
 {{<br>}}
 
-which is an independent copy of $\widehat{I}^{(1)}$. Their _sample mean_ is
+The Monte Carlo estimator also works for finite sums.
 
 {{<katex>}}
 $$
+\widehat{S}^{(n)}
+=
+\frac{1}{n}\sum_{i=1}^n\frac{v_{X_i}}{p(X_i)} \approx \sum_{k=1}^5 v_k
+$$
+{{</katex>}}
+
+The **random variable** $X$ is uniform over $(1, 2, 3, 4, 5)$, so its distribution is
+$$
+p(X_i)=\frac{1}{5}.
+$$
+
+Here, $v_{X_i}$ is a random element of the vector $v$, selected using the random sample index $X_i$.  Thus our estimator becomes:
+{{<katex>}}
+$$
 \begin{aligned}
-\widehat{I}^{(n)}
+\widehat{S}^{(n)}
 &=
-\frac{1}{n} \sum_{i=1}^n \widehat{I}_i^{(1)}\\[1em]
-&=
-\frac{1}{n} \sum_{i=1}^n\frac{f(X_i)}{p(X_i)}.
+\frac{1}{n}\sum_{i=1}^n\frac{v_{X_i}}{ ( \frac{1}{5} )} \\[2em]
+&=\frac{5}{n}\sum_{i=1}^n v_{X_i}.
 \end{aligned}
 $$
 {{</katex>}}
 
-Applying the **law of large numbers** (LLN) tells us, informally, that this _sample mean_ converges to the expected value:
+Then our code becomes 
+```cpp
+#include <array>
+#include <iostream>
+#include <numeric>
+#include <random>
+#include <span>
 
-{{<katex>}}
-$$
-\widehat{I}^{(n)}
-\xrightarrow[n \to \infty]{}
-\mathbb{E}_p\left[ \widehat{I}^{(1)}\right]
-$$
-{{</katex>}}
+float EstimateSum( std::span< const int > v, const int n = 1000000 )
+{
+   std::default_random_engine rng{ 0 };
+   std::uniform_int_distribution< int > X{ 0, ( int )v.size() - 1 };
 
-And since the **expected value** of the **random variable** $\widehat{I}^{(1)}$ is equal to the integral: 
+   int result{};
+   for( int i{}; i < n; ++i )
+      result += v[ X( rng ) ];
+      
+   return ( 5.0f / n ) * result;
+}
 
-$$
-\widehat{I}^{(n)} \approx \int f(x) \thinspace \dx.
-$$
+int main()
+{
+    const std::array v { 10, 13, 43, 74, 25 };
+    const float S { EstimateSum( v ) };
+    std::cout << "S is approximately equal to " << S << '\n';
+}
+```
 
-{{<br>}}
-
-### Example: Sum of std::array<int>
-
-
----
-
----
-
----
-
-
- Say we want to compute the sum S of `std::array numbers { 10, 13, 43, 74, 25 }`.
-
-   S = \sum_{i=1}^{n} a_i
-
- In the Monte Carlo method, an "estimator" is a random number whose "expectation"
- is equal to the value we are trying to compute. The estimator we will use is:
-
-   \hat{S} = (n a_i, \frac{1}{n})
-
-   which has value n a_i and probability \frac{1}{n}
-
- This is what it looks like in code:
-
-   #include <vector>
-   #include <iostream>
-   #include <numeric>
-   int main()
-   {
-     std::vector<int> numbers { 10, 13, 43, 74, 25 };
-     std::cout << "actual sum: " << std::accumulate( numbers.begin(), numbers.end(), 0 ) << std::endl;
-     int a_i = numbers[ std::rand() % numbers.size() ];
-     int S = numbers.size() * a_i;
-     std::cout << "Monte Carlo sum: " << S << std::endl;
-   }
-
- Only the estimator value is used in computing the sum, but it is important that the
- samples are chosen with the specified probability \frac{1}{n}.
-
- Now this gives kind of a shitty estimate of the sum, but with a Monte Carlo estimator
- it is kind of assumed that we reduce the variance by averaging multiple samples.
-
-   #include <vector>
-   #include <iostream>
-   #include <numeric>
-   int main()
-   {
-     std::vector<int> numbers { 10, 13, 43, 74, 25 };
-     std::cout << "actual sum: " << std::accumulate( numbers.begin(), numbers.end(), 0 ) << std::endl;
-     int N = 10000;
-     float S = 0;
-     for( int i = 0; i < N; ++i )
-     {
-       int a_i = numbers[ std::rand() % numbers.size() ];
-       S += numbers.size() * a_i / (float)N;
-     }
-     std::cout << "Monte Carlo sum: " << S << std::endl;
-   }
-
-
-
----
+```txt
+S is approximately equal to 164.873
+```
 
 ### Example: $\int_0^\pi \sin(x) \thinspace \mathrm{d}x$
 
@@ -579,18 +609,16 @@ $$
 #include <numbers>
 #include <random>
 
-float EstimateIntegral( const int n = 1000 )
+float EstimateIntegral( const int n = 1000000 )
 {
    std::default_random_engine rng{ 0 };
    std::uniform_real_distribution< float > X{ 0, std::numbers::pi_v< float > };
 
    float result{};
    for( int i{}; i < n; ++i)
-   {
-      const float X_i{ X( rng ) };
-      result += ( std::numbers::pi_v<float> / n ) * std::sin( X_i );
-   }
-   return result;
+      result += std::sin( X( rng ) );
+
+   return ( std::numbers::pi_v<float> / n ) * result;
 }
 
 int main()
@@ -599,14 +627,19 @@ int main()
 }
 ```
 
+```txt
+Integral estimate: 2.00179
+```
+ 
+## Coming up next
+
+We now have the basic structure for **Monte Carlo integration**. In part 3 we will look at sampling using the inversion method and importance sampling.
+
 ## Sources
 
-
 - [Definitions and Basic Properties - Kyle Siegrist, LibreTexts](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/04%3A_Expected_Value/4.01%3A_Definitions_and_Basic_Properties)
-
 
 - [Variance - Kyle Siegrist, LibreTexts](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/04%3A_Expected_Value/4.03%3A_Variance)
 
 
-https://pbr-book.org/4ed/Monte_Carlo_Integration/Sampling_Using_the_Inversion_Method
 

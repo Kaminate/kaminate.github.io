@@ -5,10 +5,9 @@ draft: false
 ---
 
 <!-- TODO: remove this comment when all the probability parts are draft: false
-
 - [Probability Part I]({{< ref "posts/probability-part-1" >}}) $\leftarrow$ you are here
-
 - [Probability Part II]({{< ref "posts/probability-part-2" >}})
+- [Probability Part III]({{< ref "posts/probability-part-3" >}})
 -->
 
 ## Intro
