@@ -1,9 +1,65 @@
-.post-content h1,
-  .post-content h2,
-  .post-content h3,
-  .post-content h4,
-  .post-content h5
-  { margin-top: 1.25rem; margin-bottom: 1.5rem; }
+/* +-----------------------------------------------+ */
+/* |            begin header modifications         | */
+
+.post-content :is(h1, h2, h3, h4, h5) {
+  margin: 1rem 0;
+  padding: 0.5rem 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--vine-gap);
+  background-image: none;
+}
+.post-content :is(h2, h3, h4, h5)::after { transform: rotate(180deg); }
+
+.post-content :is(h2, h3, h4, h5)::before,
+.post-content :is(h2, h3, h4, h5)::after {
+  content: "";
+  flex: 0 0 var(--vine-width);
+  aspect-ratio: var(--vine-ratio);
+  background-color: currentColor;
+  opacity: var(--vine-opacity);
+
+  mask: var(--vine-image) center / contain no-repeat;
+}
+
+.post-content h2 {
+  --vine-image: url("/images/h2.svg");
+  --vine-width: clamp(2rem, 12vw, 7rem);
+  --vine-ratio: 280 / 115;
+  --vine-gap: 2rem;
+  --vine-opacity: 0.5;
+  margin: 2rem 0;
+}
+
+.post-content h3 {
+  --vine-image: url("/images/h3.svg");
+  --vine-width: clamp(1.5rem, 9vw, 4.5rem);
+  --vine-ratio: 210 / 100;
+  --vine-gap: 1.25rem;
+  --vine-opacity: 0.4;
+}
+
+.post-content h4 {
+  --vine-image: url("/images/h4.svg");
+  --vine-width: clamp(1rem, 6vw, 3rem);
+  --vine-ratio: 160 / 90;
+  --vine-gap: 0.85rem;
+  --vine-opacity: 0.35;
+}
+
+.post-content h5 {
+  --vine-image: url("/images/h5.svg");
+  --vine-width: clamp(0.75rem, 4vw, 2rem);
+  --vine-ratio: 115 / 78;
+  --vine-gap: 0.65rem;
+  --vine-opacity: 0.3;
+}
+
+/* |            end header modifications           | */
+/* +-----------------------------------------------+ */
+
 .post-content ul, .post-content ol
   { padding-inline-start: 1.5rem; margin: 0.5em 0; }
 .post-content li { margin: 0.25em 0; }

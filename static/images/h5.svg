@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 110 60"
+     fill="none"
+     stroke="black"
+     stroke-width="2.4"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+
+  <!-- Curved stem -->
+  <path d="M12 20
+           C34 20 53 42 77 36
+           Q88 33 98 34"/>
+
+  <!-- Upper leaf -->
+  <path d="M45 29
+           C40 13 24 5 26 15
+           C29 22 38 27 45 29Z"/>
+
+  <!-- Lower leaf -->
+  <path d="M66 36
+           C49 29 33 32 38 42
+           C44 50 59 43 66 36Z"/>
+
+  <!-- Small terminal curl -->
+  <path d="M77 36
+           C89 23 101 24 101 32
+           C101 39 92 41 91 35"/>
+</svg>
