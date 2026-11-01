@@ -1,5 +1,5 @@
 ---
-title: "Book Read Through - Mastering Graphics Programming with Vulkan - Day 1"
+title: "Book Read Through - Mastering Graphics Programming with Vulkan - Ch 1"
 date: 2026-10-18
 draft: true
 ---
@@ -159,3 +159,8 @@ Reading about Raptor's Texture Viewer. This reminds me of how Treb Connel implem
 Finished reading ch 1.
 
 ## 3:09 pm
+
+I actually ran into several other issues trying to get this ch01 exe to run, I've forked the project (https://github.com/kaminate/Mastering-Graphics-Programming-With-Vulkan-2nd-Edition/) and raised some issues.
+- https://github.com/PacktPublishing/Mastering-Graphics-Programming-With-Vulkan-2nd-Edition/issues/7
+- https://github.com/PacktPublishing/Mastering-Graphics-Programming-With-Vulkan-2nd-Edition/issues/4
+- https://github.com/PacktPublishing/Mastering-Graphics-Programming-With-Vulkan-2nd-Edition/issues/3
