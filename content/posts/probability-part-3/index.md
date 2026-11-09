@@ -14,18 +14,19 @@ $$
 \gdef\dx{\mathrm{d}x}
 \gdef\dm{\mathrm{d}m}
 \gdef\dr{\mathrm{d}r}
+\gdef\iidsim{\overset{\mathrm{iid}}{\sim}}
 $$
 
 $\gdef\dx{\mathrm{d}x}$
 $\gdef\dm{\mathrm{d}m}$
 $\gdef\dr{\mathrm{d}r}$
-
+$\gdef\iidsim{\overset{\mathrm{iid}}{\sim}}$
 
 ## Intro
 
 In [Parts I]({{< ref "posts/probability-part-1" >}}), and [II]({{< ref "posts/probability-part-2" >}}), we built up from the basics to **random variables** and **Monte Carlo integration**. In this post we will expand on **Monte Carlo integration**.
 
-## Sampling using the Inversion Method
+## Inversion Method Sampling
 
 
 Recall that **Monte Carlo integration** tells us that we can estimate an integral but averaging 
@@ -43,16 +44,19 @@ $$
 
 However, these random samples must still be drawn from said distribution? How do we do that? One important method is the **inversion method**, which maps uniform samples from $[0,1)$ to the given probability distribution by inverting the CDF.
 
-Actually just read https://pbr-book.org/4ed/Monte_Carlo_Integration/Sampling_Using_the_Inversion_Method instead, they explain it well. However, there's a couple things I want to elaborate on.
+There's a couple things I want to elaborate on related to https://pbr-book.org/4ed/Monte_Carlo_Integration/Sampling_Using_the_Inversion_Method.
 
 In the example where they sample a linear function defined over $[0,1]$, given $a,b>=0$
 $$
 f(x) = (1-x)a + xb
 $$
 
-The axis represent:
-- The x-axis here is the value of the sample.
-- The y-axis here is the "weight" of the sample, the unnormalized pdf.
+![](lerp_a_b.png)
+
+Here, $f(x)$ is an unnormalized density that defines the shape of the distribution we want to sample from, _not_ the integral we are trying to esatimate using Monte Carlo.
+
+- The x-axis here is the sample value $x$.
+- The y-axis here is the unnormalized "weight" of the sample. We want to normalize it to get a **PDF** $p(x)$.
 
 So the first thing they do here is integrate the function. This isn't to compute the CDF, the goal here instead is to get the total "weight". The inverse of this weight is a normalization constant - multiplying the original function by the normalization constant produces a function whose integral is $1$, this way it can be used as a PDF. 
 
@@ -103,37 +107,55 @@ $$
 
 Inverting $\xi=P(X)$ to solve for $X$ is the same as in PBRT.
 
-## Importance Sampling
+## Expected Value Importance Sampling
 
-**Importance Sampling Monte Carlo** (ISMC)
+Note:
+- $X\sim p$ means samples $X$ are drawn from distribution $p$.
+- $X\sim q$ means samples $X$ are drawn from distribution $q$.
 
-Note: $X\sim p$ means samples $X$ are drawn from distribution $p$.\
-Goal of ISMC: Draw $X \sim q$ instead of $X \sim p$ (to reduce variance).
+An estimator can estimate an integral, an expected value, or other quantities. An estimator for an integral of a function looks like
 
 {{<katex>}}
 $$
 \begin{aligned}
-\mu = E_p [f(X)] &= \int f(x) \, p(x) \, \dx
-         \\[1em] &= \int f(x) \, p(x) \left( \frac{q(x)}{q(x)} \right) \, \dx
-         \\[1em] &= \int \frac{ f(x) \, p(x) }{q(x)} q(x)  \, \dx
-         \\[1em] &= E_q\left[ \frac{ f(X) \, p(X) }{q(X)} \right]
+I &= \int f(x) \, \dx
+\\[1em] \hat{I} &= \frac{1}{n} \sum_{i=1}^n \frac{ f(X_i) }{p(X_i)}, \quad X_i \iidsim p.
 \end{aligned}
 $$
 {{</katex>}}
 
-The integrator is
+Whereas an estimator for the **expected value** of a function of a **random variable** is slightly different:
 
+{{<katex>}}
 $$
-\hat{\mu}_q = \frac{1}{n} \sum \frac{f(X) \thinspace p(X)}{q(X)} , X \sim q
+\begin{aligned}
+\mu &= E_p[ f(X) ] = \int f(x) \thinspace p(x) \thinspace \dx
+\\[1em] \hat{\mu} &= \frac{1}{n} \sum_{i=1}^n f(X_i), \quad X_i \iidsim p.
+\end{aligned}
 $$
+{{</katex>}}
 
-A couple terms here
+For the second estimator $\hat{\mu}$, choosing a **PDF** $q$ instead whose shape approximates $|f(x)| \thinspace p(x)$ can reduce variance. Note that 
+$q(x) $ is required to be $> 0$ wherever $f(x)\thinspace p(x) \neq 0$.
 
-|     |     |
-| --- | --- |
-| liklihood ratio | $\dfrac{p(x)}{q(x)}$ |
-| nominal distribution | $p$ |
-| importance distribution | $q$ |
+{{<katex>}}
+$$
+\begin{aligned}
+E_p[ f(X) ] &= \int f(x) \thinspace p(x) \thinspace \dx
+\\[1em] &= E_q \left[ \frac{ f(X) \thinspace p(X)}{ q(X) } \right]
+\\[1em] &\approx \frac{1}{n} \sum_{i=1}^n \frac{ f(X_i) \thinspace p(X_i)  } { q(X_i) }, \quad X_i \iidsim q
+\end{aligned}
+$$
+{{</katex>}}
+
+
+A couple terms here:
+
+|                         |                      |
+| ---                     | ---                  |
+| likelihood ratio        | $\dfrac{p(x)}{q(x)}$ |
+| nominal distribution    | $p$                  |
+| importance distribution | $q$                  |
 
  
 ## Coming up next
