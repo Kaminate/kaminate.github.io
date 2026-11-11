@@ -157,6 +157,28 @@ A couple terms here:
 | nominal distribution    | $p$                  |
 | importance distribution | $q$                  |
 
+---
+
+i want to talk about importance resampling. got some questions after watching this video. https://www.youtube.com/watch?v=PNhA5mxZ6yE
+but first let me do sum summarizing.
+
+tgt dist \pi(x)
+proposal dist q(x)
+importance weights w(x^i) = \frac{pi(x^i)}{q(x^i)}
+
+original samples {x^1, \dots, x^N} \sim q
+resampled, w/ replacement { \tilde{x}^1, \dots, \tilde{x}^N}
+Pr( \tilde{x} = x^i ) \propto w(x^i)
+Pr( \tilde{x} = x^i ) = \tilde{w}(x^i)
+\tilde{w}(x^i) = \frac{ w(x^i) }{ \sum w( x^i) }
+
+Pr(\tilde(x) = x ) = Pr( I = i ) Pr( x^i =x ) \tilde{w}(x)
+\propto Pr(x^i = x ) \frac{ \pi(x) }{ q(x) }
+as N \to \infty, Pr(x^i = x ) \to q(x)
+Pr( \tilde( x ) = x ) \propto \pi(x)
+
+---
+
  
 ## Coming up next
 
