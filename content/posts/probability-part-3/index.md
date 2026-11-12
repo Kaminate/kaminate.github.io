@@ -107,55 +107,129 @@ $$
 
 Inverting $\xi=P(X)$ to solve for $X$ is the same as in PBRT.
 
-## Expected Value Importance Sampling
+## Types of estimators
 
 Note:
 - $X\sim p$ means samples $X$ are drawn from distribution $p$.
 - $X\sim q$ means samples $X$ are drawn from distribution $q$.
 
-An estimator can estimate an integral, an expected value, or other quantities. An estimator for an integral of a function looks like
+{{<br>}}
+
+Given the following two estimators, $\hat{I}$ and $\hat{\mu}$, what is the difference between them?
 
 {{<katex>}}
 $$
-\begin{aligned}
-I &= \int f(x) \, \dx
-\\[1em] \hat{I} &= \frac{1}{n} \sum_{i=1}^n \frac{ f(X_i) }{p(X_i)}, \quad X_i \iidsim p.
-\end{aligned}
+\hat{I} = \frac{1}{n} \sum_{i=1}^n \frac{ f(X_i) }{p(X_i)}, \quad X_i \iidsim p
 $$
 {{</katex>}}
 
-Whereas an estimator for the **expected value** of a function of a **random variable** is slightly different:
+{{<katex>}}
+$$
+\hat{\mu} = \frac{1}{n} \sum_{i=1}^n f(X_i), \quad X_i \iidsim p.
+$$
+{{</katex>}}
+
+Well, we've ween $\hat{I}$ before - it estimates the integral $I$
+$$
+I = \int f(x) \thinspace \dx.
+$$
+
+Whereas $\hat{\mu}$ estimates the **expected value** $\mu$
+$$
+\mu = E_p[ f(X) ] = \int f(x) \thinspace p(x) \thinspace \dx.
+$$
+
+The point is that these estimators use the same samples but estimate different quantities.
+
+## Importance Sampling (IS)
+
+
+For **importance sampling**, we're going to focus on the **expected value** estimator $\hat{\mu}$.
 
 {{<katex>}}
 $$
 \begin{aligned}
 \mu &= E_p[ f(X) ] = \int f(x) \thinspace p(x) \thinspace \dx
-\\[1em] \hat{\mu} &= \frac{1}{n} \sum_{i=1}^n f(X_i), \quad X_i \iidsim p.
+\\[1em]\hat{\mu} &= \frac{1}{n} \sum_{i=1}^n f(X_i), \quad X_i \iidsim p.
 \end{aligned}
 $$
 {{</katex>}}
 
-For the second estimator $\hat{\mu}$, choosing a **PDF** $q$ instead whose shape approximates $|f(x)| \thinspace p(x)$ can reduce variance. Note that 
-$q(x) $ is required to be $> 0$ wherever $f(x)\thinspace p(x) \neq 0$.
+**Importance sampling** is a technique where we generate samples from an *importance distribution* $q$, also called a *proposal distribution*, instead of from $p$. Maybe $p$ is hard to sample from, but easy to evaluate. Maybe the shape of $q$ can be chosen to reduce variance. In any case, we require $q(x) > 0$ wherever $f(x)\thinspace p(x) \neq 0$.
 
 {{<katex>}}
 $$
 \begin{aligned}
 E_p[ f(X) ] &= \int f(x) \thinspace p(x) \thinspace \dx
+ \\[1em] &= \int \frac{ f(x) \thinspace p(x) }{ q(x) } q(x) \thinspace \dx
 \\[1em] &= E_q \left[ \frac{ f(X) \thinspace p(X)}{ q(X) } \right]
 \\[1em] &\approx \frac{1}{n} \sum_{i=1}^n \frac{ f(X_i) \thinspace p(X_i)  } { q(X_i) }, \quad X_i \iidsim q
 \end{aligned}
 $$
 {{</katex>}}
 
+Now the *importance weight* $w$
 
-A couple terms here:
+$$
+w(x) = \dfrac{p(x)}{q(x)}
+$$
 
-|                         |                      |
-| ---                     | ---                  |
-| likelihood ratio        | $\dfrac{p(x)}{q(x)}$ |
-| nominal distribution    | $p$                  |
-| importance distribution | $q$                  |
+corrects for sampling from $q$ instead of $p$, so the weighted sample average still estimates $E_p[f(X)]$.
+{{<br>}}
+Rewritten in terms of $w$, our estimator becomes:
+
+{{<katex>}}
+$$
+\begin{aligned}
+E_p[ f(X) ] &= E_q \left[ f(X) \thinspace w(X) \right]
+\\[1em] &\approx \frac{1}{n} \sum_{i=1}^n f(X_i) \thinspace w(X_i) , \quad X_i \iidsim q
+\end{aligned}
+$$
+{{</katex>}}
+
+## Importance Resampling (IR)
+
+**Importance Resampling** (IR), also known as **Sampling Importance Resampling** (SIR), is a method that takes a set of samples from $q$ and _resamples_ them  to produce a new set of samples approximately distributed according to $p$.
+
+{{<br>}}
+![](IR_p_and_q.png)
+{{<br>}}
+
+So for example say we start out with $k=5$ distinct *proposal samples* $X^i$
+
+$$
+\left( X^1, X^2, X^3, X^4, X^5 \right) \iidsim q
+$$
+
+and these may be resampled into *resampled samples* $\widetilde{X}^i$
+$$
+\left( \widetilde{X}^1, \widetilde{X}^2, \widetilde{X}^3, \widetilde{X}^4, \widetilde{X}^5 \right)= \left( X^3, X^3, X^3, X^4, X^4 \right)
+$$
+
+$$
+\widetilde{X}^i \mathrel{\dot\sim} p
+$$
+
+Each resampling draw $\widetilde{X}$ selects *proposal sample* $X^i$ with probability proportional to its *importance weight* $w(X^i)$.
+
+{{<katex>}}
+$$
+\begin{aligned}
+\Pr( \widetilde{X} = X^i ) &\propto w( X^i )
+\end{aligned}
+$$
+{{</katex>}}
+
+To make these probabilities sum to $1$, we must normalize the *importance weights*. The result, $\tilde{w}(X^i)$, is the *normalized importance weight*.
+$$
+\Pr( \widetilde{X} = X^i ) = \frac{ w(X^i)}{\sum_{j=1}^k w(X^j) } = \tilde{w}(X^i)
+$$
+
+
+
+### IR Example
+
+
 
 ---
 
