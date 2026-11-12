@@ -195,7 +195,7 @@ $$
 ![](IR_p_and_q.png)
 {{<br>}}
 
-So for example say we start out with $k=5$ distinct *proposal samples* $X^i$
+So for example say we start out with $N=5$ distinct *proposal samples* $X^i$
 
 $$
 \left( X^1, X^2, X^3, X^4, X^5 \right) \iidsim q
@@ -206,52 +206,112 @@ $$
 \left( \widetilde{X}^1, \widetilde{X}^2, \widetilde{X}^3, \widetilde{X}^4, \widetilde{X}^5 \right)= \left( X^3, X^3, X^3, X^4, X^4 \right)
 $$
 
-$$
-\widetilde{X}^i \mathrel{\dot\sim} p
-$$
-
 Each resampling draw $\widetilde{X}$ selects *proposal sample* $X^i$ with probability proportional to its *importance weight* $w(X^i)$.
 
 {{<katex>}}
 $$
 \begin{aligned}
-\Pr( \widetilde{X} = X^i ) &\propto w( X^i )
+\Pr( \widetilde{X} = X^i ) &\propto w( X^i ),
 \end{aligned}
 $$
 {{</katex>}}
 
+where $w(X^i)$, the *importance weight*, is the same from the previous **importance sampling** section
+$$
+w(X^i) = \dfrac{p(X^i)}{q(X^i)}.
+$$
+
+
 To make these probabilities sum to $1$, we must normalize the *importance weights*. The result, $\tilde{w}(X^i)$, is the *normalized importance weight*.
 $$
-\Pr( \widetilde{X} = X^i ) = \frac{ w(X^i)}{\sum_{j=1}^k w(X^j) } = \tilde{w}(X^i)
+\Pr( \widetilde{X} = X^i ) = \frac{ w(X^i)}{\sum_{j=1}^N w(X^j) } = \tilde{w}(X^i)
 $$
 
+The probability that a single resampled sample $\widetilde{X}$ falls into the interval $[a,b]$ is:
 
+{{<katex>}}
+$$
+\begin{aligned}
+\Pr( \widetilde{X} \in [a,b] ) &= \sum_{i=1}^N \Pr( \widetilde{X} = X^i ) \,  1_{\lbrace X^i \in [a,b] \rbrace }
+\\[1.5em] &= \sum_{i=1}^N \widetilde{w}(X^i) \,  1_{\lbrace X^i \in [a,b] \rbrace }
+\\[1.5em] &= \sum_{i=1}^N \left(  \frac{w(X^i)}{\sum_{j=1}^N w( X^j)} \right) \,  1_{\lbrace X^i \in [a,b] \rbrace }
+\\[1.5em] &= \frac{ \sum_{i=1}^N w(X^i) \,  1_{\lbrace X^i \in [a,b] \rbrace } }
+                  { \sum_{j=1}^N w(X^j)}
+\\[1.5em] &= \frac{ \frac{1}{N} \sum_{i=1}^N w(X^i) \,  1_{\lbrace X^i \in [a,b] \rbrace } }
+                  { \frac{1}{N} \sum_{j=1}^N w( X^j) }
+\end{aligned}
+$$
+{{</katex>}}
+
+By the way, $1_{\lbrace X^i \in [a,b] \rbrace}$ is an _indicator variable_, it's defined as:
+
+{{<katex>}}
+$$
+1_{\{X^i \in [a,b]\}} =
+\begin{cases}
+1, & \text{if } X^i \in [a,b],\\
+0, & \text{otherwise}.
+\end{cases}
+$$
+{{</katex>}}
+
+
+Due to the **Law of Large Numbers**,
+
+{{<katex>}}
+$$
+\begin{aligned}
+\Pr( \widetilde{X} \in [a,b] ) &= \frac{ \frac{1}{N} \sum_{i=1}^N w(X^i) \,  1_{\lbrace X^i \in [a,b] \rbrace } }
+                                       { \frac{1}{N} \sum_{j=1}^N w( X^j) }
+\\[2em] &\xrightarrow[N \to \infty]{} \frac{ \mathbb{E}_q \left[w(X) \,  1_{\lbrace X \in [a,b] \rbrace }\right] }
+                                           { \mathbb{E}_q \left[w(X) \right] }.
+\end{aligned}
+$$
+{{</katex>}}
+
+The denominator is pretty straightforward
+
+{{<katex>}}
+$$
+\begin{aligned}
+\mathbb{E}_q \left[w(X) \right] &= \mathbb{E}_q \left[ \frac{ p(X) }{ q(X) } \right]
+\\ &= \int \frac{ p(x)}{q(x)} \,  q(x) \,  dx
+\\ &= \int p(x) \, dx
+\\ &= 1.
+\end{aligned}
+$$
+{{</katex>}}
+
+Leaving just the numerator,
+
+{{<katex>}}
+$$
+\begin{aligned}
+\Pr( \widetilde{X} \in [a,b] )
+   &\xrightarrow[N \to \infty]{} \mathbb{E}_q \left[w(X) \,  1_{\lbrace X \in [a,b] \rbrace }\right]
+\\ &= \mathbb{E}_q \left[ \frac{p(X)}{q(X)} \,  1_{\lbrace X \in [a,b] \rbrace }\right] 
+\\ &= \int \frac{p(x)}{q(x)} \,  1_{\lbrace x \in [a,b] \rbrace } \, q(x) \, \dx
+\\ &= \int p(x) \,  1_{\lbrace x \in [a,b] \rbrace } \, \dx
+\\ &= \int_a^b p(x) \, \dx
+\end{aligned}
+$$
+{{</katex>}}
+
+Therefore, for any interval $[a,b]$, the probability that $\widetilde{X}$ lies within it converges to the corresponding probability mass under density $p$. Thus, for sufficiently large $N$,
+$$
+\widetilde{X} \mathrel{\dot\sim} p
+$$
 
 ### IR Example
 
+Okay time for an example.
 
+```cpp
+void foo()
+{
 
----
-
-i want to talk about importance resampling. got some questions after watching this video. https://www.youtube.com/watch?v=PNhA5mxZ6yE
-but first let me do sum summarizing.
-
-tgt dist \pi(x)
-proposal dist q(x)
-importance weights w(x^i) = \frac{pi(x^i)}{q(x^i)}
-
-original samples {x^1, \dots, x^N} \sim q
-resampled, w/ replacement { \tilde{x}^1, \dots, \tilde{x}^N}
-Pr( \tilde{x} = x^i ) \propto w(x^i)
-Pr( \tilde{x} = x^i ) = \tilde{w}(x^i)
-\tilde{w}(x^i) = \frac{ w(x^i) }{ \sum w( x^i) }
-
-Pr(\tilde(x) = x ) = Pr( I = i ) Pr( x^i =x ) \tilde{w}(x)
-\propto Pr(x^i = x ) \frac{ \pi(x) }{ q(x) }
-as N \to \infty, Pr(x^i = x ) \to q(x)
-Pr( \tilde( x ) = x ) \propto \pi(x)
-
----
+}
+```
 
  
 ## Coming up next
@@ -264,5 +324,7 @@ Pr( \tilde( x ) = x ) \propto \pi(x)
 - [Improving Efficiency - PBRT, 4th ed.](https://pbr-book.org/4ed/Monte_Carlo_Integration/Improving_Efficiency)
 
 - [Importance Sampling - Monte Carlo Theory, Methods and Examples, Art B. Owen, ch. 9](https://artowen.su.domains/mc/Ch-var-is.pdf)
+
+- [SMC tutorial 2: the need to resample when using Importance Sampling - Peter Green, Distributed Algorithms CDT](https://www.youtube.com/watch?v=PNhA5mxZ6yE)
 
 
