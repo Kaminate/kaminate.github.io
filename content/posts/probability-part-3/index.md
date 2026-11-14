@@ -26,7 +26,7 @@ $\gdef\iidsim{\overset{\mathrm{iid}}{\sim}}$
 
 ## Intro
 
-In [Parts I]({{< ref "posts/probability-part-1" >}}), and [II]({{< ref "posts/probability-part-2" >}}), we built up from the basics to **random variables** and **Monte Carlo integration**. In this post we will expand on **Monte Carlo integration**.
+In [Parts I]({{< ref "posts/probability-part-1" >}}), and [II]({{< ref "posts/probability-part-2" >}}), we built up from the basics to **random variables** and **Monte Carlo integration**. In this post we will expand on **Monte Carlo integration** with sampling using the **inversion method**, **importance sampling**, and **importance resampling**.
 
 ## Inversion Method Sampling
 
@@ -44,11 +44,11 @@ $$
 $$
 {{</katex>}}
 
-However, these random samples must still be drawn from said distribution? How do we do that? One important method is the **inversion method**, which maps uniform samples from $[0,1)$ to the given probability distribution by inverting the CDF.
+However, these random samples must still be drawn from said distribution? How do we draw from $p$? One important method is the **inversion method**, which maps uniform samples from $[0,1)$ to the given probability distribution by inverting the CDF.
 
 There's a couple things I want to elaborate on related to https://pbr-book.org/4ed/Monte_Carlo_Integration/Sampling_Using_the_Inversion_Method.
 
-In the example where they sample a linear function defined over $[0,1]$, given $a,b>=0$
+In the example where they sample a linear function defined over $[0,1]$, given $a,b \ge 0$
 $$
 f(x) = (1-x)a + xb
 $$
@@ -58,7 +58,7 @@ $$
 Here, $f(x)$ is an unnormalized density that defines the shape of the distribution we want to sample from, _not_ the integral we are trying to esatimate using Monte Carlo.
 
 - The x-axis here is the sample value $x$.
-- The y-axis here is the unnormalized "weight" of the sample. We want to normalize it to get a **PDF** $p(x)$.
+- The y-axis here is the unnormalized density $f(x)$ of the sample. We want to normalize it to get a **PDF** $p(x)$.
 
 So the first thing they do here is integrate the function. This isn't to compute the CDF, the goal here instead is to get the total "weight". The inverse of this weight is a normalization constant - multiplying the original function by the normalization constant produces a function whose integral is $1$, this way it can be used as a PDF. 
 
@@ -81,9 +81,9 @@ So $f(x)$ is normalized by dividing by its integral to give the PDF
 {{<katex>}}
 $$
 \begin{aligned}
-p(x) &= \frac{ f(x)  }{\int_0^1 f(x) \dx}  \\[1em]
-     &= \frac{ f(x)  }{ \left( \frac{a+b}{2} \right)  }  \\[1em]
-     &= \frac{ 2 f(x) }{ a+b}.
+p(x)    &= \frac{   f(x) }{\int_0^1 f(x) \dx} 
+\\[1em] &= \frac{   f(x) }{ \left( \frac{a+b}{2} \right)  } 
+\\[1em] &= \frac{ 2 f(x) }{ a+b}.
 \end{aligned}
 $$
 {{</katex>}}
@@ -107,13 +107,11 @@ P(x)    &= \int_0^x p(x') \dx'
 $$
 {{</katex>}}
 
-Inverting $\xi=P(X)$ to solve for $X$ is the same as in PBRT.
+Inverting $\xi=P(X)$ to solve for $X$ is the same as in [PBRT](https://pbr-book.org/4ed/Monte_Carlo_Integration/Sampling_Using_the_Inversion_Method).
 
 ## Types of estimators
 
-Note:
-- $X\sim p$ means samples $X$ are drawn from distribution $p$.
-- $X\sim q$ means samples $X$ are drawn from distribution $q$.
+Note: $X\sim p$ means samples $X$ are drawn from distribution $p$.
 
 {{<br>}}
 
@@ -131,9 +129,9 @@ $$
 $$
 {{</katex>}}
 
-Well, we've ween $\hat{I}$ before - it estimates the integral $I$
+Well, we've seen $\hat{I}$ before - it estimates the integral $I$
 $$
-I = \int f(x) \dx.
+I = E_p \left[ \frac{f(X)}{p(X)} \right] = \int f(x) \dx.
 $$
 
 Whereas $\hat{\mu}$ estimates the **expected value** $\mu$
