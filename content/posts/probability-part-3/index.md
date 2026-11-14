@@ -1,7 +1,7 @@
 ---
 title: "Probability Part III"
 date: 2026-10-15
-draft: true
+draft: false
 ---
 
 <!-- TODO: remove this comment when all the probability parts are draft: false
