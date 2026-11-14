@@ -11,15 +11,17 @@ draft: true
 -->
 
 $$
-\gdef\dx{\mathrm{d}x}
-\gdef\dm{\mathrm{d}m}
-\gdef\dr{\mathrm{d}r}
+\gdef\dx{\, \mathrm{d}x}
+\gdef\dm{\, \mathrm{d}m}
+\gdef\dr{\, \mathrm{d}r}
+\gdef\dt{\, \mathrm{d}t}
 \gdef\iidsim{\overset{\mathrm{iid}}{\sim}}
 $$
 
-$\gdef\dx{\mathrm{d}x}$
-$\gdef\dm{\mathrm{d}m}$
-$\gdef\dr{\mathrm{d}r}$
+$\gdef\dx{\, \mathrm{d}x}$
+$\gdef\dm{\, \mathrm{d}m}$
+$\gdef\dr{\, \mathrm{d}r}$
+$\gdef\dt{\, \mathrm{d}t}$
 $\gdef\iidsim{\overset{\mathrm{iid}}{\sim}}$
 
 ## Intro
@@ -38,7 +40,7 @@ $$
 =
 \frac{1}{n}\sum_{i=1}^n\frac{f(X_i)}{p(X_i)}
 \approx
-\int f(x) \thinspace \dx
+\int f(x) \dx
 $$
 {{</katex>}}
 
@@ -65,8 +67,8 @@ This integral is given by
 {{<katex>}}
 $$
 \begin{aligned}
-\int_0^1 f(x) \, \dx &= \int_0^1 \left( (1-x)a+xb \right) \, \dx
-             \\[1em] &= a \int_0^1 (1-x) \, \dx + b \int_0^1 x \, \dx
+\int_0^1 f(x) \dx &= \int_0^1 \left( (1-x)a+xb \right) \dx
+             \\[1em] &= a \int_0^1 (1-x) \dx + b \int_0^1 x \dx
              \\[1em] &= a \left[ x - \frac{x^2}{2} \right]_0^1 +  b \left[ \frac{x^2}{2} \right]_0^1
              \\[1em] &= \frac{a}{2} + \frac{b}{2}
              \\[1em] &= \frac{a+b}{2}.
@@ -79,7 +81,7 @@ So $f(x)$ is normalized by dividing by its integral to give the PDF
 {{<katex>}}
 $$
 \begin{aligned}
-p(x) &= \frac{ f(x)  }{\int_0^1 f(x) \, \dx}  \\[1em]
+p(x) &= \frac{ f(x)  }{\int_0^1 f(x) \dx}  \\[1em]
      &= \frac{ f(x)  }{ \left( \frac{a+b}{2} \right)  }  \\[1em]
      &= \frac{ 2 f(x) }{ a+b}.
 \end{aligned}
@@ -92,11 +94,11 @@ Now the PDF can be integrated from $0$ to $x$ to give its CDF
 {{<katex>}}
 $$
 \begin{aligned}
-P(x)    &= \int_0^x p(x') \, \dx'
+P(x)    &= \int_0^x p(x') \dx'
 \\[1em] &= \int_0^x \left( \frac{ 2 f(x') }{ a+b} \right) \dx'
-\\[1em] &= \frac{2}{a+b} \int_0^x  f(x') \, \dx'
-\\[1em] &= \frac{2}{a+b} \int_0^x \left( (1-x')a+x' b \right) \, \dx'
-\\[1em] &= \frac{2}{a+b} \left( a \int_0^x (1-x') \, \dx' + b \int_0^x x' \, \dx' \right)
+\\[1em] &= \frac{2}{a+b} \int_0^x  f(x') \dx'
+\\[1em] &= \frac{2}{a+b} \int_0^x \left( (1-x')a+x' b \right) \dx'
+\\[1em] &= \frac{2}{a+b} \left( a \int_0^x (1-x') \dx' + b \int_0^x x' \dx' \right)
 \\[1em] &= \frac{2}{a+b} \left( a \left[ x' - \frac{x'^2}{2} \right]_0^x + b \left[ \frac{x'^2}{2} \right]_0^x \right)
 \\[1em] &= \frac{2}{a+b} \left( a \left[ x - \frac{x^2}{2} \right]     + b \left[ \frac{x^2}{2} \right]     \right)
 \\[1em] &= \frac{ a \left[ 2x - x^2 \right] + b x^2  }{a+b} 
@@ -131,12 +133,12 @@ $$
 
 Well, we've ween $\hat{I}$ before - it estimates the integral $I$
 $$
-I = \int f(x) \thinspace \dx.
+I = \int f(x) \dx.
 $$
 
 Whereas $\hat{\mu}$ estimates the **expected value** $\mu$
 $$
-\mu = E_p[ f(X) ] = \int f(x) \thinspace p(x) \thinspace \dx.
+\mu = E_p[ f(X) ] = \int f(x) \thinspace p(x) \dx.
 $$
 
 The point is that these estimators use the same samples but estimate different quantities.
@@ -149,7 +151,7 @@ For **importance sampling**, we're going to focus on the **expected value** esti
 {{<katex>}}
 $$
 \begin{aligned}
-\mu &= E_p[ f(X) ] = \int f(x) \thinspace p(x) \thinspace \dx
+\mu &= E_p[ f(X) ] = \int f(x) \thinspace p(x) \dx
 \\[1em]\hat{\mu} &= \frac{1}{n} \sum_{i=1}^n f(X_i), \quad X_i \iidsim p.
 \end{aligned}
 $$
@@ -160,8 +162,8 @@ $$
 {{<katex>}}
 $$
 \begin{aligned}
-E_p[ f(X) ] &= \int f(x) \thinspace p(x) \thinspace \dx
- \\[1em] &= \int \frac{ f(x) \thinspace p(x) }{ q(x) } q(x) \thinspace \dx
+E_p[ f(X) ] &= \int f(x) \thinspace p(x) \dx
+ \\[1em] &= \int \frac{ f(x) \thinspace p(x) }{ q(x) } q(x) \dx
 \\[1em] &= E_q \left[ \frac{ f(X) \thinspace p(X)}{ q(X) } \right]
 \\[1em] &\approx \frac{1}{n} \sum_{i=1}^n \frac{ f(X_i) \thinspace p(X_i)  } { q(X_i) }, \quad X_i \iidsim q
 \end{aligned}
@@ -275,8 +277,8 @@ The denominator is pretty straightforward
 $$
 \begin{aligned}
 \mathbb{E}_q \left[w(X) \right] &= \mathbb{E}_q \left[ \frac{ p(X) }{ q(X) } \right]
-\\ &= \int \frac{ p(x)}{q(x)} \,  q(x) \,  dx
-\\ &= \int p(x) \, dx
+\\ &= \int \frac{ p(x)}{q(x)} \,  q(x) \dx
+\\ &= \int p(x) \dx
 \\ &= 1.
 \end{aligned}
 $$
@@ -290,9 +292,9 @@ $$
 \Pr( \widetilde{X} \in [a,b] )
    &\xrightarrow[N \to \infty]{} \mathbb{E}_q \left[w(X) \,  1_{\lbrace X \in [a,b] \rbrace }\right]
 \\ &= \mathbb{E}_q \left[ \frac{p(X)}{q(X)} \,  1_{\lbrace X \in [a,b] \rbrace }\right] 
-\\ &= \int \frac{p(x)}{q(x)} \,  1_{\lbrace x \in [a,b] \rbrace } \, q(x) \, \dx
-\\ &= \int p(x) \,  1_{\lbrace x \in [a,b] \rbrace } \, \dx
-\\ &= \int_a^b p(x) \, \dx
+\\ &= \int \frac{p(x)}{q(x)} \,  1_{\lbrace x \in [a,b] \rbrace } \, q(x) \dx
+\\ &= \int p(x) \,  1_{\lbrace x \in [a,b] \rbrace } \dx
+\\ &= \int_a^b p(x) \dx
 \end{aligned}
 $$
 {{</katex>}}
@@ -304,17 +306,139 @@ $$
 
 ### IR Example
 
-Okay time for an example.
+![](ir_ex.png)
+
+Say we want to generate samples approximately distributed according to target distribution $p$ on the interval $A=[0,5]$, with density
+
+{{<katex>}}
+$$
+\begin{aligned}
+p_0(x) &= | x(x-2)(x-4)(x-5) |.
+\\[1em]Z_p &=\int_A p_0(x) \dx
+\\[1em] p(x) &= \frac{ p_0(x) }{ Z_p }
+\end{aligned}
+$$
+{{</katex>}}
+
+Although $p(x)$ is easy to evaluate, it's nontrivial to sample from. So instead let's sample from a linear proposal distribution $q$, then resample using importance weights.
+
+{{<katex>}}
+$$
+\begin{aligned}
+q_0(x) &= 12-2x,
+\\[1em] Z_q &= \int_A q_0(x) \dx 
+\\[1em] q(x) &= \frac{q_0(x)}{Z_q}
+\\[1em]      &= \frac{12-2x}{35}
+\end{aligned}
+$$
+{{</katex>}}
+
+To sample from $q$, first we need the CDF ${F_q}$
+
+{{<katex>}}
+$$
+\begin{aligned}
+F_q(x) &= \int_0^x q(t) \dt
+\\[1em] &= \int_0^x \frac{12-2t}{35} \dt
+\\[1em] &= \frac{1}{35}\int_0^x 12-2t \dt
+\\[1em] &= \frac{1}{35} \left(\int_0^x 12 \dt  - \int_0^x 2t \dt  \right)
+\\[1em] &= \frac{1}{35} \left( \left[  12t \right]_0^x - \left[ t^2 \right]_0^x  \right)
+\\[1em] &= \frac{12x  - x^2}{35}, \quad x \in [0,5]
+\end{aligned}
+$$
+{{</katex>}}
+
+
+And then we need its inverse ${F_q^{-1}}$
+
+$$
+x = F_q(F_q^{-1}(x)) = \frac{  12 F_q^{-1}(x) - (F_q^{-1}(x))^2}{35}
+$$
+
+Substituting $y= F_q^{-1}(x)$,
+
+{{<katex>}}
+$$
+x = \frac{  12 y - y^2}{35} 
+\\[1em] y^2 - 12y + 35x = 0
+$$
+{{</katex>}}
+
+Which can be solved by the quadratic formula
+$$
+y= 6 \pm \sqrt{36-35x}
+$$
+We need $y \in [0,5]$, so we choose the minus sign
+$$
+F_q^{-1}(x) =  6 - \sqrt{36-35x}, \quad x \in [0,1]
+$$
+
+A sample $X \sim q$ is generated by
+{{<katex>}}
+$$
+\xi \sim \operatorname{Uniform}(0,1)
+\\[1em] X = F_q^{-1}(\xi)
+$$
+{{</katex>}}
+
+We put this in the function `Sample_from_q` and use it to draw our proposal samples $\lbrace X^1, \dots, X^N \rbrace$.
+Next, we draw $\widetilde{X}$ by selecting $X^i$ with probability
+
+$$
+\Pr( \widetilde{X} = X^i ) = \frac{w(X^i)}{\sum_{j=1}^N w(X^j)}
+$$
+
+This can be done by passing the $\dfrac{p_0(x)}{q_0(x)}$ as the weights to `std::discrete_distribution` instead of $\dfrac{p(x)}{q(x)}$, as the common factor $\dfrac{Z_q}{Z_p}$ cancels out during normalization.
 
 ```cpp
-void foo()
-{
+#include <array>
+#include <random>
+#include <cmath>
 
+std::default_random_engine rng{ 0 };
+std::uniform_real_distribution< float > u{};
+
+float p_0( float x )
+{
+   return std::abs( x * ( x - 2 )* ( x - 4 )* ( x - 5 ) );
+}
+
+float q_0( float x )
+{
+   return 12 - 2 * x;
+}
+
+float Sample_from_q()
+{
+   float xi { u( rng ) };
+   return 6 - std::sqrt( 36 - 35 * xi );
+}
+
+int main()
+{
+   const int N{ 10 };
+   std::array< float, N > proposal_samples{}; // ~ q
+   std::array< float, N > resampled_samples{}; // approximately ~ p
+   std::array< float, N > importance_weights{};
+   
+   for( int i{}; i < N; ++i )
+   {
+      const float X{ Sample_from_q() };
+      proposal_samples[ i ] = X;
+      importance_weights[ i ] = p_0( X ) / q_0( X );
+   }
+
+   std::discrete_distribution< int > normalized_importance(
+      importance_weights.begin(),
+      importance_weights.end() );
+
+   for( int i{}; i < N; ++i)
+   {
+      const int j { normalized_importance( rng ) };
+      resampled_samples[ i ] = proposal_samples[ j ];
+   }
 }
 ```
-
- 
-## Coming up next
 
 ## Sources
 
