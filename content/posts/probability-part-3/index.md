@@ -9,17 +9,17 @@ draft: false
 - [Probability Part III]({{< ref "posts/probability-part-3" >}}) $\leftarrow$ you are here
 
 $$
-\gdef\dx{\, \mathrm{d}x}
-\gdef\dm{\, \mathrm{d}m}
-\gdef\dr{\, \mathrm{d}r}
-\gdef\dt{\, \mathrm{d}t}
+\gdef\dx{\thinspace \mathrm{d}x}
+\gdef\dm{\thinspace \mathrm{d}m}
+\gdef\dr{\thinspace \mathrm{d}r}
+\gdef\dt{\thinspace \mathrm{d}t}
 \gdef\iidsim{\overset{\mathrm{iid}}{\sim}}
 $$
 
-$\gdef\dx{\, \mathrm{d}x}$
-$\gdef\dm{\, \mathrm{d}m}$
-$\gdef\dr{\, \mathrm{d}r}$
-$\gdef\dt{\, \mathrm{d}t}$
+$\gdef\dx{\thinspace \mathrm{d}x}$
+$\gdef\dm{\thinspace \mathrm{d}m}$
+$\gdef\dr{\thinspace \mathrm{d}r}$
+$\gdef\dt{\thinspace \mathrm{d}t}$
 $\gdef\iidsim{\overset{\mathrm{iid}}{\sim}}$
 
 ## Intro
