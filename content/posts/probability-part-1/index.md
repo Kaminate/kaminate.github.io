@@ -4,16 +4,14 @@ date: 2026-09-27
 draft: false
 ---
 
-<!-- TODO: remove this comment when all the probability parts are draft: false
 - [Probability Part I]({{< ref "posts/probability-part-1" >}}) $\leftarrow$ you are here
 - [Probability Part II]({{< ref "posts/probability-part-2" >}})
 - [Probability Part III]({{< ref "posts/probability-part-3" >}})
--->
 
 ## Intro
 
 
-Computer graphics often involves estimating complicated lighting integrals using Monte Carlo integration. This requires a background in random numbers and probability. By the end of this post you should understand the basics of probability, including the following terms and notations:
+Computer graphics often involves estimating complicated lighting integrals using **Monte Carlo integration**. This requires a background in random numbers and probability. By the end of this post you should understand the basics of probability, including the following terms and notations:
 
 {{<br>}}
 
@@ -549,11 +547,11 @@ $$
 From $f_X$, you can see that the dart is more likely to land in an outer ring than an inner ring of the same thickness, as outer rings have more area.
 
 
+## Coming up next
 
+Now have the basic concepts leading up to **random variables**. Next in [Part II]({{< ref "posts/probability-part-2" >}}), we will build up to **Monte Carlo integration**.
 
 ---
-
-
 
 ## Sources
 

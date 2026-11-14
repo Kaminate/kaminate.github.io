@@ -4,11 +4,9 @@ date: 2026-10-11
 draft: false
 ---
 
-<!-- TODO: remove this comment when all the probability parts are draft: false
 - [Probability Part I]({{< ref "posts/probability-part-1" >}})
 - [Probability Part II]({{< ref "posts/probability-part-2" >}}) $\leftarrow$ you are here
 - [Probability Part III]({{< ref "posts/probability-part-3" >}})
--->
 
 $$
 \gdef\dx{\mathrm{d}x}
@@ -633,7 +631,7 @@ Integral estimate: 2.00179
  
 ## Coming up next
 
-We now have the basic structure for **Monte Carlo integration**. In part 3 we will look at sampling using the inversion method and importance sampling.
+We now have the basic structure for **Monte Carlo integration**. In [Part III]({{< ref "posts/probability-part-3" >}}) we will look at sampling using the **inversion method**, **importance sampling**, and **importance resampling**.
 
 ## Sources
 

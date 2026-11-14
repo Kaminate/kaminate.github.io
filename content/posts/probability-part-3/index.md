@@ -4,11 +4,9 @@ date: 2026-10-15
 draft: false
 ---
 
-<!-- TODO: remove this comment when all the probability parts are draft: false
 - [Probability Part I]({{< ref "posts/probability-part-1" >}})
 - [Probability Part II]({{< ref "posts/probability-part-2" >}})
 - [Probability Part III]({{< ref "posts/probability-part-3" >}}) $\leftarrow$ you are here
--->
 
 $$
 \gdef\dx{\, \mathrm{d}x}
@@ -26,7 +24,7 @@ $\gdef\iidsim{\overset{\mathrm{iid}}{\sim}}$
 
 ## Intro
 
-In [Parts I]({{< ref "posts/probability-part-1" >}}), and [II]({{< ref "posts/probability-part-2" >}}), we built up from the basics to **random variables** and **Monte Carlo integration**. In this post we will expand on **Monte Carlo integration** with sampling using the **inversion method**, **importance sampling**, and **importance resampling**.
+In [Part I]({{< ref "posts/probability-part-1" >}}), and [Part II]({{< ref "posts/probability-part-2" >}}), we built up from the basics to **random variables** and **Monte Carlo integration**. In this post we will expand on **Monte Carlo integration** with sampling using the **inversion method**, **importance sampling**, and **importance resampling**.
 
 ## Inversion Method Sampling
 
