@@ -628,6 +628,16 @@ int main()
 ```txt
 Integral estimate: 2.00179
 ```
+
+<!--
+
+## Variance of the Monte Carlo Estimator
+
+// ----------------------------------------
+//                   TODO 
+// ----------------------------------------
+
+-->
  
 ## Coming up next
 

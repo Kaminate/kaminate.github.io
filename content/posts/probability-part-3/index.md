@@ -185,9 +185,19 @@ E_p[ f(X) ] &= E_q \left[ f(X) \thinspace w(X) \right]
 $$
 {{</katex>}}
 
+<!--
+
+## Variance of Importance Sampling
+
+// ----------------------------------------
+//                   TODO 
+// ----------------------------------------
+
+-->
+
 ## Importance Resampling (IR)
 
-**Importance Resampling** (IR), also known as **Sampling Importance Resampling** (SIR), is a method that takes a set of samples from $q$ and _resamples_ them  to produce a new set of samples approximately distributed according to $p$.
+**Importance Resampling** (IR), also known as **Sampling Importance Resampling** (SIR), is a method that can generate samples from a difficult distribution $p$. It does so by first sampling from an easier distribution $q$, then resampling those with probabilities proportial to their importance weights.
 
 {{<br>}}
 ![](IR_p_and_q.png)
@@ -225,29 +235,29 @@ $$
 \Pr( \widetilde{X} = X^i ) = \frac{ w(X^i)}{\sum_{j=1}^N w(X^j) } = \tilde{w}(X^i)
 $$
 
-The probability that a single resampled sample $\widetilde{X}$ falls into the interval $[a,b]$ is:
+The probability that a single resampled sample $\widetilde{X}$ falls into the interval $A=[a,b]$ is:
 
 {{<katex>}}
 $$
 \begin{aligned}
-\Pr( \widetilde{X} \in [a,b] ) &= \sum_{i=1}^N \Pr( \widetilde{X} = X^i ) \,  1_{\lbrace X^i \in [a,b] \rbrace }
-\\[1.5em] &= \sum_{i=1}^N \widetilde{w}(X^i) \,  1_{\lbrace X^i \in [a,b] \rbrace }
-\\[1.5em] &= \sum_{i=1}^N \left(  \frac{w(X^i)}{\sum_{j=1}^N w( X^j)} \right) \,  1_{\lbrace X^i \in [a,b] \rbrace }
-\\[1.5em] &= \frac{ \sum_{i=1}^N w(X^i) \,  1_{\lbrace X^i \in [a,b] \rbrace } }
+\Pr( \widetilde{X} \in A ) &= \sum_{i=1}^N \Pr( \widetilde{X} = X^i ) \,  1_{\lbrace X^i \in A \rbrace }
+\\[1.5em] &= \sum_{i=1}^N \widetilde{w}(X^i) \,  1_{\lbrace X^i \in A \rbrace }
+\\[1.5em] &= \sum_{i=1}^N \left(  \frac{w(X^i)}{\sum_{j=1}^N w( X^j)} \right) \,  1_{\lbrace X^i \in A \rbrace }
+\\[1.5em] &= \frac{ \sum_{i=1}^N w(X^i) \,  1_{\lbrace X^i \in A \rbrace } }
                   { \sum_{j=1}^N w(X^j)}
-\\[1.5em] &= \frac{ \frac{1}{N} \sum_{i=1}^N w(X^i) \,  1_{\lbrace X^i \in [a,b] \rbrace } }
+\\[1.5em] &= \frac{ \frac{1}{N} \sum_{i=1}^N w(X^i) \,  1_{\lbrace X^i \in A \rbrace } }
                   { \frac{1}{N} \sum_{j=1}^N w( X^j) }
 \end{aligned}
 $$
 {{</katex>}}
 
-By the way, $1_{\lbrace X^i \in [a,b] \rbrace}$ is an _indicator variable_, it's defined as:
+By the way, $1_{\lbrace X^i \in A \rbrace}$ is an _indicator variable_, it's defined as:
 
 {{<katex>}}
 $$
-1_{\{X^i \in [a,b]\}} =
+1_{\{X^i \in A \}} =
 \begin{cases}
-1, & \text{if } X^i \in [a,b],\\
+1, & \text{if } X^i \in A,\\
 0, & \text{otherwise}.
 \end{cases}
 $$
@@ -259,15 +269,15 @@ Due to the **Law of Large Numbers**,
 {{<katex>}}
 $$
 \begin{aligned}
-\Pr( \widetilde{X} \in [a,b] ) &= \frac{ \frac{1}{N} \sum_{i=1}^N w(X^i) \,  1_{\lbrace X^i \in [a,b] \rbrace } }
+\Pr( \widetilde{X} \in A ) &= \frac{ \frac{1}{N} \sum_{i=1}^N w(X^i) \,  1_{\lbrace X^i \in A \rbrace } }
                                        { \frac{1}{N} \sum_{j=1}^N w( X^j) }
-\\[2em] &\xrightarrow[N \to \infty]{} \frac{ \mathbb{E}_q \left[w(X) \,  1_{\lbrace X \in [a,b] \rbrace }\right] }
+\\[2em] &\xrightarrow[N \to \infty]{} \frac{ \mathbb{E}_q \left[w(X) \,  1_{\lbrace X \in A \rbrace }\right] }
                                            { \mathbb{E}_q \left[w(X) \right] }.
 \end{aligned}
 $$
 {{</katex>}}
 
-The denominator is pretty straightforward
+As $N \to \infty$, the denominator converges to $1$
 
 {{<katex>}}
 $$
@@ -280,25 +290,41 @@ $$
 $$
 {{</katex>}}
 
-Leaving just the numerator,
+Leaving just the numerator as $N \to \infty$, which converges to $\int_A p(x) \dx$.
 
 {{<katex>}}
 $$
 \begin{aligned}
-\Pr( \widetilde{X} \in [a,b] )
-   &\xrightarrow[N \to \infty]{} \mathbb{E}_q \left[w(X) \,  1_{\lbrace X \in [a,b] \rbrace }\right]
-\\ &= \mathbb{E}_q \left[ \frac{p(X)}{q(X)} \,  1_{\lbrace X \in [a,b] \rbrace }\right] 
-\\ &= \int \frac{p(x)}{q(x)} \,  1_{\lbrace x \in [a,b] \rbrace } \, q(x) \dx
-\\ &= \int p(x) \,  1_{\lbrace x \in [a,b] \rbrace } \dx
-\\ &= \int_a^b p(x) \dx
+\Pr( \widetilde{X} \in A )
+
+&=  \frac{1}{N} \sum_{i=1}^N w(X^i) \,  1_{\lbrace X^i \in A \rbrace }
+\\ & \xrightarrow[N \to \infty]{} \mathbb{E}_q \left[w(X) \,  1_{\lbrace X \in A \rbrace }\right]
+\\ &= \mathbb{E}_q \left[ \frac{p(X)}{q(X)} \,  1_{\lbrace X \in A \rbrace }\right] 
+\\ &= \int \frac{p(x)}{q(x)} \,  1_{\lbrace x \in A \rbrace } \, q(x) \dx
+\\ &= \int p(x) \,  1_{\lbrace x \in A \rbrace } \dx
+\\ &= \int_A p(x) \dx
 \end{aligned}
 $$
 {{</katex>}}
 
-Therefore, for any interval $[a,b]$, the probability that $\widetilde{X}$ lies within it converges to the corresponding probability mass under density $p$. Thus, for sufficiently large $N$,
+Thus, for sufficiently large $N$,
 $$
 \widetilde{X} \mathrel{\dot\sim} p
 $$
+
+This graph from [Talbot (2005)](#sources), shows this convergence.
+
+![](talbot_ir.png)
+
+
+
+IR pros:
+- IR can generate samples approximately proportional to complicated functions like $L\thinspace f_r \cos(\theta)$ just by evaluating the function and using a suitable proposal sampler $q$.
+- IR doesn't require the target function $p$ to be normalized.
+
+A major con of IR is PDF _intractability_. 
+
+Although $\widetilde{X}$ is approximately distributed according to $p$, its exact PDF, $p_{\widetilde{X}}$, is generally intractable to evaluate - we don't even know what it is!  So using $p(\widetilde{X})$ instead of $p_{\widetilde{X}}(\widetilde{X})$ generally introduces bias without some magical correction factor... more on that later.
 
 ### IR Example
 
@@ -436,6 +462,17 @@ int main()
 }
 ```
 
+
+## Resampled Importance Sampling (RIS)
+
+**Resampled Importance Sampling (RIS)** builds upon **Importance Resampling (IR/SIR)** to estimate an integral.
+
+That's right. In a stroke of naming genius, we have two related techniques:
+- Sampling Importance Resampling (SIR) / Importance Resampling (IR)
+- Resampled Importance Sampling (RIS)
+
+That's not confusing at all.
+
 ## Sources
 
 
@@ -447,4 +484,6 @@ int main()
 
 - [SMC tutorial 2: the need to resample when using Importance Sampling - Peter Green, Distributed Algorithms CDT](https://www.youtube.com/watch?v=PNhA5mxZ6yE)
 
+- [Understanding the math behind ReSTIR DI - Jiayin Cao](https://agraphicsguynotes.com/posts/understanding_the_math_behind_restir_di)
 
+- [Importance Resampling for Global Illumination - Justin F. Talbot](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=1662&context=etd) 
