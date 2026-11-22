@@ -629,15 +629,16 @@ int main()
 Integral estimate: 2.00179
 ```
 
-<!--
-
 ## Variance of the Monte Carlo Estimator
 
+Currently, only **Monte Carlo** integration is capable of solving the general rendering equation. However, due to its random nature, **variance** shows up as noise in the rendered image. Reducing variance improves image quality. So first we need a way to measure the variance of a Monte Carlo estimator.
+
+```cpp
 // ----------------------------------------
 //                   TODO 
 // ----------------------------------------
+```
 
--->
  
 ## Coming up next
 

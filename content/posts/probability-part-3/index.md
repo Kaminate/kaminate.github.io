@@ -465,13 +465,58 @@ int main()
 
 ## Resampled Importance Sampling (RIS)
 
-**Resampled Importance Sampling (RIS)** builds upon **Importance Resampling (IR/SIR)** to estimate an integral.
+**Resampled Importance Sampling (RIS)** builds upon **Importance Resampling (IR/SIR)** to reduce variance for Monte Carlo integration.
 
 That's right. In a stroke of naming genius, we have two related techniques:
 - Sampling Importance Resampling (SIR) / Importance Resampling (IR)
 - Resampled Importance Sampling (RIS)
 
-That's not confusing at all.
+That's not confusing at all...
+
+Anyway, we want to estimate an integral
+
+$$
+I = \int_\Omega f(x) \dx
+$$
+
+The normal Monte Carlo estimator $\hat{I}_{MC}$ works when $p$ is normalized and is easy to sample from.
+
+$$
+I \approx \hat{I}_{MC} = \frac{1}{N}\sum_{i=1}^N \frac{ f( X^i ) }{p(X^i)}
+$$
+
+The **Resampled Importance Sampling** Monte Carlo estimator uses **SIR** to generate samples $\widetilde{X}$, and a a weighting function $w^*$ to correct for the fact that the samples are only approximately distributed according to $p$, and that $p$ is unnormalized.
+
+$$
+\hat{I}_{RIS} = \frac{1}{N}\sum_{i=1}^N
+\frac
+{ f( \widetilde{X}^i ) }
+{ p( \widetilde{X}^i ) }
+\,
+w^*
+$$
+
+where the weighting function is simply an average of all the IR importance weights of the proposal samples $X^i$
+
+<!-- normalized importance weight or nah? -->
+$$
+w^* = \frac{1}{N}\sum_{i=1}^N w( X^i )
+    = \frac{1}{N}\sum_{i=1}^N \frac{p(X^i)}{q(X^i)}
+$$
+
+The basic RIS estimator is thus
+
+$$
+\hat{I}_{RIS} =
+\frac{1}{N}\sum_{i=1}^N
+\left( \frac { f( \widetilde{X}^i ) } { p( \widetilde{X}^i ) } \right)
+\cdot
+\frac{1}{N}\sum_{i=1}^N \frac{p(X^i)}{q(X^i)}
+$$
+
+<!-- Separate M proposal from N samples? -->
+
+
 
 ## Sources
 
