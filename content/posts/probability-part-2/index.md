@@ -7,16 +7,19 @@ draft: false
 - [Probability Part I]({{< ref "posts/probability-part-1" >}})
 - [Probability Part II]({{< ref "posts/probability-part-2" >}}) $\leftarrow$ you are here
 - [Probability Part III]({{< ref "posts/probability-part-3" >}})
+- [Probability Part IV]({{< ref "posts/probability-part-4" >}})
 
 $$
-\gdef\dx{\mathrm{d}x}
-\gdef\dm{\mathrm{d}m}
-\gdef\dr{\mathrm{d}r}
+\gdef\dx{\thinspace \mathrm{d}x}
+\gdef\dy{\thinspace \mathrm{d}y}
+\gdef\dm{\thinspace \mathrm{d}m}
+\gdef\dr{\thinspace \mathrm{d}r}
 $$
 
-$\gdef\dx{\mathrm{d}x}$
-$\gdef\dm{\mathrm{d}m}$
-$\gdef\dr{\mathrm{d}r}$
+$\gdef\dx{\thinspace \mathrm{d}x}$
+$\gdef\dy{\thinspace \mathrm{d}y}$
+$\gdef\dm{\thinspace \mathrm{d}m}$
+$\gdef\dr{\thinspace \mathrm{d}r}$
 
 
 ## Intro
@@ -221,6 +224,12 @@ $$
 \mathbb{E}_p[X]
 $$
 {{</katex>}}
+
+## Conditional Expected Value
+
+Given the **set of outcomes** $\Omega$ of a random experiment, suppose we have two random variables $X$ and $Y$ that takes values in the sets $S$ and $T$ respectively
+
+
 
 
 ## Law of the Unconscious Statistician
@@ -642,13 +651,12 @@ Currently, only **Monte Carlo** integration is capable of solving the general re
  
 ## Coming up next
 
-We now have the basic structure for **Monte Carlo integration**. In [Part III]({{< ref "posts/probability-part-3" >}}) we will look at sampling using the **inversion method**, **importance sampling**, and **importance resampling**.
+We now have the basic structure for **Monte Carlo integration**. In [Part III]({{< ref "posts/probability-part-3" >}}) we will take a break from **Monte Carlo integration** to take look at tuples of **random variables**, called **joint random variables**, and their densities, before returning to **Monte Carlo integration** in [Part IV]({{< ref "posts/probability-part-4" >}}).
 
 ## Sources
 
 - [Definitions and Basic Properties - Kyle Siegrist, LibreTexts](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/04%3A_Expected_Value/4.01%3A_Definitions_and_Basic_Properties)
 
 - [Variance - Kyle Siegrist, LibreTexts](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/04%3A_Expected_Value/4.03%3A_Variance)
-
 
 

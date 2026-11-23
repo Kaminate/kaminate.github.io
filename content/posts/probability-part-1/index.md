@@ -7,6 +7,19 @@ draft: false
 - [Probability Part I]({{< ref "posts/probability-part-1" >}}) $\leftarrow$ you are here
 - [Probability Part II]({{< ref "posts/probability-part-2" >}})
 - [Probability Part III]({{< ref "posts/probability-part-3" >}})
+- [Probability Part IV]({{< ref "posts/probability-part-4" >}})
+
+$$
+\gdef\dx{\thinspace \mathrm{d}x}
+\gdef\dy{\thinspace \mathrm{d}y}
+\gdef\dm{\thinspace \mathrm{d}m}
+\gdef\dr{\thinspace \mathrm{d}r}
+$$
+
+$\gdef\dx{\thinspace \mathrm{d}x}$
+$\gdef\dy{\thinspace \mathrm{d}y}$
+$\gdef\dm{\thinspace \mathrm{d}m}$
+$\gdef\dr{\thinspace \mathrm{d}r}$
 
 ## Intro
 
@@ -556,5 +569,7 @@ Now have the basic concepts leading up to **random variables**. Next in [Part II
 ## Sources
 
 - [Events and Random Variables — Kyle Siegrist, LibreTexts](https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/02%3A_Probability_Spaces/2.02%3A_Events_and_Random_Variables)
+
 - [Continuous Density Functions — Grinstead and Snell, LibreTexts](https://stats.libretexts.org/Bookshelves/Probability_Theory/Introductory_Probability_(Grinstead_and_Snell)/02:_Continuous_Probability_Densities/2.02:_Continuous_Density_Functions)
+
 - [Random Variable — Wikipedia](https://en.wikipedia.org/wiki/Random_variable)
