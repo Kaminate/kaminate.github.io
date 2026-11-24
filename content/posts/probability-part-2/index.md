@@ -262,8 +262,9 @@ $$
 
 ## Variance
 
-The **variance** of $X$ is defined as the _second central moment_ of $X$, where $\mu = \mathbb{E} [  X ]$:
+## Variance
 
+**Variance** measures how widely a **random variable** can deviate from its **expected value**, and is defined as the _second central moment_ of $X$, where $\mu = \mathbb{E} [  X ]$:
 
 {{<katex>}}
 $$
