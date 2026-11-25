@@ -225,13 +225,6 @@ $$
 $$
 {{</katex>}}
 
-## Conditional Expected Value
-
-Given the **set of outcomes** $\Omega$ of a random experiment, suppose we have two random variables $X$ and $Y$ that takes values in the sets $S$ and $T$ respectively
-
-
-
-
 ## Law of the Unconscious Statistician
 
 The **law of the unconscious statistician** (LOTUS) is a theorem for finding the **expected value** of a _function_ $g$ of a **random variable** $X$.  It is so named because people often use it without consciously realizing that it requires a theorem.
